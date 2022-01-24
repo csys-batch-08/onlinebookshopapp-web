@@ -1,0 +1,18 @@
+body{
+    background-image: url(image/book.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+fieldset{
+    position: absolute;
+    top: 140px;
+    right: 40%;
+    padding-right: 30px;
+    padding-left: 30px;
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+}

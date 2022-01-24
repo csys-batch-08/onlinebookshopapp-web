@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://JAVA.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+	<servlet>
+		<description>
+		</description>
+		<display-name>ForgotPasswordServlet</display-name>
+		<servlet-name>ForgotPasswordServlet</servlet-name>
+		<servlet-class>com.onlinebookshop.controller.ForgotPasswordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>FilterNameServlet</display-name>
+		<servlet-name>FilterNameServlet</servlet-name>
+		<servlet-class>com.onlinebookshop.controller.FilterNameServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ForgotPasswordServlet</servlet-name>
+		<url-pattern>/ForgotPasswordServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FilterNameServlet</servlet-name>
+		<url-pattern>/FilterNameServlet</url-pattern>
+	</servlet-mapping>
+
+	  
+</web-app>
