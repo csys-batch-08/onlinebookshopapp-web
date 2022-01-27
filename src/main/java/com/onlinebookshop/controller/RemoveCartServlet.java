@@ -1,6 +1,8 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +32,9 @@ public class RemoveCartServlet extends HttpServlet {
 	    
 	    cartdao.deleteCart(bookid,userid);
 	    
-	    response.sendRedirect("ShowCart.jsp");
+	    //response.sendRedirect("ShowCartServlet");
+	    RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowCartServlet");
+	    requestDispatcher.forward(request, response);
 	}
 
 }

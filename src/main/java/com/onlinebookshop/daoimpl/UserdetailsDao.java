@@ -29,7 +29,7 @@ public class UserdetailsDao implements UserDetailsDao{
 			pst.setString(1, user.getName());
 			pst.setLong(2, user.getPhoneNo());
 			pst.setString(3, user.getAddress());
-			pst.setString(4, user.getEmail_id());
+			pst.setString(4, user.getEmailid());
 			pst.setString(5, user.getPassword());
 			
 			pst.executeUpdate();
@@ -91,7 +91,7 @@ public class UserdetailsDao implements UserDetailsDao{
 			pst.setLong(2, user.getPhoneNo());
 			pst.setString(3, user.getAddress());
 			pst.setString(4, user.getPassword());
-			pst.setString(5,user.getEmail_id() );
+			pst.setString(5,user.getEmailid() );
 			int i=pst.executeUpdate();
 			System.out.println(i+"row updated");
 			pst.close();
@@ -223,7 +223,7 @@ public class UserdetailsDao implements UserDetailsDao{
 			
 			pstm = con.prepareStatement(query);
 			pstm.setInt(1, userdetails.getWallet());
-			pstm.setString(2,userdetails.getEmail_id());
+			pstm.setString(2,userdetails.getEmailid());
 			int i = pstm.executeUpdate();
 			
 			System.out.println(i+"Wallet is updated");
@@ -266,7 +266,7 @@ public class UserdetailsDao implements UserDetailsDao{
 			
 			pstm = con.prepareStatement(query);
 			pstm.setInt(1, userdetails.getWallet());
-			pstm.setString(2,userdetails.getEmail_id());
+			pstm.setString(2,userdetails.getEmailid());
 			int i = pstm.executeUpdate();
 			
 			System.out.println(i+"Wallet is updated");
@@ -286,7 +286,7 @@ public class UserdetailsDao implements UserDetailsDao{
    			PreparedStatement pst=con.prepareStatement(updateQuery);
    			
    			pst.setString(1, user.getPassword());
-   			pst.setString(2,user.getEmail_id() );
+   			pst.setString(2,user.getEmailid() );
    			int i=pst.executeUpdate();
    			System.out.println(i+"row updated");
    			pst.close();

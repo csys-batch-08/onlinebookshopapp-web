@@ -10,7 +10,7 @@ public interface BookdetailsDao {
 
 	public int insertBooks(Bookdetails product);
 	public void deleteBooks(int product);
-	public List<ProductDetails> showProduct(int userid);
+	public List<ProductDetails> showProduct();
 	public int findProductid(String book_title);
 	public int findPrice(int proid);
 	public void updateBooks(Bookdetails bookdetails);

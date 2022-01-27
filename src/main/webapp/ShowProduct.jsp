@@ -1,14 +1,10 @@
-<%@page import="com.onlinebookshop.daoimpl.Ratingdaoimpl"%>
-<%@page import="com.onlinebookshop.model.Bookdetails"%>
-<%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
-<%@page import="com.onlinebookshop.model.ProductDetails"%>
-<%@page import="com.onlinebookshop.model.Rating" %>
-<%@page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang = "eng">
+<title>Products</title>
 <head>
 <meta charset="ISO-8859-1">
 <style>
@@ -21,8 +17,7 @@ body{
     font-weight: 1000;
     font-size: 18px;
     font-weight:bold; 
-    position: fixed;
-     
+    position: fixed;     
 }
 
 img{
@@ -30,7 +25,6 @@ width: 250px;
 padding:20px;
 border-radius: 14%;
 margin-left: 200px;
-
 
 }
 span{
@@ -52,12 +46,12 @@ padding-left: 80px;
 
 }
 .btn {
-margin-right: 30px;
-margin-left: 30px;
+  margin-right: 30px;
+  margin-left: 30px;
 }
 button{
 
-   padding: 7px;
+    padding: 7px;
   	border-radius: 4px;
   	background-color: GoldenRod;
   	color: black;
@@ -138,7 +132,7 @@ ul
        
         <li><a href="ShowBook.jsp">Home</a></li>
         <li><a href="FilterByCondition.jsp">Old Books</a></li>
-        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
+        <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
         
@@ -146,54 +140,37 @@ ul
         <li><a href="login.jsp">Log Out</a></li>
     </ul>
 </div>
-
-<%!double rate; %>
-<%
-int userid = (int)session.getAttribute("userId");
-int bookid = Integer.parseInt(request.getParameter("BookId"));
-System.out.println(bookid);
-BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-List<ProductDetails> showProduct= bookdetaildao.showBook(bookid);
-Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
-
-
-
-%>
+      
  
 <table>
+
             <tbody>
                 <tr>
                 
-                <%int count=0;
-                for(ProductDetails bookdetails: showProduct){
-                	
-                	%>
+                <c:set var="count" value="1"/>
+                <c:forEach items="${booklist}" var="book">
+               
                     <td>
                         <table id="producttable">
                             <tbody>
                                 <tr>
-                                    <td><img src="image/<%=bookdetails.getBookimages()%>" width=50 height=350 alt="book"></td>    
+                                    <td><img src="image/${book.bookimages}" width=50 height=350 alt="book"></td>    
                                     <td class="book">
-                                        <p><b class="cat">CATEGORY   :   </b><%=bookdetails.getCategory() %><br></p>
-                                        <p><b class="desc">DESCRIPTION :</b><%=bookdetails.getDescription()%><br></p>
-                                        <p><b class="title">BOOK TITLE  :   </b><%=bookdetails.getBook_title()%><br></p>
-                                        <p><b class="title">BOOK CODE  :   </b><%=bookdetails.getBook_code() %><br></p>
-                                        <p><b class="price">PRICE :  </b><%=bookdetails.getPrice() %><br></p>
-                                        <p><b class="date">PUBLISH DATE   :   </b><%=bookdetails.getPublish_date()%><br></p>
-                                        <p><b class="condition">CONDITION   :   </b><%=bookdetails.getCondition() %><br></p>
-                                        <p><b class="aname">AUTHOR NAME   :  </b><%=bookdetails.getName() %><br></p>
-                                        <p><b class="aemail">AUTHOR EMAIL   :  </b><%=bookdetails.getEmail_id() %><br></p>
-                                         <%
-                     
-                                         Rating rating = new Rating();
-                                         rating.setBook_id(bookdetails.getBookid());
-                                         rate = ratingdaoimpl.fetchrating(rating);
+                                        <p><b class="cat">CATEGORY   :   </b>${book.category}<br></p>
+                                        <p><b class="desc">DESCRIPTION :</b>${book.description}<br></p>
+                                        <p><b class="title">BOOK TITLE  :   </b>${book.booktitle}<br></p>
+                                        <p><b class="title">BOOK CODE  :   </b>${book.bookcode}<br></p>
+                                        <p><b class="price">PRICE :  </b>${book.price}<br></p>
+                                        <p><b class="date">PUBLISH DATE   :   </b>${book.publishdate}<br></p>
+                                        <p><b class="condition">CONDITION   :   </b>${book.condition}<br></p>
+                                        <p><b class="aname">AUTHOR NAME   :  </b>${book.name}<br></p>
+                                        <p><b class="aemail">AUTHOR EMAIL   :  </b>${book.emailid}<br></p>
                                          
-                                         %>
                                          
-                                         <p><b class="rating">RATINGS    :</b><%=rate %><br><br></p>
-                                         <a href = "addcartserv?bookid=<%=bookdetails.getBookid()%>"><button class="btn">Add to Cart</button></a>
-                                         <a href = "Ratings.jsp?bookd=<%=bookdetails.getBookid()%>"><button>Add Ratings</button></a>
+                                         <p><b class="rating">RATINGS    :</b>${book.rating}<br><br></p>
+                                         <a href = "addcartserv?bookid=${book.bookid}"><button class="btn">Add to Cart</button></a>
+                                         <a href = "RatingNewServlet?bookd=${book.bookid}"><button>Add Ratings</button></a>
+                                         
                                          
                                     </td>
                                 </tr>
@@ -201,11 +178,19 @@ Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
                         </table>  
                             
                     </td>
-                       <% count ++;
-                       if(count==2){ %> 
+                    
+                      <c:choose>
+                          <c:when test="${count==2}">
+                              <c:set var="count" value="1"/>
                     	   </tr>
                     	   <tr>              
-                     <%count=0; }}%>  
+                      </c:when> 
+                    	   <c:otherwise>
+                    	   <c:set var="count" value="${count+1}"/>
+                    	   </c:otherwise>            
+                          
+                       </c:choose>
+                       </c:forEach>
                        
                 </tr>
             </tbody>

@@ -135,11 +135,11 @@ for (OrderDetails viewOrder : orderList) {
 
 
 <td><%=i%></td>
-<td><%=viewOrder.getCus_id()%></td>
-<td><%=viewOrder.getBook_id()%></td>
+<td><%=viewOrder.getCusid()%></td>
+<td><%=viewOrder.getBookid()%></td>
 <td><%=viewOrder.getQuantity()%></td>
-<td><%=viewOrder.getTotal_cost()%></td>
-<td><%=viewOrder.getOrder_date()%></td>
+<td><%=viewOrder.getTotalcost()%></td>
+<td><%=viewOrder.getOrderdate()%></td>
 <td><%=viewOrder.getStatus() %></td>
 </tr>
 

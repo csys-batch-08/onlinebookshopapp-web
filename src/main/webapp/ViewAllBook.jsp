@@ -117,10 +117,10 @@ for (Bookdetails viewBook : userList) {
 <td><%=viewBook.getBookid()%></td>
 <td><%=viewBook.getCategory()%></td>
 <td><%=viewBook.getDescription()%></td>
-<td> <%=viewBook.getBook_title()%></td>
-<td> <%=viewBook.getBook_code()%></td>
+<td> <%=viewBook.getBooktitle()%></td>
+<td> <%=viewBook.getBookcode()%></td>
 <td> <%=viewBook.getPrice()%></td>
-<td> <%=viewBook.getPublish_date()%></td>
+<td> <%=viewBook.getPublishdate()%></td>
 <td> <%=viewBook.getCondition()%></td>
 <td> <%=viewBook.getBookimages()%></td>
 <td> <%=viewBook.getStatus()%></td>

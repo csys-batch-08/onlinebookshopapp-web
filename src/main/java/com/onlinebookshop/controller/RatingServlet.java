@@ -3,6 +3,7 @@ package com.onlinebookshop.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,7 @@ import com.onlinebookshop.model.Rating;
 public class RatingServlet extends HttpServlet {
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
 		
@@ -32,16 +33,31 @@ public class RatingServlet extends HttpServlet {
 		
 		Ratingdaoimpl ratingdao = new Ratingdaoimpl();
 		
+		int res=0;
+		
 		try {
-			int res = ratingdao.insertrating(rate);
+			 res = ratingdao.insertrating(rate);
+			
 			System.out.println(res);
+			
 			if(res > 0) {
-				response.sendRedirect("ShowBook.jsp");
+				
+				session.setAttribute("rating", "Inserted successfully");
+
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowBookServlet");
+				
+				requestDispatcher.forward(request, response);
+				
+				//response.sendRedirect("ShowBook.jsp");
+				
+				
+				
 			}else {
+				
 				response.sendRedirect("AlreadyRating.jsp");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}

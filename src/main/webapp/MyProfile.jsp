@@ -121,7 +121,7 @@ for (Userdetails viewUser : userList) {
 <pre><b>Name         :  </b><%=viewUser.getName()%><br>
 <b>Phone No     :  </b><%=viewUser.getPhoneNo()%><br>
 <b>Address      :  </b><%=viewUser.getAddress()%><br>
-<b>Email_id     :  </b><%=viewUser.getEmail_id()%><br>
+<b>Email_id     :  </b><%=viewUser.getEmailid()%><br>
 <b>Password     :  </b><%=viewUser.getPassword()%><br>
 <b>Wallet       :  </b><%=viewUser.getWallet()%><br></pre>
 

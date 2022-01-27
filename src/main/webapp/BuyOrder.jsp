@@ -176,24 +176,22 @@ ul
                                 <tr>
                                     <td><img src="image/<%=bookdetails.getBookimages()%>" width=180 height=350 alt="book"></td>    
                                     <td class="book">
-                                        <p><b class="cat">CATEGORY   :   </b><%=bookdetails.getCategory() %><br></p>
-                                        <p><b class="desc">DESCRIPTION :</b><%=bookdetails.getDescription()%><br></p>
-                                        <p><b class="title">BOOK TITLE  :   </b><%=bookdetails.getBook_title()%><br></p>
-                                        <p><b class="title">BOOK CODE  :   </b><%=bookdetails.getBook_code() %><br></p>
-                                        <p><b class="price">PRICE :  </b><%=bookdetails.getPrice() %><br></p>
-                                        <p><b class="date">PUBLISH DATE   :   </b><%=bookdetails.getPublish_date()%><br></p>
-                                        <p><b class="condition">CONDITION   :   </b><%=bookdetails.getCondition() %><br></p>
-                                        <p><b class="aname">AUTHOR NAME   :  </b><%=bookdetails.getName() %><br></p>
-                                        <p><b class="aemail">AUTHOR EMAIL   :  </b><%=bookdetails.getEmail_id() %><br></p>
+                                        <p><strong class="cat">CATEGORY   :   </strong><%=bookdetails.getCategory() %><br></p>
+                                        <p><strong class="desc">DESCRIPTION :</strong><%=bookdetails.getDescription()%><br></p>
+                                        <p><strong class="title">BOOK TITLE  :   </strong><%=bookdetails.getBooktitle()%><br></p>
+                                        <p><strong class="title">BOOK CODE  :   </strong><%=bookdetails.getBookcode()%><br></p>
+                                        <p><strong class="price">PRICE :  </strong><%=bookdetails.getPrice() %><br></p>
+                                        <p><strong class="date">PUBLISH DATE   :   </strong><%=bookdetails.getPublishdate()%><br></p>
+                                        <p><strong class="condition">CONDITION   :   </strong><%=bookdetails.getCondition() %><br></p>
+                                        <p><strong class="aname">AUTHOR NAME   :  </strong><%=bookdetails.getName() %><br></p>
+                                        <p><strong class="aemail">AUTHOR EMAIL   :  </strong><%=bookdetails.getEmailid()%><br></p>
                                         <%
-                     
-                                         Rating rating = new Rating();
-                                         rating.setBook_id(bookdetails.getBookid());
-                                         rate = ratingdaoimpl.fetchrating(rating);
+                                        Rating rating = new Rating();
+                                        rating.setBookid(bookdetails.getBookid());
+                                        rate = ratingdaoimpl.fetchrating(rating);
+                                        %>
                                          
-                                         %>
-                                         
-                                         <p><b class="rating">RATINGS    :</b><%=rate %><br><br></p>
+                                         <p><strong class="rating">RATINGS    :</strong><%=rate %><br><br></p>
                                          
                                     </td>
                                 </tr>

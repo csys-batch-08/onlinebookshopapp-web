@@ -20,6 +20,7 @@ import com.onlinebookshop.model.Userdetails;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String email = request.getParameter("emailid");
@@ -27,46 +28,36 @@ public class LoginServlet extends HttpServlet {
 		UserdetailsDao userdao = new UserdetailsDao();
 		Userdetails user = userdao.validateUser(email, password);
 		Userdetails admin = userdao.admin(email, password);
-		PrintWriter pw = response.getWriter();
+		
+		HttpSession session=request.getSession();
+		
 		if(user!=null)
 		{
-//           RequestDispatcher rd = request.getRequestDispatcher("ShowProduct.jsp");
-//             rd.forward(request, response);
-             
-			HttpSession session=request.getSession();
  			session.setAttribute("currentuser", user);
  			
  			int userid=userdao.findUserId(email);
- 			//System.out.println(userid);
  			
- 			session.setAttribute("userId", userid);
- 			//System.out.println("userId"+userid);
- 			
+ 			session.setAttribute("userId", userid); 			
  			
  			session.setAttribute("emailid", email);
- 			response.sendRedirect("ShowBook.jsp");
+ 			response.sendRedirect("ShowBookServlet");
 		}
 		else if(admin!=null)
-		{
-//			RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-//			rd.forward(request, response);
-			
-			HttpSession session=request.getSession();
+		{			
  			session.setAttribute("admin", admin);
  			response.sendRedirect("admin.jsp");
  			
 		}
 		else
 		{
-			pw.write("Invalid login");
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-			rd.forward(request, response);
+			session.setAttribute("login", "Invalid User");
+			response.sendRedirect("login.jsp");
 			
 			
 		}
 
 
-		//doGet(request, response);
+		
 	}
 
 }

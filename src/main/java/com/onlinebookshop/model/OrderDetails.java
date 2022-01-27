@@ -5,20 +5,20 @@ import java.util.Objects;
 
 public class OrderDetails {
     
-	private int order_id;
-	private int book_id;
-	private int cus_id;
+	private int orderid;
+	private int bookid;
+	private int cusid;
 	private int quantity;
-	private double total_cost;
-	private LocalDate order_date;
+	private double totalcost;
+	private LocalDate orderdate;
 	private String Status;
 	
 	
-	public int getOrder_id() {
-		return order_id;
+	public int getOrderid() {
+		return orderid;
 	}
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
 	}
 	public String getStatus() {
 		return Status;
@@ -26,17 +26,17 @@ public class OrderDetails {
 	public void setStatus(String status) {
 		Status = status;
 	}
-	public int getBook_id() {
-		return book_id;
+	public int getBookid() {
+		return bookid;
 	}
-	public void setBook_id(int book_id) {
-		this.book_id = book_id;
+	public void setBookid(int bookid) {
+		this.bookid = bookid;
 	}
-	public int getCus_id() {
-		return cus_id;
+	public int getCusid() {
+		return cusid;
 	}
-	public void setCus_id(int cus_id) {
-		this.cus_id = cus_id;
+	public void setCusid(int cusid) {
+		this.cusid = cusid;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -44,59 +44,59 @@ public class OrderDetails {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public double getTotal_cost() {
-		return total_cost;
+	public double getTotalcost() {
+		return totalcost;
 	}
-	public void setTotal_cost(double total_cost) {
-		this.total_cost = total_cost;
+	public void setTotalcost(double totalcost) {
+		this.totalcost = totalcost;
 	}
-	public LocalDate getOrder_date() {
-		return order_date;
+	public LocalDate getOrderdate() {
+		return orderdate;
 	}
-	public void setOrder_date(LocalDate order_date) {
-		this.order_date = order_date;
+	public void setOrderdate(LocalDate orderdate) {
+		this.orderdate = orderdate;
 	}
 	public OrderDetails() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
-	public OrderDetails(int book_id, int cus_id, int quantity, double total_cost) {
+	public OrderDetails(int bookid, int cusid, int quantity, double totalcost) {
 		super();
-		this.book_id = book_id;
-		this.cus_id = cus_id;
+		this.bookid = bookid;
+		this.cusid = cusid;
 		this.quantity = quantity;
-		this.total_cost = total_cost;
+		this.totalcost = totalcost;
 	}
 	
-	public OrderDetails(int book_id, int cus_id, int quantity, double total_cost,LocalDate order_date,String status) {
+	public OrderDetails(int bookid, int cusid, int quantity, double totalcost,LocalDate orderdate,String status) {
 		super();
-		this.book_id = book_id;
-		this.cus_id = cus_id;
+		this.bookid = bookid;
+		this.cusid = cusid;
 		this.quantity = quantity;
-		this.total_cost = total_cost;
-		this.order_date = order_date;
+		this.totalcost = totalcost;
+		this.orderdate = orderdate;
 		this.Status = status;
 	}
 	
-	public OrderDetails(int order_id, int book_id, int cus_id, int quantity, double total_cost, LocalDate order_date,
+	public OrderDetails(int orderid, int bookid, int cusid, int quantity, double totalcost, LocalDate orderdate,
 			String status) {
 		super();
-		this.order_id = order_id;
-		this.book_id = book_id;
-		this.cus_id = cus_id;
+		this.orderid = orderid;
+		this.bookid = bookid;
+		this.cusid = cusid;
 		this.quantity = quantity;
-		this.total_cost = total_cost;
-		this.order_date = order_date;
+		this.totalcost = totalcost;
+		this.orderdate = orderdate;
 		this.Status = status;
 	}
 	@Override
 	public String toString() {
-		return "Cart [book_id=" + book_id + ", cus_id=" + cus_id + ", quantity=" + quantity + ", total_cost="
-				+ total_cost + "]";
+		return "Cart [bookid=" + bookid + ", cusid=" + cusid + ", quantity=" + quantity + ", totalcost="
+				+ totalcost + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(book_id, cus_id, quantity, total_cost);
+		return Objects.hash(bookid, cusid, quantity, totalcost);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -107,8 +107,8 @@ public class OrderDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		OrderDetails other = (OrderDetails) obj;
-		return book_id == other.book_id && cus_id == other.cus_id && quantity == other.quantity
-				&& Double.doubleToLongBits(total_cost) == Double.doubleToLongBits(other.total_cost);
+		return bookid == other.bookid && cusid == other.cusid && quantity == other.quantity
+				&& Double.doubleToLongBits(totalcost) == Double.doubleToLongBits(other.totalcost);
 	}
 	
 }

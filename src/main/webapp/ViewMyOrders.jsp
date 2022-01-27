@@ -12,6 +12,10 @@
 <meta charset="ISO-8859-1">
 <title>View Orders</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+}
 body{
     background-image: url(image/book.jpg);
     background-repeat:repeat;
@@ -57,6 +61,15 @@ ul
    color: gold;
    font-weight: bold;
   }
+  button{
+
+    padding: 10px;
+  	border-radius: 4px;
+  	background-color: GoldenRod;
+  	color: black;
+  	font-weight: bold;
+  	border-color: transparent;
+}
  
 .set1 {
 	margin-right: 10px;
@@ -64,6 +77,9 @@ ul
   h3{
   margin-left: 600px;  
   font-size: 30px;
+	padding-top : 50px;
+	
+	
   }
   table {
     
@@ -71,10 +87,7 @@ ul
 	top: 5px;
 }
 table,td,th{
-border: 1px solid black;
 padding: 6px 6px;
-margin-top: 5px;
-
 }
 
   
@@ -100,9 +113,8 @@ int userid = (int) session.getAttribute("userId");
         List<OrderDetails> orderList = new ArrayList<OrderDetails>();
         orderList = orderdao.viewUserOrder(userid);
 %>
-
-<div>
 <h3>My Orders</h3>
+<div>
 <table id="allusers">
 <thead>
 <tr>
@@ -131,12 +143,12 @@ for (OrderDetails viewOrder : orderList) {
 
 <td><%=i%></td>
 
-<td><%=viewOrder.getBook_id()%></td>
+<td><%=viewOrder.getBookid()%></td>
 <td><%=viewOrder.getQuantity()%></td>
-<td><%=viewOrder.getTotal_cost()%></td>
-<td><%=viewOrder.getOrder_date()%></td>
+<td><%=viewOrder.getTotalcost()%></td>
+<td><%=viewOrder.getOrderdate()%></td>
 <td><%=viewOrder.getStatus() %></td>
-<td><span><a href = "cancelorder?orderid=<%=viewOrder.getOrder_id()%>"><button>Cancel</button></a></span><td>
+<td><span><a href = "cancelorder?orderid=<%=t(viewOrder.%>"><button>Cancel</button></a></span><td>
 </tr>
 
 <%

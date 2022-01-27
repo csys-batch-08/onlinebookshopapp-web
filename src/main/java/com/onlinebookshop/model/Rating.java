@@ -3,8 +3,8 @@ package com.onlinebookshop.model;
 public class Rating {
 
 	private int id;
-	private int cus_id;
-	private int book_id;
+	private int cusid;
+	private int bookid;
 	private double rating;
 	public int getId() {
 		return id;
@@ -12,17 +12,17 @@ public class Rating {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getCus_id() {
-		return cus_id;
+	public int getCusid() {
+		return cusid;
 	}
-	public void setCus_id(int cus_id) {
-		this.cus_id = cus_id;
+	public void setCusid(int cusid) {
+		this.cusid = cusid;
 	}
-	public int getBook_id() {
-		return book_id;
+	public int getBookid() {
+		return bookid;
 	}
-	public void setBook_id(int book_id) {
-		this.book_id = book_id;
+	public void setBookid(int bookid) {
+		this.bookid = bookid;
 	}
 	public double getRating() {
 		return rating;
@@ -30,32 +30,32 @@ public class Rating {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
-	public Rating(int id, int cus_id, int book_id, double rating) {
+	public Rating(int id, int cusid, int bookid, double rating) {
 		super();
 		this.id = id;
-		this.cus_id = cus_id;
-		this.book_id = book_id;
+		this.cusid = cusid;
+		this.bookid = bookid;
 		this.rating = rating;
 	}
-	public Rating(int cus_id, int book_id, double rating) {
+	public Rating(int cusid, int bookid, double rating) {
 		super();
-		this.cus_id = cus_id;
-		this.book_id = book_id;
+		this.cusid = cusid;
+		this.bookid = bookid;
 		this.rating = rating;
 	}
-	public Rating(int book_id) {
+	public Rating(int bookid) {
 		super();
 		
-		this.book_id = book_id;
+		this.bookid = bookid;
 		
 	}
 	public Rating() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	@Override
 	public String toString() {
-		return "Rating [id=" + id + ", cus_id=" + cus_id + ", book_id=" + book_id + ", rating=" + rating + "]";
+		return "Rating [id=" + id + ", cusid=" + cusid + ", bookid=" + bookid + ", rating=" + rating + "]";
 	}
 	
 }

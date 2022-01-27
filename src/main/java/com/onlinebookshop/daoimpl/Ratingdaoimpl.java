@@ -13,14 +13,14 @@ import com.onlinebookshop.util.Connectionutil;
 public class Ratingdaoimpl implements RatingDao{
 
 	public int insertrating(Rating rating) throws SQLException {
-		if(!ratingexist(rating.getCus_id(), rating.getBook_id())) {
+		if(!ratingexist(rating.getCusid(), rating.getBookid())) {
 			String  insert="insert into rating(cus_id,book_id,rating)values(?,?,?)";
 			Connection con = Connectionutil.getDbConnection();
 			PreparedStatement pstm=null;
 			try {
 				pstm =con.prepareStatement(insert);
-				pstm.setInt(1, rating.getCus_id());
-				pstm.setInt(2, rating.getBook_id());
+				pstm.setInt(1, rating.getCusid());
+				pstm.setInt(2, rating.getBookid());
 				pstm.setDouble(3, rating.getRating());
 				int res =pstm.executeUpdate();
 				pstm.executeUpdate("commit");
@@ -43,7 +43,7 @@ public class Ratingdaoimpl implements RatingDao{
 		String query ="select trunc(avg(rating),2) from rating where book_id =?";
 		try {
 			PreparedStatement pst =con.prepareStatement(query);
-			pst.setInt(1, rating.getBook_id());
+			pst.setInt(1, rating.getBookid());
 			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {
 				

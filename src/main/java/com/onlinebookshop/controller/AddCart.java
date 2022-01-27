@@ -3,6 +3,7 @@ package com.onlinebookshop.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,32 +18,38 @@ import com.onlinebookshop.model.Cart;
 @WebServlet("/addcartserv")
 public class AddCart extends HttpServlet {
 	
+	
+	private static final long serialVersionUID = 1L;
+
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
 		int bid= Integer.parseInt(request.getParameter("bookid"));
 		
-    	//System.out.println("bid"+bid);
-		
-		
 		int userId=(int) session.getAttribute("userId");
-		
-        //System.out.println(userId);
-		
 		
 		CartDaoimpl cartdao = new CartDaoimpl();
 		Cart cart2 = new Cart(userId,bid);
-		cart2.setCus_id(userId);
+		cart2.setCusid(userId);
 		session.setAttribute("itemidcart", bid);
+		int cart=0;
 		try {
-			int cart=cartdao.insertcart(cart2);
+		     cart=cartdao.insertcart(cart2);
 			if(cart > 0) {
-				response.sendRedirect("cartsuccess.jsp");
+				
+				session.setAttribute("cart", "Item added to cart");
+				
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowCartServlet");
+				requestDispatcher.forward(request, response);
+				
 			}else {
-				response.getWriter().println("You have already add this book in cart");
+				session.setAttribute("cart1", "You have already add this book in cart");
+				
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowCartServlet");
+				requestDispatcher.forward(request, response);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

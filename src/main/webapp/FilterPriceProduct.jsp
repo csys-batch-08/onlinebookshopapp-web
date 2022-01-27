@@ -53,9 +53,20 @@ margin-right: 30px;
 margin-left: 30px;
 }
 button{
-padding-top: 5px;
-padding-bottom: 5px;
+
+   padding: 7px;
+  	border-radius: 4px;
+  	background-color: GoldenRod;
+  	color: black;
+  	font-weight: bold;
+  	border-color: transparent;
 }
+ a:hover{
+  	opacity: 0.7;
+  	color: gold;
+  	font-weight: bold;
+  }
+
 ul
     {
         list-style: none;
@@ -123,6 +134,7 @@ ul
 int price=(int)session.getAttribute("filteredbook");
 BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
 List<ProductDetails> showProduct= bookdetaildao.filterPrice(price);
+Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 
 %>
  
@@ -138,16 +150,22 @@ List<ProductDetails> showProduct= bookdetaildao.filterPrice(price);
                         <table id="producttable">
                             <tbody>
                                 <tr>
-                                    <td><img src="image/<%=bookdetails.getBookimages()%>" width=50 height=350 alt="book"></td>    
+                                    <td><a href = "ShowProduct.jsp?BookId=<%=bookdetails.getBookid()%>"><img src="image/<%=bookdetails.getBookimages()%>" width=50 height=350 alt="book"></a></td>    
                                     <td class="book">
                                         <p><b>CATEGORY   :   </b><%=bookdetails.getCategory() %><br></p>
                                         
-                                        <p><b>BOOK TITLE  :   </b><%=bookdetails.getBook_title()%><br></p>
+                                        <p><b>BOOK TITLE  :   </b><%=bookdetails.getBooktitle()%><br></p>
                                         
                                         <p><b>PRICE :  </b><%=bookdetails.getPrice() %><br></p>
-                                       
+                                       <%
+                                       Rating rating = new Rating();
+                                                                                rating.setBookid(bookdetails.getBookid());
+                                                                                rate = ratingdaoimpl.fetchrating(rating);
+                                       %>
+                                         
+                                         <p><b class="rating">RATINGS    :</b><%=rate %><br><br></p>
                                         
-                                         <a href = "ShowProduct.jsp?BookId=<%=bookdetails.getBookid()%>"><button>View</button></a>
+                                         
                                          
                                     </td>
                                 </tr>

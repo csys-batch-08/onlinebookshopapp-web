@@ -129,8 +129,8 @@ for (AuthorDetails viewAuthor : authorList) {
 
 <td><%=i%></td>
 <td><%=viewAuthor.getName()%></td>
-<td> <%=viewAuthor.getEmail_id()%></td>
-<td> <%=viewAuthor.getBook_id()%></td>
+<td> <%=viewAuthor.getEmailid()%></td>
+<td> <%=viewAuthor.getBookid()%></td>
 </tr>
 
 <%

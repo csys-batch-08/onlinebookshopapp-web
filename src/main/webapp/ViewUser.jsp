@@ -124,16 +124,16 @@ for (Userdetails viewUser : userList) {
 
 
 <td><%=i%></td>
-<td><%=viewUser.getCus_id()%></td>
+<td><%=viewUser.getCusid()%></td>
 <td><%=viewUser.getName()%></td>
 <td><%=viewUser.getPhoneNo()%></td>
 <td><%=viewUser.getAddress()%></td>
-<td><%=viewUser.getEmail_id()%></td>
+<td><%=viewUser.getEmailid()%></td>
 <td><%=viewUser.getPassword()%></td>
 <td><%=viewUser.getWallet()%></td>
 <td><%=viewUser.getRole()%></td>
-<td><a href = "deleteuser?emailid=<%=viewUser.getEmail_id()%>"><button>Inactive</button></a></td>
-<td><a href = "activeuser?emailid=<%=viewUser.getEmail_id()%>"><button>Active</button></a></td>
+<td><a href = "deleteuser?emailid=<%=viewUser.getEmailid()%>"><button>Inactive</button></a></td>
+<td><a href = "activeuser?emailid=<%=viewUser.getEmailid()%>"><button>Active</button></a></td>
 </tr>
 
 <%

@@ -4,57 +4,56 @@ import java.util.Objects;
 
 public class Cart {
 
-	private int cart_id;
-	private int book_id;
-	private int cus_id;
+	private int cartid;
+	private int bookid;
+	private int cusid;
 	
 	
 	
-	public Cart(int cart_id, int book_id, int cus_id) {
+	public Cart(int cartid, int bookid, int cusid) {
 		super();
-		this.cart_id = cart_id;
-		this.book_id = book_id;
-		this.cus_id = cus_id;
+		this.cartid = cartid;
+		this.bookid = bookid;
+		this.cusid = cusid;
 	}
-	public int getCus_id() {
-		return cus_id;
+	public int getCusid() {
+		return cusid;
 	}
-	public void setCus_id(int cus_id) {
-		this.cus_id = cus_id;
+	public void setCusid(int cusid) {
+		this.cusid = cusid;
 	}
-	public int getCart_id() {
-		return cart_id;
+	public int getCartid() {
+		return cartid;
 	}
-	public void setCart_id(int cart_id) {
-		this.cart_id = cart_id;
+	public void setCartid(int cartid) {
+		this.cartid = cartid;
 	}
-	public int getBook_id() {
-		return book_id;
+	public int getBookid() {
+		return bookid;
 	}
-	public void setBook_id(int book_id) {
-		this.book_id = book_id;
+	public void setBookid(int bookid) {
+		this.bookid = bookid;
 	}
-	public Cart(int cart_id, int book_id) {
+	public Cart(int cartid, int bookid) {
 		super();
-		this.cart_id = cart_id;
-		this.book_id = book_id;
+		this.cartid = cartid;
+		this.bookid = bookid;
 	}
-	public Cart(int book_id) {
+	public Cart(int bookid) {
 		
-		this.book_id = book_id;
+		this.bookid = bookid;
 	}
 	public Cart() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
 	public String toString() {
-		return "Cart [cart_id=" + cart_id + ", book_id=" + book_id + "]";
+		return "Cart [cartid=" + cartid + ", bookid=" + bookid + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(book_id, cart_id);
+		return Objects.hash(bookid, cartid);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -65,7 +64,7 @@ public class Cart {
 		if (getClass() != obj.getClass())
 			return false;
 		Cart other = (Cart) obj;
-		return book_id == other.book_id && cart_id == other.cart_id;
+		return bookid == other.bookid && cartid == other.cartid;
 	}
 	
 	

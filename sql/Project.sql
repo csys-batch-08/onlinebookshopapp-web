@@ -99,8 +99,14 @@ select * from orderdetails;
 select * from bookdetails;
 select * from author_details;
 select * from rating;
-commit;
-delete from rating where cus_id =107;
+
+------
+select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,
+NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id  where b.book_id in 
+(select c.book_id from cart c where c.cus_id = 106);
+
+select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b inner join author_details a on b.book_id = a.book_id left join cart c on b.book_id = c.book_id where c.cus_id = 106;
+------
 
 select max  
 from 
@@ -119,11 +125,7 @@ delete from author_details where author_id=2043;
 select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,
 NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_id=1045;
 
-commit;
-alter table bookdetails add status varchar2(20) Default 'Available';
---truncate table bookdetails;
---truncate table orderdetails;
---truncate table rating;
+
 
 --alter table orderdetails add status varchar2(20) Default 'ordered';
 

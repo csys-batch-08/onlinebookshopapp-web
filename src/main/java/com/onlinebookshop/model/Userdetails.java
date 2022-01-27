@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Userdetails {
 
-	private int cus_id;
+	private int cusid;
 	private String name;
 	private long phoneNo;
 	private String address;
-	private String email_id;
+	private String emailid;
 	private String password;
     private int wallet;
     private String role;
@@ -21,12 +21,12 @@ public class Userdetails {
 		this.role = role;
 	}
 
-	public int getCus_id() {
-	return cus_id;
+	public int getCusid() {
+	return cusid;
 }
 
-public void setCus_id(int cus_id) {
-	this.cus_id = cus_id;
+public void setCusid(int cusid) {
+	this.cusid = cusid;
 }
 
 public int getWallet() {
@@ -61,12 +61,12 @@ public void setWallet(int wallet) {
 		this.address = address;
 	}
 
-	public String getEmail_id() {
-		return email_id;
+	public String getEmailid() {
+		return emailid;
 	}
 
-	public void setEmail_id(String email_id) {
-		this.email_id = email_id;
+	public void setEmailid(String emailid) {
+		this.emailid = emailid;
 	}
 
 	public String getPassword() {
@@ -79,7 +79,7 @@ public void setWallet(int wallet) {
 
 	public Userdetails() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Userdetails(String name, long phoneNo, String address, String email_id, String password,int wallet) {
@@ -87,26 +87,26 @@ public void setWallet(int wallet) {
 		this.name = name;
 		this.phoneNo = phoneNo;
 		this.address = address;
-		this.email_id = email_id;
+		this.emailid = email_id;
 		this.password = password;
 		this.wallet = wallet;
 	}
-	public Userdetails(int cus_id) {
+	public Userdetails(int cusid) {
 		
-		this.cus_id = cus_id;
+		this.cusid = cusid;
 		
 	}
 	
 
-	public Userdetails(int cus_id,String name, long phoneNo,String role,String address, String email_id, String password, 
+	public Userdetails(int cusid,String name, long phoneNo,String role,String address, String emailid, String password, 
 			int wallet) {
 		super();
-		this.cus_id = cus_id;
+		this.cusid = cusid;
 		this.name = name;
 		this.phoneNo = phoneNo;
 		this.role = role;
 		this.address = address;
-		this.email_id = email_id;
+		this.emailid = emailid;
 		this.password = password;
 		this.wallet = wallet;
 		
@@ -114,13 +114,13 @@ public void setWallet(int wallet) {
 
 	@Override
 	public String toString() {
-		return "Userdetails [name=" + name + ", phoneNo=" + phoneNo + ", address=" + address + ", email_id=" + email_id
-				+ ", password=" + password + ", cus_id=" + cus_id + ", wallet=" + wallet + "]";
+		return "Userdetails [name=" + name + ", phoneNo=" + phoneNo + ", address=" + address + ", emailid=" + emailid
+				+ ", password=" + password + ", cusid=" + cusid + ", wallet=" + wallet + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, cus_id, email_id, name, password, phoneNo, wallet);
+		return Objects.hash(address, cusid, emailid, name, password, phoneNo, wallet);
 	}
 
 	@Override
@@ -132,8 +132,8 @@ public void setWallet(int wallet) {
 		if (getClass() != obj.getClass())
 			return false;
 		Userdetails other = (Userdetails) obj;
-		return Objects.equals(address, other.address) && cus_id == other.cus_id
-				&& Objects.equals(email_id, other.email_id) && Objects.equals(name, other.name)
+		return Objects.equals(address, other.address) && cusid == other.cusid
+				&& Objects.equals(emailid, other.emailid) && Objects.equals(name, other.name)
 				&& Objects.equals(password, other.password) && phoneNo == other.phoneNo && wallet == other.wallet;
 	}
 

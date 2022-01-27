@@ -9,6 +9,8 @@
 <%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
 <%@page import="java.util.*"%>
 <%@ page import="java.util.ArrayList" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -25,10 +27,8 @@ body{
     font-weight: 1000;
     font-size: 18px;
     font-weight:bold; 
-    
-     
+       
 }
-
 
 img{
 width: 250px;
@@ -152,39 +152,48 @@ CartDaoimpl cartDaoimpl = new CartDaoimpl();
   Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 
 %>
+
 <table>
+                       
+
             <tbody>
                 <tr>
                  <h3>MY CART</h3>
-                <% int count=0;
-                for(ProductDetails bookdetails: productsList){
-                	%>
+                 
+                   <c:if test="${sessionScope.cart!=null}">
+                     <h4>${sessionScope.cart}</h4>
+                       </c:if>
+                       <c:remove var="cart" scope="session"/>
+                       
+                       <c:if test="${sessionScope.cart1!=null}">
+                       <h4>${sessionScope.cart1}</h4>
+                       </c:if>
+                       <c:remove var="cart1" scope="session"/>
+                       
+                <c:set var="count" value="1"/>
+                <c:forEach items="${cartList}" var="cart">
+                
                     <td>
                         <table id="producttable">
                         
-                       
+                     
                             <tbody>
                                 <tr>
-                                    <td><img src="image/<%=bookdetails.getBookimages()%>" width=150 height=350 alt="book"></td>    
+                                    <td><img src="image/${cart.bookimages}" width=150 height=350 alt="book"></td>    
                                     <td class="book">
-                                         <p><b>CATEGORY  :    </b><%=bookdetails.getCategory() %> <br></p>
-                                         <p><b>DESCRIPTION: </b><%=bookdetails.getDescription() %><br></p>
-                                         <p><b>BOOK TITLE: </b><%=bookdetails.getBook_title()%><br></p>
-                                         <p><b>BOOK CODE:</b><%=bookdetails.getBook_code() %><br></p>
-                                         <p><b>PRICE:</b><%=bookdetails.getPrice() %><br></p>
-                                         <p><b>PUBLISH DATE:</b><%=bookdetails.getPublish_date()%><br></p>
-                                         <p><b>CONDITION:</b><%=bookdetails.getCondition() %><br></p>
-                                         <p><b>AUTHOR NAME:</b><%=bookdetails.getName() %><br></p>
-                                         <p><b>AUTHOR EMAIL:</b><%=bookdetails.getEmail_id() %><br></p>
-                                         <%
-                                         Rating rating = new Rating();
-                                         rating.setBook_id(bookdetails.getBookid());
-                                         rate = ratingdaoimpl.fetchrating(rating);
-                                         
-                                         %>
-                                        <b>RATINGS:</b><%=rate %><br><br>
-                                         <a href = "BuyOrder.jsp?bookid=<%=bookdetails.getBookid()%>"><button class="btn">Buy</button></a>
-                                        <a href = "removecart?bookid=<%=bookdetails.getBookid()%>"><button>Remove</button></a>
+                                         <p><b>CATEGORY  :    </b>${cart.category}<br></p>
+                                         <p><b>DESCRIPTION: </b>${cart.description}<br></p>
+                                         <p><b>BOOK TITLE: </b>${cart.booktitle}<br></p>
+                                         <p><b>BOOK CODE:</b>${cart.bookcode}<br></p>
+                                         <p><b>PRICE:</b>${cart.price}<br></p>
+                                         <p><b>PUBLISH DATE:</b>${cart.publishdate}<br></p>
+                                         <p><b>CONDITION:</b>${cart.condition}<br></p>
+                                         <p><b>AUTHOR NAME:</b>${cart.name}<br></p>
+                                         <p><b>AUTHOR EMAIL:</b>${cart.emailid}<br></p>
+                                        
+                                        <b>RATINGS:</b>${cart.rating}<br><br>
+                                         <a href = "BuyOrder.jsp?bookid=${cart.bookid}"><button class="btn">Buy</button></a>
+                                        <a href = "removecart?bookid=${cart.bookid}"><button>Remove</button></a>
                                          
                                     </td>
                                 </tr>
@@ -192,11 +201,19 @@ CartDaoimpl cartDaoimpl = new CartDaoimpl();
                         </table>  
                             
                     </td>
-                       <% count ++;
-                       if(count==2){ %> 
+                          <c:choose>
+                          <c:when test="${count==2}">
+                              <c:set var="count" value="1"/>
                     	   </tr>
                     	   <tr>              
-                     <%count=0; }}%>  
+                      </c:when> 
+                    	   <c:otherwise>
+                    	   <c:set var="count" value="${count+1}"/>
+                    	   </c:otherwise>            
+                          
+                       </c:choose>
+                       </c:forEach>
+
                        
                 </tr>
             </tbody>

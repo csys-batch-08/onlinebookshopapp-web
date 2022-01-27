@@ -117,9 +117,9 @@ for (Cart viewcart : cartList) {
 
 
 <td><%=i%></td>
-<td><%=viewcart.getCart_id()%></td>
-<td><%=viewcart.getBook_id()%></td>
-<td><%=viewcart.getCus_id()%></td>
+<td><%=viewcart.getCartid()%></td>
+<td><%=viewcart.getBookid()%></td>
+<td><%=viewcart.getCusid()%></td>
 
 </tr>
 

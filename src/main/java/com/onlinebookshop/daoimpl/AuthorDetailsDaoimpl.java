@@ -23,8 +23,8 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 		try {
 			pstm=con.prepareStatement(insert);
 			pstm.setString(1, author.getName());
-			pstm.setString(2, author.getEmail_id());
-			pstm.setInt(3, author.getBook_id());
+			pstm.setString(2, author.getEmailid());
+			pstm.setInt(3, author.getBookid());
 			pstm.executeUpdate();
 			
 		} catch (SQLException e) {

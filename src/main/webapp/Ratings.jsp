@@ -5,7 +5,9 @@
 <%@page import="com.onlinebookshop.daoimpl.Ratingdaoimpl"%>
 <%@page import="java.util.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,14 +134,14 @@ ul
 </head>
 <body>
 
-	<form action="rating" method="post">
+	<form action="rating">
 		<div class="nav">
 			<ul>
 
 
-		<li><a href="ShowBook.jsp">Home</a></li>
+		<li><a href="ShowBookServlet">Home</a></li>
         <li><a href="FilterByCondition.jsp">Old Books</a></li>
-        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
+        <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
         
@@ -167,39 +169,39 @@ ul
 			<input	type="text" name="ratings" class="ratings" Pattern="[1-9]" title="Positive number between 1-5" required><br>
 			<br>
 			<button type="submit">Add</button>
+			
+			<c:if test="${sessionScope.rating!=null}">
+              <h4>${sessionScope.rating}</h4>
+            </c:if>
+        
+            <c:remove var="rating" scope="session"/>
 		</fieldset>
 <table>
             <tbody>
                 <tr>
                 
-                <%int count=0;
-                for(ProductDetails bookdetails : bookdetail){
+                <c:set var="count" value="1"/>
+               <c:forEach items="${books}" var="booklist">
                 	
-                	%>
+        
                     <td>
                         <table id="producttable">
                             <tbody>
                                 <tr>
-                                    <td><img src="image/<%=bookdetails.getBookimages()%>" width=180 height=350 alt="book"></td>    
+                                    <td><img src="image/${booklist.bookimages}" width=180 height=350 alt="book"></td>    
                                     <td class="book">
-                                        <p><b class="cat">CATEGORY   :   </b><%=bookdetails.getCategory() %><br></p>
-                                        <p><b class="desc">DESCRIPTION :</b><%=bookdetails.getDescription()%><br></p>
-                                        <p><b class="title">BOOK TITLE  :   </b><%=bookdetails.getBook_title()%><br></p>
-                                        <p><b class="title">BOOK CODE  :   </b><%=bookdetails.getBook_code() %><br></p>
-                                        <p><b class="price">PRICE :  </b><%=bookdetails.getPrice() %><br></p>
-                                        <p><b class="date">PUBLISH DATE   :   </b><%=bookdetails.getPublish_date()%><br></p>
-                                        <p><b class="condition">CONDITION   :   </b><%=bookdetails.getCondition() %><br></p>
-                                        <p><b class="aname">AUTHOR NAME   :  </b><%=bookdetails.getName() %><br></p>
-                                        <p><b class="aemail">AUTHOR EMAIL   :  </b><%=bookdetails.getEmail_id() %><br></p>
-                                        <%
-                     
-                                         Rating rating = new Rating();
-                                         rating.setBook_id(bookdetails.getBookid());
-                                         rate = ratingdaoimpl.fetchrating(rating);
+                                        <p><b class="cat">CATEGORY   :   </b>${booklist.category}<br></p>
+                                        <p><b class="desc">DESCRIPTION :</b>${booklist.description}<br></p>
+                                        <p><b class="title">BOOK TITLE  :   </b>${booklist.booktitle}<br></p>
+                                        <p><b class="title">BOOK CODE  :   </b>${booklist.bookcode}<br></p>
+                                        <p><b class="price">PRICE :  </b>${booklist.price}<br></p>
+                                        <p><b class="date">PUBLISH DATE   :   </b>${booklist.publishdate}<br></p>
+                                        <p><b class="condition">CONDITION   :   </b>${booklist.condition}<br></p>
+                                        <p><b class="aname">AUTHOR NAME   :  </b>${booklist.name}<br></p>
+                                        <p><b class="aemail">AUTHOR EMAIL   :  </b>${booklist.emailid}<br></p>
                                          
-                                         %>
                                          
-                                         <p><b class="rating">RATINGS    :</b><%=rate %><br><br></p>
+                                         <p><b class="rating">RATINGS    :</b>${booklist.rating}<br><br></p>
                                          
                                     </td>
                                 </tr>
@@ -207,11 +209,18 @@ ul
                         </table>  
                             
                     </td>
-                       <% count ++;
-                       if(count==2){ %> 
+                       <c:choose>
+                          <c:when test="${count==2}">
+                              <c:set var="count" value="1"/>
                     	   </tr>
-                    	   <tr>              
-                     <%count=0; }}%>  
+                    	   <tr> 
+                    	   </c:when> 
+                    	   <c:otherwise>
+                    	   <c:set var="count" value="${count+1}"/>
+                    	   </c:otherwise>            
+                          
+                       </c:choose>
+                       </c:forEach>
                        
                 </tr>
             </tbody>

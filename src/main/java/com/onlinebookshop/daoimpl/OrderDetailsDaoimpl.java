@@ -23,10 +23,10 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		PreparedStatement pst = null;
 		try {
 			pst = con.prepareStatement(insertQuery);
-			pst.setInt(1, cart.getCus_id());
-			pst.setInt(2, cart.getBook_id());
+			pst.setInt(1, cart.getCusid());
+			pst.setInt(2, cart.getBookid());
 			pst.setInt(3, cart.getQuantity());
-			pst.setDouble(4, cart.getTotal_cost());
+			pst.setDouble(4, cart.getTotalcost());
 			pst.executeUpdate();
 			
 		} catch (SQLException e) {

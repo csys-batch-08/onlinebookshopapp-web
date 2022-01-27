@@ -124,7 +124,7 @@ List<ProductDetails> showProduct= bookdetaildao.filterName(bookname);
                                     <td class="book">
                                         <p><b>CATEGORY   :   </b><%=bookdetails.getCategory() %><br></p>
                                         
-                                        <p><b>BOOK TITLE  :   </b><%=bookdetails.getBook_title()%><br></p>
+                                        <p><b>BOOK TITLE  :   </b><%=bookdetails.getBooktitle()%><br></p>
                                         
                                         <p><b>PRICE :  </b><%=bookdetails.getPrice() %><br></p>
                                        

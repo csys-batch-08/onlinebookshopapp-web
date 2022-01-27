@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,13 @@
         <p>Don't have an account??...
         <a href="Register.jsp">Register</a></p>
         
-  </fieldset>
+        <c:if test="${sessionScope.login!=null}">
+        <h4>${sessionScope.login}</h4>
+        </c:if>
+        
+        <c:remove var="login" scope="session"/>
+        
+</fieldset>
 </form>
 </body>
 </html>
