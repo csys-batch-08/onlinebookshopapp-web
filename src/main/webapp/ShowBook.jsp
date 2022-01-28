@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<title>Show Book</title>
+
 <style>
 body{
     background-image: url(image/book.jpg);
@@ -14,7 +16,7 @@ body{
     color:white;
     background-size:1700px 700px;
     background-attachment: fixed;
-    font-weight: 1000;
+    font-weight: 1000; 
     font-size: 18px;
     font-weight:bold;  
 }
@@ -109,18 +111,18 @@ ul
 </style>
 </head>
 <body>
-<form action="filterprice" method="post">
+<form action="filtername" method="post">
 <div class="nav">
     <ul>
-        <li><input type="text" name="search" class="text" placeholder="Enter price"></li>
+        <li><input type="text" name="search" class="text" placeholder="Enter Title"></li>
         <li><a href=><button>Search</button></a></li>
         
         <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
-        <li><a href="MyProfile.jsp">User profile</a></li>
+        <li><a href="MyProfileServlet">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
         
-        <li><a href="ViewMyOrders.jsp">View My Order</a></li>
-        <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        <li><a href="ViewMyOrderServlet">View My Order</a></li>
+        <li><a href="FilterByConditionServlet">Old Books</a></li>
         <li><a href="login.jsp">Log Out</a></li>
     </ul>
 </div>

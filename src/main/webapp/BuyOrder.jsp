@@ -6,6 +6,8 @@
 <%@page import="com.onlinebookshop.model.Rating"%>
 <%@page import="com.onlinebookshop.daoimpl.Ratingdaoimpl"%>
 <%@page import="java.util.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,19 +145,9 @@ ul
         
     </ul>
 </div>
-<%!double rate;%>
-<%
- int bookid=Integer.parseInt(request.getParameter("bookid"));
- session.setAttribute("Book",bookid);
- BookdetailsDaoimpl bookdetailsDaoimpl = new BookdetailsDaoimpl();
-	List<ProductDetails> bookdetail = bookdetailsDaoimpl.ratingproducts(bookid);
-	
-	Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
-%>
 
-	
 <fieldset>
-<form action="OrderServlet" method="post">
+<form action="OrderServlet">
 <h3>Add Quantity!...</h3>
 <label for="quantity">Quantity:</label><br>
 <input type="text" name="quantity" class="quantity" pattern="[1-9]+" required><br><br>
@@ -166,32 +158,27 @@ ul
             <tbody>
                 <tr>
                 
-                <%int count=0;
-                for(ProductDetails bookdetails : bookdetail){
+                <c:set var="count" value="1"/>
+                <c:forEach items="${orderlist}" var="orderbook">	
                 	
-                	%>
                     <td>
                         <table id="producttable">
                             <tbody>
                                 <tr>
-                                    <td><img src="image/<%=bookdetails.getBookimages()%>" width=180 height=350 alt="book"></td>    
+                                   <td><img src="image/${orderbook.bookimages}" width=50 height=350 alt="book"></td>    
                                     <td class="book">
-                                        <p><strong class="cat">CATEGORY   :   </strong><%=bookdetails.getCategory() %><br></p>
-                                        <p><strong class="desc">DESCRIPTION :</strong><%=bookdetails.getDescription()%><br></p>
-                                        <p><strong class="title">BOOK TITLE  :   </strong><%=bookdetails.getBooktitle()%><br></p>
-                                        <p><strong class="title">BOOK CODE  :   </strong><%=bookdetails.getBookcode()%><br></p>
-                                        <p><strong class="price">PRICE :  </strong><%=bookdetails.getPrice() %><br></p>
-                                        <p><strong class="date">PUBLISH DATE   :   </strong><%=bookdetails.getPublishdate()%><br></p>
-                                        <p><strong class="condition">CONDITION   :   </strong><%=bookdetails.getCondition() %><br></p>
-                                        <p><strong class="aname">AUTHOR NAME   :  </strong><%=bookdetails.getName() %><br></p>
-                                        <p><strong class="aemail">AUTHOR EMAIL   :  </strong><%=bookdetails.getEmailid()%><br></p>
-                                        <%
-                                        Rating rating = new Rating();
-                                        rating.setBookid(bookdetails.getBookid());
-                                        rate = ratingdaoimpl.fetchrating(rating);
-                                        %>
+                                        <p><b class="cat">CATEGORY   :   </b>${orderbook.category}<br></p>
+                                        <p><b class="desc">DESCRIPTION :</b>${orderbook.description}<br></p>
+                                        <p><b class="title">BOOK TITLE  :   </b>${orderbook.booktitle}<br></p>
+                                        <p><b class="title">BOOK CODE  :   </b>${orderbook.bookcode}<br></p>
+                                        <p><b class="price">PRICE :  </b>${orderbook.price}<br></p>
+                                        <p><b class="date">PUBLISH DATE   :   </b>${orderbook.publishdate}<br></p>
+                                        <p><b class="condition">CONDITION   :   </b>${orderbook.condition}<br></p>
+                                        <p><b class="aname">AUTHOR NAME   :  </b>${orderbook.name}<br></p>
+                                        <p><b class="aemail">AUTHOR EMAIL   :  </b>${orderbook.emailid}<br></p>
                                          
-                                         <p><strong class="rating">RATINGS    :</strong><%=rate %><br><br></p>
+                                         
+                                         <p><b class="rating">RATINGS    :</b>${orderbook.rating}<br><br></p>
                                          
                                     </td>
                                 </tr>
@@ -199,11 +186,18 @@ ul
                         </table>  
                             
                     </td>
-                       <% count ++;
-                       if(count==2){ %> 
+                        <c:choose>
+                          <c:when test="${count==2}">
+                              <c:set var="count" value="1"/>
                     	   </tr>
                     	   <tr>              
-                     <%count=0; }}%>  
+                      </c:when> 
+                    	   <c:otherwise>
+                    	   <c:set var="count" value="${count+1}"/>
+                    	   </c:otherwise>            
+                          
+                       </c:choose>
+                       </c:forEach>
                        
                 </tr>
             </tbody>

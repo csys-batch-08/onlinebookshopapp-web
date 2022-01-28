@@ -129,8 +129,8 @@ margin-left: 30px;
 <body>
 <div class="nav">
     <ul>        
-        <li><a href="ShowBook.jsp">Home</a></li> 
-        <li><a href="MyProfile.jsp">User profile</a></li>
+        <li><a href="ShowBookServlet">Home</a></li> 
+        <li><a href="MyProfileServlet">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
         
         <li><a href="ViewMyOrders.jsp">View My Order</a></li>
@@ -139,19 +139,6 @@ margin-left: 30px;
         
     </ul>
 </div>
-<%! int bookid;
-    int cusid;
-    double rate;
-%>
-<%
-CartDaoimpl cartDaoimpl = new CartDaoimpl();
- Cart cartmodel = new  Cart();
-  cusid= (int)session.getAttribute("userId");
- 
-  List<ProductDetails> productsList =cartDaoimpl.fetchCart(cusid);
-  Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
-
-%>
 
 <table>
                        
@@ -192,7 +179,7 @@ CartDaoimpl cartDaoimpl = new CartDaoimpl();
                                          <p><b>AUTHOR EMAIL:</b>${cart.emailid}<br></p>
                                         
                                         <b>RATINGS:</b>${cart.rating}<br><br>
-                                         <a href = "BuyOrder.jsp?bookid=${cart.bookid}"><button class="btn">Buy</button></a>
+                                         <a href = "BuyOrderServlet?bookid=${cart.bookid}"><button class="btn">Buy</button></a>
                                         <a href = "removecart?bookid=${cart.bookid}"><button>Remove</button></a>
                                          
                                     </td>

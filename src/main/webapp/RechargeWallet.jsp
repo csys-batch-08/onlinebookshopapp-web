@@ -1,4 +1,6 @@
 <%@page import="com.onlinebookshop.model.Userdetails"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -145,18 +147,14 @@ ul
     </ul>
 </div>
 
-<% Userdetails user = (Userdetails) session.getAttribute("currentuser");%>
-<h2>Welcome <% out.print(user.getName());%>!</h2>
-<h3>Available Wallet : <%out.print(user.getWallet());%></h3>
+
+<h2>Welcome ${currentuser.name}</h2>
+<h3>Available Wallet : ${currentuser.wallet}</h3>
 
 <form action="recharge" method="post">
     <fieldset class="signup">
        <h2>Recharge Your Wallet..</h2>
 
-        
-                 
-         
-         
          <label for="Amount">Amount:</label><br>
          <input type="text" name="Amount" id="amount" placeholder="Enter Amount" Pattern="[1-9][0-9]+{1,5}"  ><br><br>
          

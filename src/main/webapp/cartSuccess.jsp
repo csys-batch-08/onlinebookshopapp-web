@@ -65,6 +65,6 @@ ul
         
     </ul>
 </div>
-<h1>item added to cart successfully!!</h1>
+<h1>Item added to cart successfully!!</h1>
 </body>
 </html>

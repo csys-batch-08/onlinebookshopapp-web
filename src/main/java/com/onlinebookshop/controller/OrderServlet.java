@@ -17,7 +17,7 @@ import com.onlinebookshop.model.Userdetails;
 @WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();

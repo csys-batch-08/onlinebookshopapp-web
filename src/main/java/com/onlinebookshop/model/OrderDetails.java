@@ -11,7 +11,7 @@ public class OrderDetails {
 	private int quantity;
 	private double totalcost;
 	private LocalDate orderdate;
-	private String Status;
+	private String status;
 	
 	
 	public int getOrderid() {
@@ -21,10 +21,10 @@ public class OrderDetails {
 		this.orderid = orderid;
 	}
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
 	}
 	public int getBookid() {
 		return bookid;
@@ -75,7 +75,7 @@ public class OrderDetails {
 		this.quantity = quantity;
 		this.totalcost = totalcost;
 		this.orderdate = orderdate;
-		this.Status = status;
+		this.status = status;
 	}
 	
 	public OrderDetails(int orderid, int bookid, int cusid, int quantity, double totalcost, LocalDate orderdate,
@@ -87,7 +87,7 @@ public class OrderDetails {
 		this.quantity = quantity;
 		this.totalcost = totalcost;
 		this.orderdate = orderdate;
-		this.Status = status;
+		this.status = status;
 	}
 	@Override
 	public String toString() {

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@page import="com.onlinebookshop.model.Userdetails"%>
-    <%@page import="java.util.*"%>
-            <%@page import="com.onlinebookshop.daoimpl.UserdetailsDao"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 <!DOCTYPE html>
 <html>
@@ -87,14 +85,7 @@ ul
   }
 </style>
 <body>
-<%
 
- UserdetailsDao userdetailsdao = new UserdetailsDao();
- 
-int user=(int)session.getAttribute("userId");
-        List<Userdetails> userList = new ArrayList<Userdetails>();
-        userList = userdetailsdao.myProfile(user);
-%>
 <div class="nav">
     <ul>
          <li><a href="ShowBook.jsp">Home</a></li> 
@@ -111,27 +102,25 @@ int user=(int)session.getAttribute("userId");
 <div>
 
 
-<%
-int i = 0;
-for (Userdetails viewUser : userList) {
-	i++;
-%>
+<c:set var="count" value="1"/>
+<c:forEach items="${userlist}" var="user">
+
+<c:set var="count" value="${count+1}"/>
+
+
 <fieldset>
 
-<pre><b>Name         :  </b><%=viewUser.getName()%><br>
-<b>Phone No     :  </b><%=viewUser.getPhoneNo()%><br>
-<b>Address      :  </b><%=viewUser.getAddress()%><br>
-<b>Email_id     :  </b><%=viewUser.getEmailid()%><br>
-<b>Password     :  </b><%=viewUser.getPassword()%><br>
-<b>Wallet       :  </b><%=viewUser.getWallet()%><br></pre>
+<pre><b>Name         :  </b>${user.name}<br>
+<b>Phone No     :  </b>${user.phoneNo}<br>
+<b>Address      :  </b>${user.address}<br>
+<b>Email_id     :  </b>${user.emailid}<br>
+<b>Password     :  </b>${user.password}<br>
+<b>Wallet       :  </b>${user.wallet}<br></pre>
 
 <a href="UpdateProfile.jsp"><button type="submit">Update Profile</button></a>
 </fieldset>
 
-<%
-}
-%>
-
+</c:forEach>
 </div>
  
 </body>

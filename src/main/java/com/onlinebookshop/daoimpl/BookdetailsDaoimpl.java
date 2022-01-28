@@ -34,12 +34,12 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			pstm.setString(7, product.getCondition());
 			pstm.setString(8, product.getBookimages());
 			pstm.executeUpdate();
-			System.out.println("Book details are inserted ");
+			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
-			System.out.println("Try again");
+			
 		}
 		return 1;
 	}
@@ -52,9 +52,9 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			pstm=con.prepareStatement(delete);
 			pstm.setInt(1, product);
 			int noOfRows=pstm.executeUpdate();
-			System.out.println(noOfRows+ "row deleted");
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -81,7 +81,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -130,7 +130,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 				productId=rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return productId;
@@ -148,7 +148,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 				product=rs.getString(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return product;
@@ -168,7 +168,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 				price=rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return price;
@@ -184,9 +184,9 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			int i=pst.executeUpdate();
 			System.out.println(i+"row updated");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
-			System.out.println("Try again");
+			
 		}
 	}
 	
@@ -195,17 +195,21 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		List<ProductDetails> FilterPrice=new ArrayList<ProductDetails>();
 		String filter="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where price <= ?";
 		Connection con = Connectionutil.getDbConnection();
+		Rating rating = new Rating();
+		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
 			PreparedStatement pstm = con.prepareStatement(filter);
 		    pstm.setInt(1, price);
 			ResultSet rs=pstm.executeQuery();
 			while(rs.next())
 			{
-				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),0,rs.getString(11));
+				rating.setBookid(rs.getInt(1));
+	            double rate = ratingdaoimpl.fetchrating(rating);
+				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),rate,rs.getString(11));
 				FilterPrice.add(product);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}	
 		return FilterPrice;
@@ -214,16 +218,24 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
       public List<ProductDetails> filterName(String bookname) {
 		
 		List<ProductDetails> FilterName=new ArrayList<ProductDetails>();
-		String filter="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_title= '%?%'";
+		String bookName = "%" + bookname + "%";
+		
+		String filter="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_title like ?";
 		Connection con = Connectionutil.getDbConnection();
+		Rating rating = new Rating();
+		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
 			PreparedStatement pstm = con.prepareStatement(filter);
-		    pstm.setString(1, bookname);
+		    pstm.setString(1, bookName);
+		    
 			ResultSet rs=pstm.executeQuery();
 			while(rs.next())
 			{
-				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),0,rs.getString(11));
+				rating.setBookid(rs.getInt(1));
+	            double rate = ratingdaoimpl.fetchrating(rating);
+				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),rate,rs.getString(11));
 				FilterName.add(product);
+				System.out.println(product);
 			}
 		} catch (SQLException e) {
 			
@@ -236,18 +248,22 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		List<ProductDetails> conditionList=new ArrayList<ProductDetails>();
 		String condition="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.condition='old'";
 		Connection con = Connectionutil.getDbConnection();
+		Rating rating = new Rating();
+		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
 			Statement stm=con.createStatement();
 			ResultSet rs=stm.executeQuery(condition);
 			while(rs.next())
 			{
-				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),0,rs.getString(11));
+				rating.setBookid(rs.getInt(1));
+	            double rate = ratingdaoimpl.fetchrating(rating);
+				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),rate,rs.getString(11));
 				conditionList.add(product);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+	
 			e.printStackTrace();
-			System.out.println("no records");
+			
 		}	
 		return conditionList;
 	}
@@ -266,7 +282,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			categoryList.add(categorylist);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return categoryList;
@@ -290,7 +306,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		

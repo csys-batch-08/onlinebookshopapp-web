@@ -1,10 +1,6 @@
-<%@page import="com.onlinebookshop.model.OrderDetails"%>
-<%@page import="com.onlinebookshop.daoimpl.OrderDetailsDaoimpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@page import="com.onlinebookshop.model.Cart"%>
-    <%@page import="java.util.*"%>
-            <%@page import="com.onlinebookshop.daoimpl.CartDaoimpl"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 <!DOCTYPE html>
 <html>
@@ -107,12 +103,6 @@ padding: 6px 6px;
     </ul>
 </div>
 
-<%
-int userid = (int) session.getAttribute("userId");
-        OrderDetailsDaoimpl orderdao = new OrderDetailsDaoimpl();
-        List<OrderDetails> orderList = new ArrayList<OrderDetails>();
-        orderList = orderdao.viewUserOrder(userid);
-%>
 <h3>My Orders</h3>
 <div>
 <table id="allusers">
@@ -133,27 +123,25 @@ int userid = (int) session.getAttribute("userId");
 
 <tbody>
 
-<%
-int i = 0;
-for (OrderDetails viewOrder : orderList) {
-	i++;
-%>
+
+<c:set var="count" value="0"/>
+<c:forEach items="${viewOrderList}" var="viewOrder">
+<c:set var="count" value="${count+1}"/>
+
 <tr>
 
 
-<td><%=i%></td>
+<td>${count}</td>
 
-<td><%=viewOrder.getBookid()%></td>
-<td><%=viewOrder.getQuantity()%></td>
-<td><%=viewOrder.getTotalcost()%></td>
-<td><%=viewOrder.getOrderdate()%></td>
-<td><%=viewOrder.getStatus() %></td>
-<td><span><a href = "cancelorder?orderid=<%=t(viewOrder.%>"><button>Cancel</button></a></span><td>
+<td>${viewOrder.bookid}</td>
+<td>${viewOrder.quantity}</td>
+<td>${viewOrder.totalcost}</td>
+<td>${viewOrder.orderdate}</td>
+<td>${viewOrder.status}</td>
+<td><span><a href ="cancelorder?orderid=${viewOrder.orderid}"><button>Cancel</button></a></span><td>
 </tr>
 
-<%
-}
-%>
+</c:forEach>
 
 
 </tbody>

@@ -1,9 +1,3 @@
-<%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
-<%@page import="com.onlinebookshop.model.Bookdetails" %>
-<%@page import="com.onlinebookshop.model.ProductDetails" %>
-<%@page import="com.onlinebookshop.model.Rating"%>
-<%@page import="com.onlinebookshop.daoimpl.Ratingdaoimpl"%>
-<%@page import="java.util.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -150,18 +144,6 @@ ul
 
 			</ul>
 		</div>
-		<%!double rate;
-		%>
-		<%
-		int bid = Integer.parseInt(request.getParameter("bookd"));
-		BookdetailsDaoimpl bookdetailsDaoimpl = new BookdetailsDaoimpl();
-		List<ProductDetails> bookdetail = bookdetailsDaoimpl.ratingproducts(bid);
-		
-		HttpSession session1 = request.getSession();
-		session1.setAttribute("BookID", bid);
-		
-		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
-		%>
 
 		<fieldset>
 			<h2>Add Your Ratings..</h2>

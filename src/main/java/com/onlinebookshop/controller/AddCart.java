@@ -38,15 +38,15 @@ public class AddCart extends HttpServlet {
 		     cart=cartdao.insertcart(cart2);
 			if(cart > 0) {
 				
-				session.setAttribute("cart", "Item added to cart");
 				
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowCartServlet");
+				
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("cartSuccess.jsp");
 				requestDispatcher.forward(request, response);
 				
 			}else {
-				session.setAttribute("cart1", "You have already add this book in cart");
 				
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowCartServlet");
+				
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("cartNotInserted.jsp");
 				requestDispatcher.forward(request, response);
 			}
 		} catch (SQLException e) {

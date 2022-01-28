@@ -14,39 +14,30 @@ import com.onlinebookshop.model.Userdetails;
 @WebServlet("/recharge")
 public class RechargeWalletServlet extends HttpServlet {
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		 //String email = request.getParameter("UserEmail");
+		 		
+		    HttpSession session = request.getSession();
 		
-		HttpSession session = request.getSession();
+		    String email = (String) session.getAttribute("emailid");
 		
-		String email = (String) session.getAttribute("emailid");
-		
-		 int amount = Integer.parseInt(request.getParameter("Amount"));
+		    int amount = Integer.parseInt(request.getParameter("Amount"));
 		 
-		 //Double cardNumber = Double.parseDouble(request.getParameter("AccountNumber"));
+		    UserdetailsDao userdao = new UserdetailsDao();
 		 
-		 //Double cvv = Double.parseDouble(request.getParameter("cvv"));
-		 
-		 
-		 
-		 UserdetailsDao userdao = new UserdetailsDao();
-		 
-		 
-			
+		 			
 			int userid=Integer.parseInt(session.getAttribute("userId").toString());
 			
 			int wallet =userdao.walletballance(userid);
-			 
+			
+			request.setAttribute("availwallet", wallet);
+						
 			int addwallet = wallet+amount;
 		 
-		 Userdetails updatewallet = new Userdetails(null,0,null,email,null,addwallet);
-		 
-		 
-		 
-		boolean wall= userdao.updatewall(updatewallet);
-		
-		
+		    Userdetails updatewallet = new Userdetails(null,0,null,email,null,addwallet);
+		 		 	 
+		   boolean wall= userdao.updatewall(updatewallet);
 		
 		 if(wall)
 		 {

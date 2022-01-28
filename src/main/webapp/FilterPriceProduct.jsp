@@ -1,9 +1,4 @@
-<%@page import="com.onlinebookshop.daoimpl.Ratingdaoimpl"%>
-<%@page import="com.onlinebookshop.model.Bookdetails"%>
-<%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
-<%@page import="com.onlinebookshop.model.ProductDetails"%>
-<%@page import="com.onlinebookshop.model.Rating" %>
-<%@page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -129,41 +124,29 @@ ul
     </ul>
 </div>
 </form>
-<%!double rate; %>
-<%
-int price=(int)session.getAttribute("filteredbook");
-BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-List<ProductDetails> showProduct= bookdetaildao.filterPrice(price);
-Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
-
-%>
  
 <table>
             <tbody>
                 <tr>
                 
-                <%int count=0;
-                for(ProductDetails bookdetails: showProduct){
+                <c:set var="count" value="1"/>
+                
+                <c:forEach items="${filterpricelist}" var="filterPrice">
                 	
                 	%>
                     <td>
                         <table id="producttable">
                             <tbody>
                                 <tr>
-                                    <td><a href = "ShowProduct.jsp?BookId=<%=bookdetails.getBookid()%>"><img src="image/<%=bookdetails.getBookimages()%>" width=50 height=350 alt="book"></a></td>    
+                                    <td><a href = "ShowProduct.jsp?BookId=${filterPrice.bookid}"><img src="image/${filterPrice.bookimages}" width=50 height=350 alt="book"></a></td>    
                                     <td class="book">
-                                        <p><b>CATEGORY   :   </b><%=bookdetails.getCategory() %><br></p>
+                                        <p><b>CATEGORY   :   </b>${filterPrice.category}<br></p>
                                         
-                                        <p><b>BOOK TITLE  :   </b><%=bookdetails.getBooktitle()%><br></p>
+                                        <p><b>BOOK TITLE  :   </b>${filterPrice.booktitle}<br></p>
                                         
-                                        <p><b>PRICE :  </b><%=bookdetails.getPrice() %><br></p>
-                                       <%
-                                       Rating rating = new Rating();
-                                                                                rating.setBookid(bookdetails.getBookid());
-                                                                                rate = ratingdaoimpl.fetchrating(rating);
-                                       %>
-                                         
-                                         <p><b class="rating">RATINGS    :</b><%=rate %><br><br></p>
+                                        <p><b>PRICE :  </b>${filterPrice.price}<br></p>
+
+                                         <p><b class="rating">RATINGS    :</b>${filterPrice.rating}<br><br></p>
                                         
                                          
                                          
@@ -173,11 +156,18 @@ Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
                         </table>  
                             
                     </td>
-                       <% count ++;
-                       if(count==2){ %> 
+                        <c:choose>
+                          <c:when test="${count==2}">
+                              <c:set var="count" value="1"/>
                     	   </tr>
-                    	   <tr>              
-                     <%count=0; }}%>  
+                    	   <tr> 
+                    	   </c:when> 
+                    	   <c:otherwise>
+                    	   <c:set var="count" value="${count+1}"/>
+                    	   </c:otherwise>            
+                          
+                       </c:choose>
+                       </c:forEach> 
                        
                 </tr>
             </tbody>
