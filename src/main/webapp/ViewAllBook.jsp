@@ -1,10 +1,6 @@
-<%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
-<%@page import ="com.onlinebookshop.model.Bookdetails" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@page import="com.onlinebookshop.model.Userdetails"%>
-    <%@page import="java.util.*"%>
-            <%@page import="com.onlinebookshop.daoimpl.UserdetailsDao"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 <!DOCTYPE html>
 <html>
@@ -76,13 +72,6 @@ ul
 </aside>
  <h2>Books Wagon</h2>
 
-<%
-
-         BookdetailsDaoimpl bookdetailsdao = new BookdetailsDaoimpl();
-        List<Bookdetails> userList = new ArrayList<Bookdetails>();
-         userList = bookdetailsdao.ViewAllBook();
-%>
-
 <div>
 <table border="2" id="allusers">
 <thead>
@@ -105,31 +94,28 @@ ul
 <br>
 
 <tbody>
-<%
-int i = 0;
-for (Bookdetails viewBook : userList) {
-	i++;
-%>
+<c:set var="count" value="0"/>
+<c:forEach items="${viewAllBook}" var="viewallBook">
+<c:set var="count" value="${count+1}"/>
 <tr>
 
+<td>${count}</td>
 
-<td><%=i%></td>
-<td><%=viewBook.getBookid()%></td>
-<td><%=viewBook.getCategory()%></td>
-<td><%=viewBook.getDescription()%></td>
-<td> <%=viewBook.getBooktitle()%></td>
-<td> <%=viewBook.getBookcode()%></td>
-<td> <%=viewBook.getPrice()%></td>
-<td> <%=viewBook.getPublishdate()%></td>
-<td> <%=viewBook.getCondition()%></td>
-<td> <%=viewBook.getBookimages()%></td>
-<td> <%=viewBook.getStatus()%></td>
- <td><a href = "DeleteBooks?bookid=<%=viewBook.getBookid()%>"><button>Remove</button></a></td>
+<td>${viewallBook.bookid}</td>
+<td>${viewallBook.category}</td>
+<td>${viewallBook.description}</td>
+<td>${viewallBook.booktitle}</td>
+<td>${viewallBook.bookcode}</td>
+<td>${viewallBook.price}</td>
+<td>${viewallBook.publishdate}</td>
+<td>${viewallBook.condition}</td>
+<td>${viewallBook.bookimages}</td>
+<td>${viewallBook.status}</td>
+ <td><a href = "DeleteBooks?bookid=${viewallBook.bookid}"><button>Remove</button></a></td>
 </tr>
 
-<%
-}
-%>
+</c:forEach>
+
 </tbody>
           </table>
 

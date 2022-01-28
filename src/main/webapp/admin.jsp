@@ -58,13 +58,13 @@ ul
 		
         <li><a href="AddBooks.jsp">Add Books</a></li>
 		<li><a href="UpdateBook.jsp">Update Book</a></li>
-		<li><a href="ViewAllBook.jsp">All Books</a></li>
+		<li><a href="ViewAllBookServlet">All Books</a></li>
 		
 		<li><a href="AddAuthor.jsp">Add Author</a></li>
 		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
 		<li><a href="ViewAuthor.jsp">View Author</a></li>
 		
-		<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
+		<li><a href="ViewAllOrderServlet">View ALL Orders</a></li>
 </ul>
 	<h2>Books Wagon</h2>
 	<marquee><h1>Welcome Admin!...</h1></marquee>

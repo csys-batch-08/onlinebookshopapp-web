@@ -1,11 +1,7 @@
-<%@page import="com.onlinebookshop.model.OrderDetails"%>
-<%@page import="com.onlinebookshop.daoimpl.OrderDetailsDaoimpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@page import="com.onlinebookshop.model.Cart"%>
-    <%@page import="java.util.*"%>
-            <%@page import="com.onlinebookshop.daoimpl.CartDaoimpl"%>
- 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,12 +98,6 @@ margin-top: 20px;
 </aside>
  <h2>Books Wagon</h2>
  <h3>All Orders</h3>
-<%
-
- OrderDetailsDaoimpl orderdao = new OrderDetailsDaoimpl();
-        List<OrderDetails> orderList = new ArrayList<OrderDetails>();
-        orderList = orderdao.viewOrder();
-%>
 
 <div>
 <table border="2" id="allusers">
@@ -126,26 +116,23 @@ margin-top: 20px;
 <br>
 
 <tbody>
-<%
-int i = 0;
-for (OrderDetails viewOrder : orderList) {
-	i++;
-%>
+<c:set var="count" value="0"/>
+<c:forEach items="${orderlist}" var="viewallorder">
+<c:set var="count" value="${count+1}"/>
 <tr>
 
 
-<td><%=i%></td>
-<td><%=viewOrder.getCusid()%></td>
-<td><%=viewOrder.getBookid()%></td>
-<td><%=viewOrder.getQuantity()%></td>
-<td><%=viewOrder.getTotalcost()%></td>
-<td><%=viewOrder.getOrderdate()%></td>
-<td><%=viewOrder.getStatus() %></td>
+<td>${count}</td>
+
+<td>${viewallorder.cusid}</td>
+<td>${viewallorder.bookid}</td>
+<td>${viewallorder.quantity}</td>
+<td>${viewallorder.totalcost}</td>
+<td>${viewallorder.orderdate}</td>
+<td>${viewallorder.status}</td>
 </tr>
 
-<%
-}
-%>
+</c:forEach>
 </tbody>
           </table>
 
