@@ -60,7 +60,7 @@ public class Ratingdaoimpl implements RatingDao{
 	//rating exist:
 	public boolean ratingexist(int userid ,int bookid) throws SQLException {
 		Connection con = Connectionutil.getDbConnection();
-		String query ="select * from rating where cus_id in ? and book_id in ?";
+		String query ="select id,cus_id,book_id,rating from rating where cus_id in ? and book_id in ?";
 		PreparedStatement pst =con.prepareStatement(query);
 		pst.setInt(1, userid);
 		pst.setInt(2, bookid);

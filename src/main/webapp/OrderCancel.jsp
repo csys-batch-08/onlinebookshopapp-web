@@ -75,7 +75,6 @@ h3{
 </div>
 <h1>Order Cancel Successfully!!</h1>
 <h3>Your amount refunded successfully....</h3>
-<%int balance = (int)session.getAttribute("availbalance"); %>
-<h3>Available Wallet Balance :<%out.print(balance); %></h3>
+<h3>Available Wallet Balance :${availbalance}</h3>
 </body>
 </html>

@@ -94,7 +94,7 @@ ul
     </ul>
 </div>
 <h1>Your Order is successfully Placed !...</h1>
-<% int user=(int) session.getAttribute("newwallet");%>
-<h2>Available Balance : <% out.print(user);%></h2>
+
+<h2>Available Balance : ${newwallet}</h2>
 </body>
 </html>

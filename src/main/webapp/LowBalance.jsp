@@ -8,12 +8,16 @@
 <style>
 	
 body{
-    background-image: url(image/new4.jpg);
-    background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
-}h1{
+    background-image: url(image/book.jpg);
+    background-repeat:repeat;
+    color:white;
+    background-size:1700px 700px;
+    background-attachment: fixed;
+    font-weight: 1000; 
+    font-size: 18px;
+    font-weight:bold;  
+}
+h1{
 text-align:center;
 padding-top: 200px;
 }
@@ -27,41 +31,51 @@ a{
 ul
     {
         list-style: none;
-        background-color: #1c1c1c;
+        background-color:SaddleBrown;
         margin:0;
+        color: black;
+        position: fixed;
     }
   li{
       display:inline-block;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 12px;
+      padding-bottom: 12px;
       text-align: center;
       font-size: 17px;
+  }
+  li a:hover{
+  	opacity: 0.7;
+  	color: black;
+  	font-weight: bold;
   }
   li a{
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 90px;
-      padding-left: 7px;
-  }
- li  button{
-      margin-right: 500px;
-  }
-  
+      padding-right: 50px;
+      padding-left: 47px;
+  }  
   .set1{
       margin-right: 10px;
   }
+  .text{
+  	padding: 7px;
+  	border-radius: 4px;
+  	border-color: transparent;
+  }
+  
 </style>
 </head>
 <body>
 <div class="nav">
     <ul>        
-        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
-        <li><a href="MyProfile.jsp">User profile</a></li>
+        <li><a href="ShowBookServlet" class="set1">My Cart</a></li>
+        <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
+        <li><a href="MyProfileServlet">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
-        <li><a href="Ratings.jsp">Add Ratings</a></li>
-        <li><a href="ViewMyOrders.jsp">View My Order</a></li>
-        <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        
+        <li><a href="ViewMyOrderServlet">View My Order</a></li>
+        <li><a href="FilterByConditionServlet">Old Books</a></li>
         <li><a href="login.jsp">Log Out</a></li>
         
         
@@ -69,7 +83,7 @@ ul
 </div>
 <h1>NOT ENOUGH AMOUNT IN YOUR WALLET !...</h1>
 <h2>Recharge Your Wallet..</h2>
-<% int user=(int) session.getAttribute("availwallet");%>
-<h2>Available Balance : <% out.print(user);%></h2>
+
+<h2>Available Balance : ${availwallet}</h2>
 </body>
 </html>

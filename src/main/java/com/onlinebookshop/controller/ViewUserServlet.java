@@ -1,0 +1,35 @@
+package com.onlinebookshop.controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.onlinebookshop.daoimpl.UserdetailsDao;
+import com.onlinebookshop.model.Userdetails;
+
+
+@WebServlet("/ViewUserServlet")
+public class ViewUserServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		UserdetailsDao userdetailsdao = new UserdetailsDao();
+        List<Userdetails> userList = new ArrayList<Userdetails>();
+        userList = userdetailsdao.viewUser();
+	
+        request.setAttribute("userlist", userList);
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ViewUser.jsp");
+        
+        requestDispatcher.forward(request, response);
+	}
+
+}

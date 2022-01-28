@@ -29,13 +29,6 @@ margin-top: 50px;
 margin-left:60px;
 
 }
-span{
-position : relative;
-top:280px;
-left: -300px;
-font-size: 16px;
-
-}
 table td{
 padding-bottom: 60px;
 }
@@ -142,13 +135,13 @@ ul
                                 <tr>
                                     <td><a href = "ShowProductServlet?BookId=${booklist.bookid}"><img src="image/${booklist.bookimages}" width=50 height=350 alt="book"></a></td>    
                                     <td class="book">
-                                        <p><b>CATEGORY   :   </b>${booklist.category}<br></p>
+                                        <p><strong>CATEGORY   :   </strong>${booklist.category}<br></p>
                                         
-                                        <p><b>BOOK TITLE  :   </b>${booklist.booktitle}<br></p>
+                                        <p><strong>BOOK TITLE  :   </strong>${booklist.booktitle}<br></p>
                                         
-                                        <p><b>PRICE :  </b>${booklist.price}<br></p>
+                                        <p><strong>PRICE :  </strong>${booklist.price}<br></p>
                                       
-                                        <p><b>Ratings :</b>${booklist.rating}<br></p>
+                                        <p><strong>Ratings :</strong>${booklist.rating}<br></p>
                                                                            
                                          
                                     </td>

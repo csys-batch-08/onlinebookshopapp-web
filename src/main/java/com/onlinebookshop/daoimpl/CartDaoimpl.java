@@ -16,11 +16,8 @@ public class CartDaoimpl {
 
 	public int insertcart(Cart cart) throws SQLException {
 		int res = 0;
-		//System.out.println(cartexist(cart.getCus_id(), cart.getBook_id()));
 		
 		if(cartexist(cart.getCusid(), cart.getBookid()) == false) {
-		
-			//System.out.println(cart.getCus_id() + "fvghjk" +cart.getBook_id());
 		
 			String insertQuery="insert into cart(book_id,cus_id)values(?,?)";
 		Connection con = Connectionutil.getDbConnection();
@@ -31,9 +28,9 @@ public class CartDaoimpl {
 			pstm.setInt(2, cart.getCartid());
 			res =  pstm.executeUpdate();
 			pstm.executeUpdate("commit");
-			//System.out.println("Book added to cart");
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		}
@@ -43,7 +40,7 @@ public class CartDaoimpl {
 	//cart exist:
 		public boolean cartexist(int userid ,int bookid) throws SQLException {
 			Connection con = Connectionutil.getDbConnection();
-			String query ="select * from cart where cus_id in ? and book_id in ?";
+			String query ="select cus_id,book_id from cart where cus_id in ? and book_id in ?";
 			PreparedStatement pst =con.prepareStatement(query);
 			pst.setInt(1, userid);
 			pst.setInt(2, bookid);
@@ -70,8 +67,8 @@ public class CartDaoimpl {
 			ResultSet rs = pstm.executeQuery();
 			while(rs.next()) {
 				 
-                 rating.setBookid(rs.getInt(1));
-                 double rate = ratingdaoimpl.fetchrating(rating);
+                rating.setBookid(rs.getInt(1));
+                double rate = ratingdaoimpl.fetchrating(rating);
 				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),rate,rs.getString(11));
 			    booklist.add(product);
 			
@@ -85,7 +82,7 @@ public class CartDaoimpl {
 	
 	public List<Cart> allCart() {
 		List<Cart> cartList = new ArrayList<Cart>();
-		String cart ="select * from cart";
+		String cart ="select cart_id,cus_id,book_id from cart";
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			Statement stm = con.createStatement();
@@ -95,7 +92,7 @@ public class CartDaoimpl {
 				cartList.add(cartmodel);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return cartList;
@@ -113,9 +110,9 @@ public class CartDaoimpl {
 			pstm.setInt(1, bookid);
 			pstm.setInt(2, userid);
 			int noOfRows=pstm.executeUpdate();
-			System.out.println(noOfRows+ "row deleted");
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return 0;

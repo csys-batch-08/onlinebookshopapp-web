@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@page import="com.onlinebookshop.model.AuthorDetails"%>
-    <%@page import="java.util.*"%>
-            <%@page import="com.onlinebookshop.daoimpl.AuthorDetailsDaoimpl"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 <!DOCTYPE html>
 <html>
@@ -98,14 +96,6 @@ td, th{
 </head>
 <body>
 
-<%
-
-AuthorDetailsDaoimpl authordao = new AuthorDetailsDaoimpl();
-        List<AuthorDetails> authorList = new ArrayList<AuthorDetails>();
-        authorList = authordao.showAuthor();
-%>
-
-
 <table border="1" id="allusers">
 <thead>
 <tr>
@@ -119,23 +109,21 @@ AuthorDetailsDaoimpl authordao = new AuthorDetailsDaoimpl();
 <br>
 
 <tbody>
-<%
-int i = 0;
-for (AuthorDetails viewAuthor : authorList) {
-	i++;
-%>
+<tbody>
+<c:set var="count" value="0"/>
+<c:forEach items="${authorlist}" var="viewAuthor">
+<c:set var="count" value="${count+1}"/>
+
 <tr>
 
 
-<td><%=i%></td>
-<td><%=viewAuthor.getName()%></td>
-<td> <%=viewAuthor.getEmailid()%></td>
-<td> <%=viewAuthor.getBookid()%></td>
+<td>${count}</td>
+<td>${viewAuthor.name}</td>
+<td>${viewAuthor.emailid}</td>
+<td>${viewAuthor.bookid}</td>
 </tr>
 
-<%
-}
-%>
+</c:forEach>
 </tbody>
           </table>
 

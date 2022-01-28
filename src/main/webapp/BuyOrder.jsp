@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
-<%@page import="com.onlinebookshop.model.Bookdetails" %>
-<%@page import="com.onlinebookshop.model.ProductDetails" %>
-<%@page import="com.onlinebookshop.model.Rating"%>
-<%@page import="com.onlinebookshop.daoimpl.Ratingdaoimpl"%>
-<%@page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>

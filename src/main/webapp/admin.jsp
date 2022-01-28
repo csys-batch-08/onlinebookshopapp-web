@@ -53,7 +53,7 @@ ul
 </head>
 <body>
 <ul>
-        <li><a href="ViewUser.jsp">View User</a></li>
+        <li><a href="ViewUserServlet">View User</a></li>
 		<li><a href="DeleteUser.jsp">Delete User</a></li>
 		
         <li><a href="AddBooks.jsp">Add Books</a></li>
@@ -62,7 +62,7 @@ ul
 		
 		<li><a href="AddAuthor.jsp">Add Author</a></li>
 		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
-		<li><a href="ViewAuthor.jsp">View Author</a></li>
+		<li><a href="ViewAuthorServlet">View Author</a></li>
 		
 		<li><a href="ViewAllOrderServlet">View ALL Orders</a></li>
 </ul>
