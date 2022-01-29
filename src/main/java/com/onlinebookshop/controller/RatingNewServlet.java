@@ -26,24 +26,17 @@ public class RatingNewServlet extends HttpServlet {
         
     		
     		int bid = Integer.parseInt(request.getParameter("bookd"));
-    		System.out.println(bid);
+    		
     		BookdetailsDaoimpl bookdetailsDaoimpl = new BookdetailsDaoimpl();
     		
     		List<ProductDetails> bookdetail;
-			try {
-				bookdetail = bookdetailsDaoimpl.ratingproducts(bid);
-				System.out.println(bookdetail);
-				HttpSession session = request.getSession();
-	    		
-	    		session.setAttribute("BookID", bid);
-	    		
-	  		    request.setAttribute("books", bookdetail);
-	  		    
-	  		    
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-			}
+			bookdetail = bookdetailsDaoimpl.ratingproducts(bid);
+			
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("BookID", bid);
+			
+			request.setAttribute("books", bookdetail);
     		
 
   		    RequestDispatcher requestDispatcher = request.getRequestDispatcher("Ratings.jsp");

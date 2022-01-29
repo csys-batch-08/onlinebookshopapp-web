@@ -12,25 +12,42 @@ import com.onlinebookshop.util.Connectionutil;
 
 public class Ratingdaoimpl implements RatingDao{
 
-	public int insertrating(Rating rating) throws SQLException {
+	public int rating(Rating rating) throws SQLException {
 		if(!ratingexist(rating.getCusid(), rating.getBookid())) {
 			String  insert="insert into rating(cus_id,book_id,rating)values(?,?,?)";
-			Connection con = Connectionutil.getDbConnection();
-			PreparedStatement pstm=null;
+			Connection con = null;
+			PreparedStatement statement=null;
 			try {
-				pstm =con.prepareStatement(insert);
-				pstm.setInt(1, rating.getCusid());
-				pstm.setInt(2, rating.getBookid());
-				pstm.setDouble(3, rating.getRating());
-				int res =pstm.executeUpdate();
-				pstm.executeUpdate("commit");
-				System.out.println("Ratings inserted ");
+				con = Connectionutil.getDbConnection();
+				statement =con.prepareStatement(insert);
+				statement.setInt(1, rating.getCusid());
+				statement.setInt(2, rating.getBookid());
+				statement.setDouble(3, rating.getRating());
+				int res =statement.executeUpdate();
+				statement.executeUpdate("commit");
+				
 				return res;
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
-				System.out.println("Try again");
+				
+			}finally {
+				if (statement != null) {
+					try {
+						statement.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if(con != null) {
+					try {
+						con.close();
+					} catch (SQLException e) {
+					
+						e.printStackTrace();
+					}
+				}
 			}
 			
 		return -1;
@@ -38,36 +55,95 @@ public class Ratingdaoimpl implements RatingDao{
 		return -1;
 	}
 	public double fetchrating(Rating rating) {
-		Connection con = Connectionutil.getDbConnection();
 		
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
 		String query ="select trunc(avg(rating),2) from rating where book_id =?";
 		try {
-			PreparedStatement pst =con.prepareStatement(query);
-			pst.setInt(1, rating.getBookid());
-			ResultSet rs = pst.executeQuery();
-			while(rs.next()) {
+			con = Connectionutil.getDbConnection();
+			statement =con.prepareStatement(query);
+			statement.setInt(1, rating.getBookid());
+			resultSet = statement.executeQuery();
+			while(resultSet.next()) {
 				
-				return rs.getDouble(1);
+				return resultSet.getDouble(1);
 				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return -1;
 	}
 	
 	//rating exist:
-	public boolean ratingexist(int userid ,int bookid) throws SQLException {
-		Connection con = Connectionutil.getDbConnection();
+	public boolean ratingexist(int userid ,int bookid) {
+		Connection con = null;
 		String query ="select id,cus_id,book_id,rating from rating where cus_id in ? and book_id in ?";
-		PreparedStatement pst =con.prepareStatement(query);
-		pst.setInt(1, userid);
-		pst.setInt(2, bookid);
-		ResultSet rs = pst.executeQuery();
-		if(rs.next()) {
-			return true;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		try {
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(query);
+			statement.setInt(1, userid);
+			statement.setInt(2, bookid);
+			resultSet = statement.executeQuery();
+			if(resultSet.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
+		
 		return false;
 	}
 }

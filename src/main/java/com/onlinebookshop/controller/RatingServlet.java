@@ -36,7 +36,7 @@ public class RatingServlet extends HttpServlet {
 		int res=0;
 		
 		try {
-			 res = ratingdao.insertrating(rate);
+			 res = ratingdao.rating(rate);
 			
 			System.out.println(res);
 			

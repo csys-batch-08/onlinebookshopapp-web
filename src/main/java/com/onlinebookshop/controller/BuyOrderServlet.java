@@ -27,18 +27,12 @@ public class BuyOrderServlet extends HttpServlet {
 		int bookid=Integer.parseInt(request.getParameter("bookid"));
 		session.setAttribute("Book",bookid);
 		BookdetailsDaoimpl bookdetailsDaoimpl = new BookdetailsDaoimpl();
-		try {
-			List<ProductDetails> bookdetail = bookdetailsDaoimpl.ratingproducts(bookid);
-			
-			request.setAttribute("orderlist", bookdetail);
-			
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("BuyOrder.jsp");
-			requestDispatcher.forward(request, response);
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
+		List<ProductDetails> bookdetail = bookdetailsDaoimpl.ratingproducts(bookid);
+		
+		request.setAttribute("orderlist", bookdetail);
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("BuyOrder.jsp");
+		requestDispatcher.forward(request, response);
 			
 	}
 

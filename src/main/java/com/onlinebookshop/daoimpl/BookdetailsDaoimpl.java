@@ -21,24 +21,40 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	public int insertBooks(Bookdetails product)
 	{
 		String  insert="insert into bookdetails(category,description,book_title,book_code,price,publish_date,condition,bookimages)values(?,?,?,?,?,?,?,?)";
-		Connection con = Connectionutil.getDbConnection();
-		PreparedStatement pstm=null;
+		Connection con = null;
+		PreparedStatement statement =null;
 		try {
-			pstm =con.prepareStatement(insert);
-			pstm.setString(1, product.getCategory());
-			pstm.setString(2, product.getDescription());
-			pstm.setString(3, product.getBooktitle());
-			pstm.setString(4, product.getBookcode());
-			pstm.setInt(5, product.getPrice());
-			pstm.setDate(6, java.sql.Date.valueOf(product.getPublishdate()));
-			pstm.setString(7, product.getCondition());
-			pstm.setString(8, product.getBookimages());
-			pstm.executeUpdate();
-			
-			
+			con = Connectionutil.getDbConnection();
+			statement =con.prepareStatement(insert);
+			statement.setString(1, product.getCategory());
+			statement.setString(2, product.getDescription());
+			statement.setString(3, product.getBooktitle());
+			statement.setString(4, product.getBookcode());
+			statement.setInt(5, product.getPrice());
+			statement.setDate(6, java.sql.Date.valueOf(product.getPublishdate()));
+			statement.setString(7, product.getCondition());
+			statement.setString(8, product.getBookimages());
+			statement.executeUpdate();
+						
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 			
 		}
 		return 1;
@@ -46,16 +62,34 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	
 	public void deleteBooks(int product) {
 		String delete="update bookdetails set status='Not Available' where book_id=?";
-		Connection con = Connectionutil.getDbConnection();
-		PreparedStatement pstm=null;
+		Connection con = null;
+		PreparedStatement statement=null;
 		try {
-			pstm=con.prepareStatement(delete);
-			pstm.setInt(1, product);
-			int noOfRows=pstm.executeUpdate();
+			con = Connectionutil.getDbConnection();
+			statement=con.prepareStatement(delete);
+			statement.setInt(1, product);
+			statement.executeUpdate();
 			
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		
 	}
@@ -65,24 +99,55 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		List<ProductDetails> productsList=new ArrayList<ProductDetails>();
 		
 		String show = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where status='Available'";
-		Connection con = Connectionutil.getDbConnection();
+		
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
+		
 		try {
-			PreparedStatement pstm = con.prepareStatement(show);
 			
-			ResultSet rs=pstm.executeQuery();
-			while(rs.next())
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(show);
+			resultSet =statement.executeQuery();
+			
+			while(resultSet.next())
 			{
-				rating.setBookid(rs.getInt(1));
+				rating.setBookid(resultSet.getInt(1));
                double rate = ratingdaoimpl.fetchrating(rating);
-				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),rate,rs.getString(11));
+				ProductDetails product = new ProductDetails(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getInt(6),resultSet.getDate(7).toLocalDate(),resultSet.getString(8),resultSet.getString(9),resultSet.getString(10),rate,resultSet.getString(11));
 				productsList.add(product);
 				
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		
 		return productsList;
@@ -94,62 +159,147 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		List<ProductDetails> productsList=new ArrayList<ProductDetails>();
 		
 		String show = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_id=?";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet resultset = null;
+		
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
-			PreparedStatement pstm = con.prepareStatement(show);
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(show);
 			
-			pstm.setInt(1, bookid);
-			ResultSet rs=pstm.executeQuery();
+			statement.setInt(1, bookid);
+			resultset =statement.executeQuery();
 			
-			while(rs.next())
+			while(resultset.next())
 			{
-				rating.setBookid(rs.getInt(1));
+				rating.setBookid(resultset.getInt(1));
 	            double rate = ratingdaoimpl.fetchrating(rating);
-				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),rate,rs.getString(11));
+				ProductDetails product = new ProductDetails(resultset.getInt(1),resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5),resultset.getInt(6),resultset.getDate(7).toLocalDate(),resultset.getString(8),resultset.getString(9),resultset.getString(10),rate,resultset.getString(11));
 				productsList.add(product);
 						
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		
 		return productsList;
 	}
 	
-	public int findProductid(String book_title) {
-		String find="select book_id from bookdetails where book_title='"+book_title+"'";
-		Connection con = Connectionutil.getDbConnection();
+	public int findProductid(String booktitle) {
+		String find="select book_id from bookdetails where book_title='"+booktitle+"'";
+		Connection con = null ;
+		Statement statement = null;
+		ResultSet resultset = null;
 		int productId =0;
 		try {
-			Statement stm =con.createStatement();
-			ResultSet rs=stm.executeQuery(find);
-			if(rs.next())
+			con = Connectionutil.getDbConnection();
+			statement = con.createStatement();
+			resultset =statement.executeQuery(find);
+			if(resultset.next())
 			{
-				productId=rs.getInt(1);
+				productId=resultset.getInt(1);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		return productId;
 		
 	}
-	public String findBookname(int book_id) {
-		String find="select book_title from bookdetails where book_id='"+book_id+"'";
-		Connection con = Connectionutil.getDbConnection();
+	public String findBookname(int bookid) {
+		String find="select book_title from bookdetails where book_id='"+bookid+"'";
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultset = null;
 		String product =null;
 		try {
-			Statement stm =con.createStatement();
-			ResultSet rs=stm.executeQuery(find);
-			if(rs.next())
+			con = Connectionutil.getDbConnection();
+			statement =con.createStatement();
+			resultset =statement.executeQuery(find);
+			if(resultset.next())
 			{
-				product=rs.getString(1);
+				product=resultset.getString(1);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		return product;
 		
@@ -157,112 +307,242 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	
 	public int findPrice(int proid) {
 		String query="select price from bookdetails where book_id='"+proid+"'";
-		Connection con=Connectionutil.getDbConnection();
-		Statement stmt;
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultset = null;
 		int price=0;
 		try {
-			stmt=con.createStatement();
-			ResultSet rs=stmt.executeQuery(query);
-			if(rs.next())
+			con=Connectionutil.getDbConnection();
+			statement = con.createStatement();
+		    resultset=statement.executeQuery(query);
+			if(resultset.next())
 			{
-				price=rs.getInt(1);
+				price=resultset.getInt(1);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		return price;
 	}
 	
 	public void updateBooks(Bookdetails bookdetails) {
 		String updateQuery="update bookdetails set price=? where book_title=?";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null;
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement pst=con.prepareStatement(updateQuery);
-			pst.setInt(1, bookdetails.getPrice());
-			pst.setString(2, bookdetails.getBooktitle());
-			int i=pst.executeUpdate();
-			System.out.println(i+"row updated");
+			con = Connectionutil.getDbConnection();
+			statement =con.prepareStatement(updateQuery);
+			statement.setInt(1, bookdetails.getPrice());
+			statement.setString(2, bookdetails.getBooktitle());
+			statement.executeUpdate();
+			
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+			
+		}finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 			
 		}
 	}
 	
 	public List<ProductDetails> filterPrice(int price) {
 		
-		List<ProductDetails> FilterPrice=new ArrayList<ProductDetails>();
+		List<ProductDetails> filterPrice=new ArrayList<ProductDetails>();
 		String filter="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where price <= ?";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null ;
+		PreparedStatement statement = null ;
+		ResultSet resultset= null ;
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
-			PreparedStatement pstm = con.prepareStatement(filter);
-		    pstm.setInt(1, price);
-			ResultSet rs=pstm.executeQuery();
-			while(rs.next())
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(filter);
+		    statement.setInt(1, price);
+			resultset=statement.executeQuery();
+			while(resultset.next())
 			{
-				rating.setBookid(rs.getInt(1));
+				rating.setBookid(resultset.getInt(1));
 	            double rate = ratingdaoimpl.fetchrating(rating);
-				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),rate,rs.getString(11));
-				FilterPrice.add(product);
+				ProductDetails product = new ProductDetails(resultset.getInt(1),resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5),resultset.getInt(6),resultset.getDate(7).toLocalDate(),resultset.getString(8),resultset.getString(9),resultset.getString(10),rate,resultset.getString(11));
+				filterPrice.add(product);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}	
-		return FilterPrice;
+		return filterPrice;
 	}
 	
       public List<ProductDetails> filterName(String bookname) {
 		
-		List<ProductDetails> FilterName=new ArrayList<ProductDetails>();
+		List<ProductDetails> filterName=new ArrayList<ProductDetails>();
 		String bookName = "%" + bookname + "%";
 		
 		String filter="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_title like ?";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet resultset = null;
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
-			PreparedStatement pstm = con.prepareStatement(filter);
-		    pstm.setString(1, bookName);
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(filter);
+		    statement.setString(1, bookName);
+		    resultset=statement.executeQuery();
 		    
-			ResultSet rs=pstm.executeQuery();
-			while(rs.next())
+			while(resultset.next())
 			{
-				rating.setBookid(rs.getInt(1));
+				rating.setBookid(resultset.getInt(1));
 	            double rate = ratingdaoimpl.fetchrating(rating);
-				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),rate,rs.getString(11));
-				FilterName.add(product);
-				System.out.println(product);
+				ProductDetails product = new ProductDetails(resultset.getInt(1),resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5),resultset.getInt(6),resultset.getDate(7).toLocalDate(),resultset.getString(8),resultset.getString(9),resultset.getString(10),rate,resultset.getString(11));
+				filterName.add(product);
+				
 			}
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}	
-		return FilterName;
+		return filterName;
 	}
 	
 	public List<ProductDetails> filterCondition(int userid) {
 		List<ProductDetails> conditionList=new ArrayList<ProductDetails>();
 		String condition="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.condition='old'";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null ;
+		Statement statement = null;
+		ResultSet resultset = null;
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
-			Statement stm=con.createStatement();
-			ResultSet rs=stm.executeQuery(condition);
-			while(rs.next())
+			con = Connectionutil.getDbConnection();
+			statement = con.createStatement();
+			resultset =statement.executeQuery(condition);
+			while(resultset.next())
 			{
-				rating.setBookid(rs.getInt(1));
+				rating.setBookid(resultset.getInt(1));
 	            double rate = ratingdaoimpl.fetchrating(rating);
-				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),rate,rs.getString(11));
+				ProductDetails product = new ProductDetails(resultset.getInt(1),resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5),resultset.getInt(6),resultset.getDate(7).toLocalDate(),resultset.getString(8),resultset.getString(9),resultset.getString(10),rate,resultset.getString(11));
 				conditionList.add(product);
 			}
 		} catch (SQLException e) {
 	
 			e.printStackTrace();
+			
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 			
 		}	
 		return conditionList;
@@ -271,62 +551,151 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	public List<Bookdetails> categoryList() {
 		List<Bookdetails> categoryList=new ArrayList<Bookdetails>();
 		String category ="select category from bookdetails";
-		Connection con = Connectionutil.getDbConnection();
-		Statement stm;
+		Connection con = null ;
+		Statement statement = null;
+		ResultSet resultset = null;
 		try {
-			stm = con.createStatement();
-			ResultSet rs=stm.executeQuery(category);
-			while(rs.next())
+			con = Connectionutil.getDbConnection();
+			statement = con.createStatement();
+			resultset =statement.executeQuery(category);
+			while(resultset.next())
 			{
-			Bookdetails categorylist = new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9));
+			Bookdetails categorylist = new Bookdetails(resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5),resultset.getInt(6),resultset.getDate(7).toLocalDate(),resultset.getString(8),resultset.getString(9));
 			categoryList.add(categorylist);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		return categoryList;
 	}
 	
-	public List<Bookdetails> ViewAllBook()
+	public List<Bookdetails> viewAllBook()
 	{
 		List<Bookdetails> productsList=new ArrayList<Bookdetails>();
 		
 		String show = "select book_id,category,description,book_title,book_code,price,publish_date,condition,bookimages,status from bookdetails";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null ;
+		PreparedStatement statement =null;
+		ResultSet resultset = null;
 		try {
-			PreparedStatement pstm = con.prepareStatement(show);
-			
-			ResultSet rs=pstm.executeQuery();
-			while(rs.next())
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(show);
+			resultset = statement.executeQuery();
+			while(resultset.next())
 			{
-				Bookdetails book = new Bookdetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10));
+				Bookdetails book = new Bookdetails(resultset.getInt(1),resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5),resultset.getInt(6),resultset.getDate(7).toLocalDate(),resultset.getString(8),resultset.getString(9),resultset.getString(10));
 				productsList.add(book);
-				
 			
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		
 		return productsList;
 	}
 	
-	public List<ProductDetails> ratingproducts(int bookid) throws SQLException{
-		Connection con = Connectionutil.getDbConnection();
+	public List<ProductDetails> ratingproducts(int bookid) {
+		
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		List<ProductDetails> bookdetails = new ArrayList<ProductDetails>();
+		
 		String query = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_id in ?";
-		PreparedStatement pstm = con.prepareStatement(query);
-		pstm.setInt(1, bookid);
-		ResultSet rs = pstm.executeQuery();
-		while(rs.next()) {
-            rating.setBookid(rs.getInt(1));
-            double rate = ratingdaoimpl.fetchrating(rating);
-			bookdetails.add(new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),rate,rs.getString(11)));
-		}
+		
+		Connection con =null;
+		PreparedStatement statement = null;
+	    ResultSet resultset = null;
+		
+		try {
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(query);
+			statement.setInt(1, bookid);
+			resultset = statement.executeQuery();
+			while(resultset.next()) {
+	            rating.setBookid(resultset.getInt(1));
+	            double rate = ratingdaoimpl.fetchrating(rating);
+				bookdetails.add(new ProductDetails(resultset.getInt(1),resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5),resultset.getInt(6),resultset.getDate(7).toLocalDate(),resultset.getString(8),resultset.getString(9),resultset.getString(10),rate,resultset.getString(11)));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+		}		
 		return bookdetails;
 	}
 	

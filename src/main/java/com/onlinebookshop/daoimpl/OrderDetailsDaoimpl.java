@@ -19,18 +19,35 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 	public void insertOrder(OrderDetails cart)
 	{
 		String insertQuery="insert into orderdetails(cus_id,book_id,quantity,total_cost) values(?,?,?,?)";
-		Connection con = Connectionutil.getDbConnection();
-		PreparedStatement pst = null;
+		Connection con = null;
+		PreparedStatement statement = null;
 		try {
-			pst = con.prepareStatement(insertQuery);
-			pst.setInt(1, cart.getCusid());
-			pst.setInt(2, cart.getBookid());
-			pst.setInt(3, cart.getQuantity());
-			pst.setDouble(4, cart.getTotalcost());
-			pst.executeUpdate();
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(insertQuery);
+			statement.setInt(1, cart.getCusid());
+			statement.setInt(2, cart.getBookid());
+			statement.setInt(3, cart.getQuantity());
+			statement.setDouble(4, cart.getTotalcost());
+			statement.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
@@ -40,38 +57,81 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		List<OrderDetails> orderList=new ArrayList<OrderDetails>();
 				
 		String view = "select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails order by order_id desc";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null;
+		Statement statement = null ;
+		ResultSet resultSet = null;
 		try {
-			Statement stm = con.createStatement();
-			
-			
-			ResultSet rs = stm.executeQuery(view);
-			while(rs.next())
+			con = Connectionutil.getDbConnection();
+			statement = con.createStatement();
+			resultSet = statement.executeQuery(view);
+			while(resultSet.next())
 			{
-				OrderDetails order = new OrderDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate(),rs.getString(6));
+				OrderDetails order = new OrderDetails(resultSet.getInt(1),resultSet.getInt(2),resultSet.getInt(3),resultSet.getDouble(4),resultSet.getDate(5).toLocalDate(),resultSet.getString(6));
 				orderList.add(order);
 			}
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return orderList;
 	}
 	
-	public int updateOrder(int quantity,int book_id)
+	public int updateOrder(int quantity,int bookid)
 	{
 		String updateQuery="update orderdetails set quantity=? where book_id=?";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null;
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement pst=con.prepareStatement(updateQuery);
-			pst.setInt(2, book_id);
-			pst.setInt(1, quantity);
-			int i=pst.executeUpdate();
+			con = Connectionutil.getDbConnection();
+			statement=con.prepareStatement(updateQuery);
+			statement.setInt(2, bookid);
+			statement.setInt(1, quantity);
+			statement.executeUpdate();
 			
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 			
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return 0;
 		
@@ -81,32 +141,82 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		
 		
 		String deleteOrder="update orderdetails set status='order canceled'  where order_id=?";
-		Connection con = Connectionutil.getDbConnection();
-		PreparedStatement pstm=null;
+		Connection con = null;
+		PreparedStatement statement=null;
 		try {
-			pstm=con.prepareStatement(deleteOrder);
-			pstm.setInt(1, orderid);
-			int noOfRows=pstm.executeUpdate();
-			pstm.executeUpdate("commit");
+			con = Connectionutil.getDbConnection();
+			statement=con.prepareStatement(deleteOrder);
+			statement.setInt(1, orderid);
+			statement.executeUpdate();
+			statement.executeUpdate("commit");
 			
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return 1;
 	}
 	
 	//rating exist:
-		public boolean OrderCancelled(String status ,int orderid) throws SQLException {
-			Connection con = Connectionutil.getDbConnection();
+		public boolean orderCancelled(String status ,int orderid) {
+			Connection con = null;
 			String query ="select order_id,cus_id,book_id,quantity,total_cost,order_date,status from rating where status='order canceled' and order_id in ?";
-			PreparedStatement pst =con.prepareStatement(query);
-			pst.setString(1, status);
-			pst.setInt(2, orderid);
-			ResultSet rs = pst.executeQuery();
-			if(rs.next()) {
-				return true;
+			PreparedStatement statement = null;
+			ResultSet resultSet = null;
+			try {
+				con = Connectionutil.getDbConnection();
+				statement = con.prepareStatement(query);
+				statement.setString(1, status);
+				statement.setInt(2, orderid);
+				resultSet = statement.executeQuery();
+				if(resultSet.next()) {
+					return true;
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}finally {
+				if (statement != null) {
+					try {
+						statement.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if(con != null) {
+					try {
+						con.close();
+					} catch (SQLException e) {
+					
+						e.printStackTrace();
+					}
+				}
+				if(resultSet != null) {
+					try {
+						resultSet.close();
+					} catch (SQLException e) {
+					
+						e.printStackTrace();
+					}
+				}
 			}
+			
 			return false;
 		}
 	
@@ -115,20 +225,47 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		List<OrderDetails> orderList=new ArrayList<OrderDetails>();
 		String myCart ="select order_id,cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where cus_id=? order by order_id desc";
 		
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null ;
+		PreparedStatement statement = null ;
+		ResultSet resultSet = null;
 		try {
-			PreparedStatement pstm = con.prepareStatement(myCart);
-			pstm.setInt(1, userid);
-			ResultSet rs = pstm.executeQuery();
-			while(rs.next()) {
+			con = Connectionutil.getDbConnection();
+			statement =con.prepareStatement(myCart);
+			statement.setInt(1, userid);
+			resultSet = statement.executeQuery();
+			while(resultSet.next()) {
 				
-				OrderDetails order = new OrderDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getDouble(5),rs.getDate(6).toLocalDate(),rs.getString(7));
+				OrderDetails order = new OrderDetails(resultSet.getInt(1),resultSet.getInt(2),resultSet.getInt(3),resultSet.getInt(4),resultSet.getDouble(5),resultSet.getDate(6).toLocalDate(),resultSet.getString(7));
 				orderList.add(order);
 			}
 			
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return orderList;
 	}
@@ -136,18 +273,45 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 	
 	public int findOrderPrice(int orderid) {
 		String find="select total_cost from orderdetails where order_id='"+orderid+"'";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
 		int productId =0;
 		try {
-			Statement stm =con.createStatement();
-			ResultSet rs=stm.executeQuery(find);
-			if(rs.next())
+			con = Connectionutil.getDbConnection();
+			statement =con.createStatement();
+			resultSet=statement.executeQuery(find);
+			if(resultSet.next())
 			{
-				productId=rs.getInt(1);
+				productId=resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return productId;
 		
@@ -155,18 +319,45 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 	
 	public String findStatus(int orderid) {
 		String find="select status from orderdetails where order_id='"+orderid+"'";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
 		String status=null;
 		try {
-			Statement stm =con.createStatement();
-			ResultSet rs=stm.executeQuery(find);
-			if(rs.next())
+			con = Connectionutil.getDbConnection();
+			statement =con.createStatement();
+			resultSet=statement.executeQuery(find);
+			if(resultSet.next())
 			{
-				 status=rs.getString(1);
+				 status=resultSet.getString(1);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return status;
 		

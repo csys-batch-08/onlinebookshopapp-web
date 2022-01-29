@@ -20,66 +20,140 @@ public class UserdetailsDao implements UserDetailsDao {
 	public void insertUser(Userdetails user) {
 		String insertQuery = "insert into user_details(name,phoneNo,address,email_id,password) values(?,?,?,?,?)";
 
-		Connectionutil conUtil = new Connectionutil();
-		Connection con = conUtil.getDbConnection();
-		PreparedStatement pst = null;
+		
+		Connection con =null;
+		PreparedStatement statement = null;
 
 		try {
-			pst = con.prepareStatement(insertQuery);
-			pst.setString(1, user.getName());
-			pst.setLong(2, user.getPhoneNo());
-			pst.setString(3, user.getAddress());
-			pst.setString(4, user.getEmailid());
-			pst.setString(5, user.getPassword());
+			con =Connectionutil.getDbConnection();
+			statement = con.prepareStatement(insertQuery);
+			statement.setString(1, user.getName());
+			statement.setLong(2, user.getPhoneNo());
+			statement.setString(3, user.getAddress());
+			statement.setString(4, user.getEmailid());
+			statement.setString(5, user.getPassword());
 
-			pst.executeUpdate();
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 	}
 
 	// admin
-	public Userdetails admin(String email_id, String password) {
-		String AdminQuery = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role='admin'and email_id='"
-				+ email_id + "'and password='" + password + "'";
+	public Userdetails admin(String emailid, String password) {
+		String adminQuery = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role='admin'and email_id='"
+				+ emailid + "'and password='" + password + "'";
 
-		Connection con = Connectionutil.getDbConnection();
 		Userdetails user = null;
+		
+		Connection con = null;
+		ResultSet resultset = null;
+		Statement statement = null;
 		try {
-			Statement stm = con.createStatement();
-			ResultSet rs = stm.executeQuery(AdminQuery);
-			if (rs.next()) {
-				user = new Userdetails(rs.getInt(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),
-						email_id, password, rs.getInt(8));
+			con = Connectionutil.getDbConnection();
+			statement = con.createStatement();
+			resultset = statement.executeQuery(adminQuery);
+			if (resultset.next()) {
+				user = new Userdetails(resultset.getInt(1), resultset.getString(2), resultset.getLong(3), resultset.getString(4), resultset.getString(5),
+						emailid, password, resultset.getInt(8));
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return user;
 	}
 
 	// user
-	public Userdetails validateUser(String email_id, String password) {
+	public Userdetails validateUser(String emailid, String password) {
 		String validateQuery = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where email_id='"
-				+ email_id + "' and password='" + password + "' and role='user' ";
-		Connection con = Connectionutil.getDbConnection();
+				+ emailid + "' and password='" + password + "' and role='user' ";
+		
 		Userdetails user = null;
+		
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
 		try {
-			Statement stm = con.createStatement();
-			ResultSet rs = stm.executeQuery(validateQuery);
-			if (rs.next()) {
-				user = new Userdetails(rs.getInt(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),
-						email_id, password, rs.getInt(8));
+			con = Connectionutil.getDbConnection();
+			statement = con.createStatement();
+			resultSet = statement.executeQuery(validateQuery);
+			if (resultSet.next()) {
+				user = new Userdetails(resultSet.getInt(1), resultSet.getString(2), resultSet.getLong(3), resultSet.getString(4), resultSet.getString(5),
+						emailid, password, resultSet.getInt(8));
 			}
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return user;
 	}
@@ -87,22 +161,39 @@ public class UserdetailsDao implements UserDetailsDao {
 	// update profile
 	public void update(Userdetails user) {
 		String updateQuery = "update user_details set name=?,phoneNo=?,address=?,password=? where email_id=?";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null;
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement pst = con.prepareStatement(updateQuery);
-			pst.setString(1, user.getName());
-			pst.setLong(2, user.getPhoneNo());
-			pst.setString(3, user.getAddress());
-			pst.setString(4, user.getPassword());
-			pst.setString(5, user.getEmailid());
-			int i = pst.executeUpdate();
+			con = Connectionutil.getDbConnection();
+		    statement = con.prepareStatement(updateQuery);
+			statement.setString(1, user.getName());
+			statement.setLong(2, user.getPhoneNo());
+			statement.setString(3, user.getAddress());
+			statement.setString(4, user.getPassword());
+			statement.setString(5, user.getEmailid());
+		    statement.executeUpdate();
 
-			pst.close();
-			con.close();
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 
 	}
@@ -110,31 +201,67 @@ public class UserdetailsDao implements UserDetailsDao {
 
 	public void deleteuser(String delete) {
 		String deleteQuery = "update user_details set role='Inactive' where email_id=?";
-		Connection con = Connectionutil.getDbConnection();
-
+		Connection con = null;
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement pst = con.prepareStatement(deleteQuery);
-			pst.setString(1, delete);
-			int i = pst.executeUpdate();
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(deleteQuery);
+			statement.setString(1, delete);
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 	}
 
 	public void activeUser(String delete) {
 		String deleteQuery = "update user_details set role='user' where email_id=?";
-		Connection con = Connectionutil.getDbConnection();
-		System.out.println("Connection Sucessfull");
+		Connection con = null ;
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement pst = con.prepareStatement(deleteQuery);
-			pst.setString(1, delete);
-			int i = pst.executeUpdate();
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(deleteQuery);
+			statement.setString(1, delete);
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 
 	}
@@ -142,18 +269,45 @@ public class UserdetailsDao implements UserDetailsDao {
 	public List<Userdetails> viewUser() {
 		List<Userdetails> userList = new ArrayList<Userdetails>();
 		String show = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role!='admin'";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null ;
+		Statement statement = null;
+	    ResultSet resultSet = null;
 		try {
-			Statement stm = con.createStatement();
-			ResultSet rs = stm.executeQuery(show);
-			while (rs.next()) {
-				Userdetails user = new Userdetails(rs.getInt(1), rs.getString(2), rs.getLong(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8));
+			con = Connectionutil.getDbConnection();
+			statement = con.createStatement();
+			resultSet = statement.executeQuery(show);
+			while (resultSet.next()) {
+				Userdetails user = new Userdetails(resultSet.getInt(1), resultSet.getString(2), resultSet.getLong(3), resultSet.getString(4),
+						resultSet.getString(5), resultSet.getString(6), resultSet.getString(7), resultSet.getInt(8));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return userList;
 	}
@@ -161,75 +315,174 @@ public class UserdetailsDao implements UserDetailsDao {
 	public List<Userdetails> viewParticularUser() {
 		List<Userdetails> userList = new ArrayList<Userdetails>();
 		String show = "select * from user_details where role='user'";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
 		try {
-			Statement stm = con.createStatement();
-			ResultSet rs = stm.executeQuery(show);
-			while (rs.next()) {
-				Userdetails user = new Userdetails(rs.getString(2), rs.getLong(3), rs.getString(5), rs.getString(6),
-						rs.getString(7), rs.getInt(8));
+			con = Connectionutil.getDbConnection();
+			statement = con.createStatement();
+            resultSet = statement.executeQuery(show);
+			while (resultSet.next()) {
+				Userdetails user = new Userdetails(resultSet.getString(2), resultSet.getLong(3), resultSet.getString(5), resultSet.getString(6),
+						resultSet.getString(7), resultSet.getInt(8));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return userList;
 	}
 
 	public int findUserId(String emailId) {
 		String findUser = "select cus_id from user_details where email_id='" + emailId + "'";
-		Connection con = Connectionutil.getDbConnection();
-		int CusId = 0;
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		int cusId = 0;
 		try {
-			Statement stm = con.createStatement();
-			ResultSet rs = stm.executeQuery(findUser);
-			if (rs.next()) {
-				CusId = rs.getInt(1);
+			con = Connectionutil.getDbConnection();
+			statement = con.createStatement();
+			resultSet = statement.executeQuery(findUser);
+			if (resultSet.next()) {
+				cusId = resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
-		return CusId;
+		return cusId;
 	}
 
 	public int walletballance(int userid) {
-		Connection con = Connectionutil.getDbConnection();
+		
 		String query = "select wallet from user_details where cus_id = ?";
-		PreparedStatement statement;
+		PreparedStatement statement = null;
+		Connection con = null;
+		ResultSet resultSet = null;
 		try {
+			con = Connectionutil.getDbConnection();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, userid);
-			ResultSet rs = statement.executeQuery();
-			while (rs.next()) {
-				return rs.getInt(1);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				return resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-
+		finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+		}
 		return -1;
 	}
 
 	// update wallet:
 	public boolean updatewall(Userdetails userdetails) {
 
-		Connection con = Connectionutil.getDbConnection();
+		
 		String query = "update user_details set wallet = ? where email_id = ?";
 
-		PreparedStatement pstm;
+		PreparedStatement statement = null;
+		Connection con = null;
 		try {
-
-			pstm = con.prepareStatement(query);
-			pstm.setInt(1, userdetails.getWallet());
-			pstm.setString(2, userdetails.getEmailid());
-			int i = pstm.executeUpdate();
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(query);
+			statement.setInt(1, userdetails.getWallet());
+			statement.setString(2, userdetails.getEmailid());
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		return true;
 	}
@@ -237,62 +490,122 @@ public class UserdetailsDao implements UserDetailsDao {
 	public List<Userdetails> myProfile(int userid) {
 		List<Userdetails> userList = new ArrayList<Userdetails>();
 		String profile = "select name,phoneno,address,email_id,password,wallet from user_details where cus_id=?";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con =null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
 		try {
-			PreparedStatement pstm = con.prepareStatement(profile);
-			pstm.setInt(1, userid);
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(profile);
+			statement.setInt(1, userid);
 
-			ResultSet rs = pstm.executeQuery();
-			while (rs.next()) {
-				Userdetails user = new Userdetails(rs.getString(1), rs.getLong(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getInt(6));
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Userdetails user = new Userdetails(resultSet.getString(1), resultSet.getLong(2), resultSet.getString(3), resultSet.getString(4),
+						resultSet.getString(5), resultSet.getInt(6));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 		return userList;
 	}
 
 	public boolean refundWall(Userdetails userdetails) {
 
-		Connection con = Connectionutil.getDbConnection();
+		
 		String query = "update user_details set wallet = ? where email_id = ?";
 
-		PreparedStatement pstm;
+		Connection con = null;
+		PreparedStatement statement = null;
 		try {
 
-			pstm = con.prepareStatement(query);
-			pstm.setInt(1, userdetails.getWallet());
-			pstm.setString(2, userdetails.getEmailid());
-			int i = pstm.executeUpdate();
-
-			System.out.println(i + "Wallet is updated");
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(query);
+			statement.setInt(1, userdetails.getWallet());
+			statement.setString(2, userdetails.getEmailid());
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		return true;
 	}
 
 	public void forgotPassword(Userdetails user) {
 		String updateQuery = "update user_details set password=? where email_id=?";
-		Connection con = Connectionutil.getDbConnection();
+		Connection con = null;
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement pst = con.prepareStatement(updateQuery);
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(updateQuery);
+			statement.setString(1, user.getPassword());
+			statement.setString(2, user.getEmailid());
+			statement.executeUpdate();
 
-			pst.setString(1, user.getPassword());
-			pst.setString(2, user.getEmailid());
-			int i = pst.executeUpdate();
-
-			pst.close();
-			con.close();
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
+			
 		}
 
 	}

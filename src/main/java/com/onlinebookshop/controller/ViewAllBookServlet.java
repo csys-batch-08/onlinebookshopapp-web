@@ -26,7 +26,7 @@ public class ViewAllBookServlet extends HttpServlet {
 		
         List<Bookdetails> BookList = new ArrayList<Bookdetails>();
         
-        BookList = bookdetailsdao.ViewAllBook();
+        BookList = bookdetailsdao.viewAllBook();
         
         request.setAttribute("viewAllBook", BookList);
         

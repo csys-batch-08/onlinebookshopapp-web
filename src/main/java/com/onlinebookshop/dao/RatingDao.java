@@ -6,6 +6,6 @@ import com.onlinebookshop.model.Rating;
 
 public interface RatingDao {
 
-	public int insertrating(Rating rating) throws SQLException;
+	public int rating(Rating rating) throws SQLException;
 	public double fetchrating(Rating rating);
 }
