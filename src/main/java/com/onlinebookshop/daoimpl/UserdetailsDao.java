@@ -9,13 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.onlinebookshop.dao.UserDetailsDao;
-import com.onlinebookshop.model.Bookdetails;
 import com.onlinebookshop.model.Userdetails;
 import com.onlinebookshop.util.Connectionutil;
 
 public class UserdetailsDao implements UserDetailsDao {
 
-	private static final String update = null;
 
 	public void insertUser(Userdetails user) {
 		String insertQuery = "insert into user_details(name,phoneNo,address,email_id,password) values(?,?,?,?,?)";

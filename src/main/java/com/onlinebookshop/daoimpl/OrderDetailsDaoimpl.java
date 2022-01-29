@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.onlinebookshop.dao.OrderDetailsDao;
-import com.onlinebookshop.model.Bookdetails;
+
 import com.onlinebookshop.model.OrderDetails;
-import com.onlinebookshop.model.Userdetails;
+
 import com.onlinebookshop.util.Connectionutil;
 
 public class OrderDetailsDaoimpl implements OrderDetailsDao{

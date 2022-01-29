@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,7 @@ import com.onlinebookshop.dao.BookdetailsDao;
 import com.onlinebookshop.model.Bookdetails;
 import com.onlinebookshop.model.ProductDetails;
 import com.onlinebookshop.model.Rating;
-import com.onlinebookshop.model.Userdetails;
+
 import com.onlinebookshop.util.Connectionutil;
 
 public class BookdetailsDaoimpl implements BookdetailsDao{
@@ -549,7 +549,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	}
 	
 	public List<Bookdetails> categoryList() {
-		List<Bookdetails> categoryList=new ArrayList<Bookdetails>();
+		List<Bookdetails> categoryList=new ArrayList<>();
 		String category ="select category from bookdetails";
 		Connection con = null ;
 		Statement statement = null;

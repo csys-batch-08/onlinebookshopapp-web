@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.onlinebookshop.dao.RatingDao;
-import com.onlinebookshop.model.Bookdetails;
 import com.onlinebookshop.model.Rating;
 import com.onlinebookshop.util.Connectionutil;
 

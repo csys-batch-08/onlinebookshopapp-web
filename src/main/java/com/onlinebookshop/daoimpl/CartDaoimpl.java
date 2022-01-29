@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,7 +157,7 @@ public class CartDaoimpl {
 	}
 	
 	public List<Cart> allCart() {
-		List<Cart> cartList = new ArrayList<Cart>();
+		List<Cart> cartList = new ArrayList<>();
 		String cart ="select cart_id,cus_id,book_id from cart";
 		Connection con = null ;
 		Statement statement = null;

@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.onlinebookshop.dao.AuthorDetailsDao;
 import com.onlinebookshop.model.AuthorDetails;
-import com.onlinebookshop.model.Bookdetails;
+
 import com.onlinebookshop.util.Connectionutil;
 
 public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
