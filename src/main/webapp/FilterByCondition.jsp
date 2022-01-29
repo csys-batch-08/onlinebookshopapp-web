@@ -3,9 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang = "eng">
 <head>
 <meta charset="ISO-8859-1">
+<title>Old Books</title>
 <style>
 body {
 	background-image: url(image/book.jpg);

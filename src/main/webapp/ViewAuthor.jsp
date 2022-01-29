@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 <!DOCTYPE html>
-<html>
+<html lang = "eng">
 <head>
 <meta charset="ISO-8859-1">
 <title>AUTHOR LIST</title>
@@ -99,10 +99,10 @@ td, th{
 <table border="1" id="allusers">
 <thead>
 <tr>
-  <th >S.no</th>
-<th>Name</th>
-<th>Email_id</th>
-<th>Book_id</th>
+  <th id = "sno">S.no</th>
+<th id = "name">Name</th>
+<th id = "emailid">Email id</th>
+<th id = "bookid">Book id</th>
 </tr>
 </thead>
 <br>

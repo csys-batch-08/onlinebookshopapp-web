@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html>
+<html lang = "eng">
 <head>
 <meta charset="ISO-8859-1">
 <title>View Orders</title>
@@ -103,13 +103,13 @@ margin-top: 20px;
 <table border="2" id="allusers">
 <thead>
 <tr>
-  <th >S.no</th>
-<th>Customer id</th>
-<th>Book Id</th>
-<th>Quantity</th>
-<th>Total Cost</th>
-<th>Order Date</th>
-<th>Status</th>
+  <th id = "sno">S.no</th>
+<th id = "cusid">Customer id</th>
+<th id = "bookid">Book Id</th>
+<th id = "quantity">Quantity</th>
+<th id = "totalcost">Total Cost</th>
+<th id = "orderdate">Order Date</th>
+<th id = "status">Status</th>
 </tr>
 </thead>
 <br>

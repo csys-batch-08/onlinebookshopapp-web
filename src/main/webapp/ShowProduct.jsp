@@ -4,9 +4,10 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang = "eng">
-<title>Products</title>
+
 <head>
 <meta charset="ISO-8859-1">
+<title>Products</title>
 <style>
 body{
     background-image: url(image/book.jpg);

@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="com.onlinebookshop.model.Userdetails"%>
 <!DOCTYPE html>
-<html>
+<html lang = "eng">
 <head>
 <meta charset="ISO-8859-1">
 <title>Order success</title>

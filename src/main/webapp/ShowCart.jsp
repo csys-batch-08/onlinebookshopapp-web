@@ -4,7 +4,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang = "eng">
 <head>
 <meta charset="ISO-8859-1">
 <title>My Cart</title>
@@ -137,16 +137,6 @@ margin-left: 30px;
             <tbody>
                 <tr>
                  <h3>MY CART</h3>
-                 
-                   <c:if test="${sessionScope.cart!=null}">
-                     <h4>${sessionScope.cart}</h4>
-                       </c:if>
-                       <c:remove var="cart" scope="session"/>
-                       
-                       <c:if test="${sessionScope.cart1!=null}">
-                       <h4>${sessionScope.cart1}</h4>
-                       </c:if>
-                       <c:remove var="cart1" scope="session"/>
                        
                 <c:set var="count" value="1"/>
                 <c:forEach items="${cartList}" var="cart">
@@ -159,17 +149,17 @@ margin-left: 30px;
                                 <tr>
                                     <td><img src="image/${cart.bookimages}" width=150 height=350 alt="book"></td>    
                                     <td class="book">
-                                         <p><b>CATEGORY  :    </b>${cart.category}<br></p>
-                                         <p><b>DESCRIPTION: </b>${cart.description}<br></p>
-                                         <p><b>BOOK TITLE: </b>${cart.booktitle}<br></p>
-                                         <p><b>BOOK CODE:</b>${cart.bookcode}<br></p>
-                                         <p><b>PRICE:</b>${cart.price}<br></p>
-                                         <p><b>PUBLISH DATE:</b>${cart.publishdate}<br></p>
-                                         <p><b>CONDITION:</b>${cart.condition}<br></p>
-                                         <p><b>AUTHOR NAME:</b>${cart.name}<br></p>
-                                         <p><b>AUTHOR EMAIL:</b>${cart.emailid}<br></p>
+                                         <p><strong>CATEGORY  :    </strong>${cart.category}<br></p>
+                                         <p><strong>DESCRIPTION: </strong>${cart.description}<br></p>
+                                         <p><strong>BOOK TITLE: </strong>${cart.booktitle}<br></p>
+                                         <p><strong>BOOK CODE:</strong>${cart.bookcode}<br></p>
+                                         <p><strong>PRICE:</strong>${cart.price}<br></p>
+                                         <p><strong>PUBLISH DATE:</strong>${cart.publishdate}<br></p>
+                                         <p><strong>CONDITION:</strong>${cart.condition}<br></p>
+                                         <p><strong>AUTHOR NAME:</strong>${cart.name}<br></p>
+                                         <p><strong>AUTHOR EMAIL:</strong>${cart.emailid}<br></p>
                                         
-                                        <b>RATINGS:</b>${cart.rating}<br><br>
+                                        <strong>RATINGS:</strong>${cart.rating}<br><br>
                                          <a href = "BuyOrderServlet?bookid=${cart.bookid}"><button class="btn">Buy</button></a>
                                         <a href = "removecart?bookid=${cart.bookid}"><button>Remove</button></a>
                                          

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 <!DOCTYPE html>
-<html>
+<html lang = "eng">
 <head>
 <meta charset="ISO-8859-1">
 <title>USERS LIST PAGE</title>
@@ -110,12 +110,12 @@ ul
 
 <fieldset>
 
-<pre><b>Name         :  </b>${user.name}<br>
-<b>Phone No     :  </b>${user.phoneNo}<br>
-<b>Address      :  </b>${user.address}<br>
-<b>Email_id     :  </b>${user.emailid}<br>
-<b>Password     :  </b>${user.password}<br>
-<b>Wallet       :  </b>${user.wallet}<br></pre>
+<pre><strong>Name         :  </strong>${user.name}<br>
+<strong>Phone No     :  </strong>${user.phoneNo}<br>
+<strong>Address      :  </strong>${user.address}<br>
+<strong>Email_id     :  </strong>${user.emailid}<br>
+<strong>Password     :  </strong>${user.password}<br>
+<strong>Wallet       :  </strong>${user.wallet}<br></pre>
 
 <a href="UpdateProfile.jsp"><button type="submit">Update Profile</button></a>
 </fieldset>

@@ -11,12 +11,10 @@ public class Connectionutil {
 	public static Connection getDbConnection() {
 		Connection con = null;
 
-		String password = "oracle";
-		
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			con = DriverManager.getConnection(url, "system", password);
+			con = DriverManager.getConnection(url, "system", "oracle");
 		} catch (ClassNotFoundException e) {
 			e.getMessage();
 			

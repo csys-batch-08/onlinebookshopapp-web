@@ -3,9 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang ="eng">
 <head>
 <meta charset="ISO-8859-1">
+<title>Filter by Price</title>
 <style>
 body{
     background-image: url(image/book.jpg);
@@ -140,13 +141,13 @@ ul
                                 <tr>
                                     <td><a href = "ShowProduct.jsp?BookId=${filterPrice.bookid}"><img src="image/${filterPrice.bookimages}" width=50 height=350 alt="book"></a></td>    
                                     <td class="book">
-                                        <p><b>CATEGORY   :   </b>${filterPrice.category}<br></p>
+                                        <p><strong>CATEGORY   :   </strong>${filterPrice.category}<br></p>
                                         
-                                        <p><b>BOOK TITLE  :   </b>${filterPrice.booktitle}<br></p>
+                                        <p><strong>BOOK TITLE  :   </strong>${filterPrice.booktitle}<br></p>
                                         
-                                        <p><b>PRICE :  </b>${filterPrice.price}<br></p>
+                                        <p><strong>PRICE :  </strong>${filterPrice.price}<br></p>
 
-                                         <p><b class="rating">RATINGS    :</b>${filterPrice.rating}<br><br></p>
+                                         <p><strong>class="rating">RATINGS    :</strong>${filterPrice.rating}<br><br></p>
                                         
                                          
                                          

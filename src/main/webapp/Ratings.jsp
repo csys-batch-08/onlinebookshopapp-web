@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html>
+<html lang = "eng">
 <head>
 <meta charset="ISO-8859-1">
 <title>Ratings</title>
@@ -172,18 +172,18 @@ ul
                                 <tr>
                                     <td><img src="image/${booklist.bookimages}" width=180 height=350 alt="book"></td>    
                                     <td class="book">
-                                        <p><b class="cat">CATEGORY   :   </b>${booklist.category}<br></p>
-                                        <p><b class="desc">DESCRIPTION :</b>${booklist.description}<br></p>
-                                        <p><b class="title">BOOK TITLE  :   </b>${booklist.booktitle}<br></p>
-                                        <p><b class="title">BOOK CODE  :   </b>${booklist.bookcode}<br></p>
-                                        <p><b class="price">PRICE :  </b>${booklist.price}<br></p>
-                                        <p><b class="date">PUBLISH DATE   :   </b>${booklist.publishdate}<br></p>
-                                        <p><b class="condition">CONDITION   :   </b>${booklist.condition}<br></p>
-                                        <p><b class="aname">AUTHOR NAME   :  </b>${booklist.name}<br></p>
-                                        <p><b class="aemail">AUTHOR EMAIL   :  </b>${booklist.emailid}<br></p>
+                                        <p><strong class="cat">CATEGORY   :   </strong>${booklist.category}<br></p>
+                                        <p><strong class="desc">DESCRIPTION :</strong>${booklist.description}<br></p>
+                                        <p><strong class="title">BOOK TITLE  :   </strong>${booklist.booktitle}<br></p>
+                                        <p><strong class="title">BOOK CODE  :   </strong>${booklist.bookcode}<br></p>
+                                        <p><strong class="price">PRICE :  <</strong>${booklist.price}<br></p>
+                                        <p><strong class="date">PUBLISH DATE   :   </strong>${booklist.publishdate}<br></p>
+                                        <p><strong class="condition">CONDITION   :   </strong>${booklist.condition}<br></p>
+                                        <p><strong class="aname">AUTHOR NAME   :  </strong>${booklist.name}<br></p>
+                                        <p><strong class="aemail">AUTHOR EMAIL   :  </strong>${booklist.emailid}<br></p>
                                          
                                          
-                                         <p><b class="rating">RATINGS    :</b>${booklist.rating}<br><br></p>
+                                         <p><strong class="rating">RATINGS    :</strong>${booklist.rating}<br><br></p>
                                          
                                     </td>
                                 </tr>

@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html>
+<html lang = "eng">
 <head>
 <meta charset="ISO-8859-1">
 <title>USERS LIST PAGE</title>
@@ -99,17 +99,17 @@ h2 {
 		<table id="allusers">
 			<thead>
 				<tr>
-					<th>S.no</th>
-					<th>Customer ID</th>
-					<th>Name</th>
-					<th>Phone No</th>
-					<th>Address</th>
-					<th>Email_id</th>
-					<th>Password</th>
-					<th>Wallet</th>
-					<th>Role</th>
-					<th>Inactive</th>
-					<th>Active</th>
+					<th id = "sno">S.no</th>
+					<th id = "cusid">Customer ID</th>
+					<th id = "name">Name</th>
+					<th id = "phoneno">Phone No</th>
+					<th id = "address">Address</th>
+					<th id = "emailid">Email_id</th>
+					<th id = "password">Password</th>
+					<th id = "wallet">Wallet</th>
+					<th id = "role">Role</th>
+					<th id = "inactive">Inactive</th>
+					<th id = "inactive">Active</th>
 				</tr>
 			</thead>
 			<br>

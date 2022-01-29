@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 <!DOCTYPE html>
-<html>
+<html lang = "eng">
 <head>
 <meta charset="ISO-8859-1">
 <title>All Books</title>
@@ -76,18 +76,18 @@ ul
 <table border="2" id="allusers">
 <thead>
 <tr>
-  <th >S.no</th>
-<th>Book Id</th>
-<th>Category</th>
-<th>Description</th>
-<th>Book Title</th>
-<th>Book Code</th>
-<th>Price</th>
-<th>Publish Date</th>
-<th>Condition</th>
-<th>Book image</th>
-<th>Status</th>
-<th>Delete</th>
+  <th id = "sno">S.no</th>
+<th id = "bookid">Book Id</th>
+<th id = "category">Category</th>
+<th id = "description">Description</th>
+<th id = "booktitle">Book Title</th>
+<th id = "bookcode">Book Code</th>
+<th id = "price">Price</th>
+<th id = "publishdate">Publish Date</th>
+<th id = "condition">Condition</th>
+<th id = "bookimages">Book image</th>
+<th id = "status">Status</th>
+<th id = "delete">Delete</th>
 </tr>
 </thead>
 <br>
