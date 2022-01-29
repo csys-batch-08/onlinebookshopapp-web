@@ -19,11 +19,11 @@ import com.onlinebookshop.model.Userdetails;
 public class ViewUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		UserdetailsDao userdetailsdao = new UserdetailsDao();
-        List<Userdetails> userList = new ArrayList<Userdetails>();
-        userList = userdetailsdao.viewUser();
+        List<Userdetails> userList = userdetailsdao.viewUser();
 	
         request.setAttribute("userlist", userList);
         

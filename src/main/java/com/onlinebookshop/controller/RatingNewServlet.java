@@ -15,13 +15,12 @@ import javax.servlet.http.HttpSession;
 import com.onlinebookshop.daoimpl.BookdetailsDaoimpl;
 import com.onlinebookshop.model.ProductDetails;
 
-/**
- * Servlet implementation class RatingNewServlet
- */
+
 @WebServlet("/RatingNewServlet")
 public class RatingNewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+    	@Override
     	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
     		
@@ -29,8 +28,7 @@ public class RatingNewServlet extends HttpServlet {
     		
     		BookdetailsDaoimpl bookdetailsDaoimpl = new BookdetailsDaoimpl();
     		
-    		List<ProductDetails> bookdetail;
-			bookdetail = bookdetailsDaoimpl.ratingproducts(bid);
+    		List<ProductDetails> bookdetail = bookdetailsDaoimpl.ratingproducts(bid);
 			
 			HttpSession session = request.getSession();
 			

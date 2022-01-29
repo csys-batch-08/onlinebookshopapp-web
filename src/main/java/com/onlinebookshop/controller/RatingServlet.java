@@ -18,18 +18,20 @@ import com.onlinebookshop.model.Rating;
 @WebServlet("/rating")
 public class RatingServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
 		
 		int userid= (int)session.getAttribute("userId");
 
-		int ID = (int) session.getAttribute("BookID");		
+		int id = (int) session.getAttribute("BookID");		
 		
 		int rating = Integer.parseInt(request.getParameter("ratings"));
 		
-		Rating rate=new Rating(userid,ID,rating);
+		Rating rate=new Rating(userid,id,rating);
 		
 		Ratingdaoimpl ratingdao = new Ratingdaoimpl();
 		
@@ -38,8 +40,6 @@ public class RatingServlet extends HttpServlet {
 		try {
 			 res = ratingdao.rating(rate);
 			
-			System.out.println(res);
-			
 			if(res > 0) {
 				
 				session.setAttribute("rating", "Inserted successfully");
@@ -47,11 +47,6 @@ public class RatingServlet extends HttpServlet {
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowBookServlet");
 				
 				requestDispatcher.forward(request, response);
-				
-				//response.sendRedirect("ShowBook.jsp");
-				
-				
-				
 			}else {
 				
 				response.sendRedirect("AlreadyRating.jsp");

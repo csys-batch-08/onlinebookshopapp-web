@@ -15,32 +15,29 @@ import com.onlinebookshop.model.Userdetails;
 @WebServlet("/cancelorder")
 public class OrderCancelServlet extends HttpServlet {
 	
+	
+	private static final long serialVersionUID = 1L;
+
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
 		
 		int orderId =Integer.parseInt(request.getParameter("orderid"));
-		
-		//System.out.println("oooo" + orderId);
-		
+				
 		OrderDetailsDaoimpl orderdetails = new OrderDetailsDaoimpl();
 		
 		String status=orderdetails.findStatus(orderId);
 		
 		if(status.equals("order canceled")) {
 			
-			
-			
 			response.sendRedirect("AlreadyCancel.jsp");
-			
 			
 		}else {
 			
-            int cancel=orderdetails.cancelOrder(orderId);
+            orderdetails.cancelOrder(orderId);
 			
 			int totalAmount =orderdetails.findOrderPrice(orderId);
-			
-			System.out.println(totalAmount);
 			
 			UserdetailsDao userdao = new UserdetailsDao();
 

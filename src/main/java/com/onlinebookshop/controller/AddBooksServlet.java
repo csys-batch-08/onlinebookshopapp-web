@@ -14,34 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.onlinebookshop.daoimpl.BookdetailsDaoimpl;
 import com.onlinebookshop.model.Bookdetails;
 
-/**
- * Servlet implementation class AddBooksServlet
- */
 @WebServlet("/AddBooks")
 public class AddBooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddBooksServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
+    
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		BookdetailsDaoimpl bookDao = new BookdetailsDaoimpl();
 		String category =request.getParameter("category");
 		String description =request.getParameter("description");
@@ -55,8 +34,9 @@ public class AddBooksServlet extends HttpServlet {
 		Bookdetails bookdetails = new Bookdetails(category,description,booktitle,bookcode,price,publishdate,condition,image);
 		bookDao.insertBooks(bookdetails);
 		
-		response.sendRedirect("ViewAllBook.jsp");
-		//doGet(request, response);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ViewAllBookServlet");
+		
+		requestDispatcher.forward(request, response);
 	}
 
 }

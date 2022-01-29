@@ -1,6 +1,8 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,9 +21,8 @@ public class AddAuthorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String authorname =request.getParameter("authorname");
 		
@@ -41,7 +42,9 @@ public class AddAuthorServlet extends HttpServlet {
 		
 		request.setAttribute("addauthor", "Author added sucessfully");
 		
-		response.sendRedirect("ViewAuthor.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ViewAuthorServlet");
+		
+		requestDispatcher.forward(request, response);
 		
 	}
 

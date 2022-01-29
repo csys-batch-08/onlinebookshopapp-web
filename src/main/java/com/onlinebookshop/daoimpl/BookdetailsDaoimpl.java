@@ -96,7 +96,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 
 	public List<ProductDetails> showProduct()
 	{
-		List<ProductDetails> productsList=new ArrayList<ProductDetails>();
+		List<ProductDetails> productsList=new ArrayList<>();
 		
 		String show = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where status='Available'";
 		
@@ -156,7 +156,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	
 	public List<ProductDetails> showBook(int bookid)
 	{
-		List<ProductDetails> productsList=new ArrayList<ProductDetails>();
+		List<ProductDetails> productsList=new ArrayList<>();
 		
 		String show = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_id=?";
 		Connection con = null;
@@ -388,7 +388,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	
 	public List<ProductDetails> filterPrice(int price) {
 		
-		List<ProductDetails> filterPrice=new ArrayList<ProductDetails>();
+		List<ProductDetails> filterPrice=new ArrayList<>();
 		String filter="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where price <= ?";
 		Connection con = null ;
 		PreparedStatement statement = null ;
@@ -441,7 +441,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	
       public List<ProductDetails> filterName(String bookname) {
 		
-		List<ProductDetails> filterName=new ArrayList<ProductDetails>();
+		List<ProductDetails> filterName=new ArrayList<>();
 		String bookName = "%" + bookname + "%";
 		
 		String filter="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_title like ?";
@@ -497,7 +497,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	}
 	
 	public List<ProductDetails> filterCondition(int userid) {
-		List<ProductDetails> conditionList=new ArrayList<ProductDetails>();
+		List<ProductDetails> conditionList=new ArrayList<>();
 		String condition="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.condition='old'";
 		Connection con = null ;
 		Statement statement = null;
@@ -597,7 +597,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	
 	public List<Bookdetails> viewAllBook()
 	{
-		List<Bookdetails> productsList=new ArrayList<Bookdetails>();
+		List<Bookdetails> productsList=new ArrayList<>();
 		
 		String show = "select book_id,category,description,book_title,book_code,price,publish_date,condition,bookimages,status from bookdetails";
 		Connection con = null ;
@@ -650,7 +650,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
-		List<ProductDetails> bookdetails = new ArrayList<ProductDetails>();
+		List<ProductDetails> bookdetails = new ArrayList<>();
 		
 		String query = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_id in ?";
 		

@@ -29,9 +29,8 @@ public class MyProfileServlet extends HttpServlet {
 		 
 		int user=(int)session.getAttribute("userId");
 		
-		List<Userdetails> userList = new ArrayList<Userdetails>(); 
-		
-		userList = userdetailsdao.myProfile(user);
+		List<Userdetails> userList = userdetailsdao.myProfile(user); 
+		 
 		
 		request.setAttribute("userlist", userList);
 		

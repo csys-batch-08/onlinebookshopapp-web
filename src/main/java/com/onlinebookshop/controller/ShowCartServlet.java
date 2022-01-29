@@ -23,25 +23,20 @@ public class ShowCartServlet extends HttpServlet {
        
     
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		//int bookid = Integer.parseInt(request.getParameter("BookId"));
-		
 		CartDaoimpl cartDaoimpl = new CartDaoimpl();
-		
-		// Cart cartmodel = new  Cart();
 		 
 		  int cusid= (int)session.getAttribute("userId");
 		 
 		  List<ProductDetails> productsList =cartDaoimpl.fetchCart(cusid);
 		  
 		  request.setAttribute("cartList", productsList);
-			
-		 // System.out.println(productsList);
+		
+		  RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowCart.jsp");
 		  
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowCart.jsp");
-			requestDispatcher.forward(request, response);
+		  requestDispatcher.forward(request, response);
 
 		
 	}

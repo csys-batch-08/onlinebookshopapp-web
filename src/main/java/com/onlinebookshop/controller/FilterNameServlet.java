@@ -17,7 +17,10 @@ import com.onlinebookshop.model.ProductDetails;
 @WebServlet("/filtername")
 public class FilterNameServlet extends HttpServlet {
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session=request.getSession();
 		
@@ -27,7 +30,7 @@ public class FilterNameServlet extends HttpServlet {
 		
 		request.setAttribute("filternamelist", showProduct);
 				
-		String name = (String)(request.getParameter("search"));
+		String name = (request.getParameter("search"));
 		if(name.matches("[a-zA-Z\s]+")) {
 		BookdetailsDaoimpl bookdao = new BookdetailsDaoimpl();
 		

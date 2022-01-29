@@ -19,14 +19,17 @@ import com.onlinebookshop.model.OrderDetails;
 public class ViewAllOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		OrderDetailsDaoimpl orderdao = new OrderDetailsDaoimpl();
-        List<OrderDetails> orderList = new ArrayList<OrderDetails>();
-        orderList = orderdao.viewOrder();
+        
+		List<OrderDetails> orderList = orderdao.viewOrder();
         
 		request.setAttribute("orderlist", orderList);
+		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ViewAllOrders.jsp");
+		
 		requestDispatcher.forward(request, response);
 		
 	}

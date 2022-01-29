@@ -20,16 +20,23 @@ public class RegisterServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 	    String username = request.getParameter("username");
+	    
 	    long phonenumber = Long.parseLong(request.getParameter("phonenumber"));
+	    
 	    String address = request.getParameter("address");
+	    
 	    String emailid = request.getParameter("email");
+	    
 	    String password = request.getParameter("password");
 	    
 	    Userdetails user = new Userdetails(username,phonenumber,address,emailid,password,0);
-		UserdetailsDao userdao = new UserdetailsDao();
-		userdao.insertUser(user);
+		
+	    UserdetailsDao userdao = new UserdetailsDao();
+		
+	    userdao.insertUser(user);
 		
 		RequestDispatcher requestdispatcher = request.getRequestDispatcher("login.jsp");
+		
 		requestdispatcher.forward(request, response);
 		
 		

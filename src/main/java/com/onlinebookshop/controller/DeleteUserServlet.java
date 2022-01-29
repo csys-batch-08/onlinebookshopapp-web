@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.onlinebookshop.daoimpl.UserdetailsDao;
 import com.onlinebookshop.model.Userdetails;
 
-/**
- * Servlet implementation class DeleteUserServlet
- */
+
 @WebServlet("/deleteuser")
 public class DeleteUserServlet extends HttpServlet {
 	
+	
+	private static final long serialVersionUID = 1L;
+
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//String email = request.getParameter("emailid");
-		
+			
 		String email = request.getParameter("emailid");
-		
-		//Userdetails user=new Userdetails();
-		
+				
 		UserdetailsDao userdetailsdao = new UserdetailsDao();
 		userdetailsdao.deleteuser(email);
 		

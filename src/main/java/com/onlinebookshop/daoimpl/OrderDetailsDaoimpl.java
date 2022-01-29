@@ -54,7 +54,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		
 	public List<OrderDetails> viewOrder()
 	{
-		List<OrderDetails> orderList=new ArrayList<OrderDetails>();
+		List<OrderDetails> orderList=new ArrayList<>();
 				
 		String view = "select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails order by order_id desc";
 		Connection con = null;
@@ -222,7 +222,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 	
 	public List<OrderDetails> viewUserOrder(int userid){
 		
-		List<OrderDetails> orderList=new ArrayList<OrderDetails>();
+		List<OrderDetails> orderList=new ArrayList<>();
 		String myCart ="select order_id,cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where cus_id=? order by order_id desc";
 		
 		Connection con = null ;

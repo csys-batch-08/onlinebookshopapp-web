@@ -86,7 +86,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 	}
 
 	public List<AuthorDetails> showAuthor() {
-		List<AuthorDetails> authorList = new ArrayList<AuthorDetails>();
+		List<AuthorDetails> authorList = new ArrayList<>();
 
 		String show = "select name,email_id,book_id from author_details";
 		Connection con = null;

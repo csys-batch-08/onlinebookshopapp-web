@@ -267,7 +267,7 @@ public class UserdetailsDao implements UserDetailsDao {
 	}
 
 	public List<Userdetails> viewUser() {
-		List<Userdetails> userList = new ArrayList<Userdetails>();
+		List<Userdetails> userList = new ArrayList<>();
 		String show = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role!='admin'";
 		Connection con = null ;
 		Statement statement = null;
@@ -313,8 +313,8 @@ public class UserdetailsDao implements UserDetailsDao {
 	}
 
 	public List<Userdetails> viewParticularUser() {
-		List<Userdetails> userList = new ArrayList<Userdetails>();
-		String show = "select * from user_details where role='user'";
+		List<Userdetails> userList = new ArrayList<>();
+		String show = "select select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role='user'";
 		Connection con = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
@@ -323,8 +323,8 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement = con.createStatement();
             resultSet = statement.executeQuery(show);
 			while (resultSet.next()) {
-				Userdetails user = new Userdetails(resultSet.getString(2), resultSet.getLong(3), resultSet.getString(5), resultSet.getString(6),
-						resultSet.getString(7), resultSet.getInt(8));
+				Userdetails user = new Userdetails(resultSet.getInt(1), resultSet.getString(2), resultSet.getLong(3), resultSet.getString(4),
+						resultSet.getString(5), resultSet.getString(6), resultSet.getString(7), resultSet.getInt(8));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -488,7 +488,7 @@ public class UserdetailsDao implements UserDetailsDao {
 	}
 
 	public List<Userdetails> myProfile(int userid) {
-		List<Userdetails> userList = new ArrayList<Userdetails>();
+		List<Userdetails> userList = new ArrayList<>();
 		String profile = "select name,phoneno,address,email_id,password,wallet from user_details where cus_id=?";
 		Connection con =null;
 		PreparedStatement statement = null;

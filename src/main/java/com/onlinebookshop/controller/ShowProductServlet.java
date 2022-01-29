@@ -20,7 +20,7 @@ public class ShowProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 	int bookid = Integer.parseInt(request.getParameter("BookId"));
 	
@@ -32,6 +32,7 @@ public class ShowProductServlet extends HttpServlet {
 	request.setAttribute("booklist", showProduct);
 	
 	RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowProduct.jsp");
+	
 	requestDispatcher.forward(request, response);
 	}
 

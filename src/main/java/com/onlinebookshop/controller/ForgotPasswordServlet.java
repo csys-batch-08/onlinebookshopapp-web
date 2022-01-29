@@ -13,7 +13,8 @@ import com.onlinebookshop.model.Userdetails;
 @WebServlet("/forgotpassword")
 public class ForgotPasswordServlet extends HttpServlet {
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String email=request.getParameter("userId");
 		Long mobile =Long.parseLong(request.getParameter("mobNo"));

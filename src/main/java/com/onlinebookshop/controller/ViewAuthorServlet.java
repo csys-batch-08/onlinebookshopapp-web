@@ -19,14 +19,17 @@ import com.onlinebookshop.model.AuthorDetails;
 public class ViewAuthorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		AuthorDetailsDaoimpl authordao = new AuthorDetailsDaoimpl();
-        List<AuthorDetails> authorList = new ArrayList<AuthorDetails>();
-        authorList = authordao.showAuthor();
+        
+		List<AuthorDetails> authorList = authordao.showAuthor();
         
         request.setAttribute("authorlist", authorList);
+        
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ViewAuthor.jsp");
+		
 		requestDispatcher.forward(request, response);
 	}
 

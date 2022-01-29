@@ -24,11 +24,9 @@ public class ViewAllBookServlet extends HttpServlet {
 		
 		BookdetailsDaoimpl bookdetailsdao = new BookdetailsDaoimpl();
 		
-        List<Bookdetails> BookList = new ArrayList<Bookdetails>();
+        List<Bookdetails> bookList = bookdetailsdao.viewAllBook();
         
-        BookList = bookdetailsdao.viewAllBook();
-        
-        request.setAttribute("viewAllBook", BookList);
+        request.setAttribute("viewAllBook", bookList);
         
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("ViewAllBook.jsp");
         

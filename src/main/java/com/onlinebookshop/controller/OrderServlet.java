@@ -17,6 +17,7 @@ import com.onlinebookshop.model.Userdetails;
 @WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -27,8 +28,6 @@ public class OrderServlet extends HttpServlet {
 		int userid = Integer.parseInt(session.getAttribute("userId").toString());
 
 		String userName = (String) session.getAttribute("emailid");
-
-		//System.out.println(userName);
 		
 		int itemid = (int) session.getAttribute("Book");
 
