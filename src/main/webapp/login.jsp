@@ -6,22 +6,58 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Log In</title>
-<link rel="stylesheet" href="login.css">
+<style>
+body{
+    background-image: url(image/book.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+.login{
+    border-style:solid;
+    border-color:threedlightshadow;
+    position: absolute;
+    top: 140px;
+    right: 40%;
+    padding-right: 30px;
+    padding-left: 30px;
+    
+}
+button{
+
+    padding: 7px;
+  	border-radius: 4px;
+  	background-color: GoldenRod;
+  	color: black;
+  	font-weight: bold;
+  	border-color: transparent;
+}
+button:hover{
+opacity: 0.7;
+  	color: gold;
+  	font-weight: bold;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+</style>
 </head>
 <body>
 <form action="LoginServlet" method="post">
 
 
-<fieldset>
+<div class = "login">
         <h2>Log in</h2>
         <label for="emailid">Email Id :</label><br>
         <input type="text" name="emailid" class="emailid" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}"  required><br><br>
         <label for="password">Password :</label><br>
         <input type="password" name="password" class="password" pattern="[A-Za-z0-9]{8,10}"  required><br><br>
         <button type ="submit">Log In</button><br><br>
-        <a href="ForgotPassword.jsp">Forgot password??</a><br><br>
+        <a href="forgotPassword.jsp">Forgot password??</a><br><br>
         <p>Don't have an account??...
-        <a href="Register.jsp">Register</a></p>
+        <a href="register.jsp">Register</a></p>
         
         <c:if test="${sessionScope.login!=null}">
         <h4>${sessionScope.login}</h4>
@@ -29,7 +65,7 @@
         
         <c:remove var="login" scope="session"/>
         
-</fieldset>
+</div>
 </form>
 </body>
 </html>

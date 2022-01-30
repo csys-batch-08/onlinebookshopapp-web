@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.onlinebookshop.daoimpl.UserdetailsDao;
-import com.onlinebookshop.model.Userdetails;
-
 
 @WebServlet("/deleteuser")
 public class DeleteUserServlet extends HttpServlet {
@@ -26,7 +24,7 @@ public class DeleteUserServlet extends HttpServlet {
 		UserdetailsDao userdetailsdao = new UserdetailsDao();
 		userdetailsdao.deleteuser(email);
 		
-		response.sendRedirect("InactiveMessage.jsp");
+		response.sendRedirect("inactiveMessage.jsp");
 	
 	}
 

@@ -32,13 +32,15 @@ margin-left: 10px;
 
 }
 
-fieldset {
-
+.signup {
+    border-style:solid;
+    border-color:threedlightshadow;
 	position: absolute;
 	top: 180px;
-	right: 360px;
+	right: 300px;
 	padding-right: 30px;
 	padding-left: 30px;
+	padding-bottom: 15px;
 	
 }
 
@@ -127,33 +129,33 @@ ul
         	padding-top: 7px;
             
         }
-  h2,h3{
+  h2{
   
   text-align: center;
+  margin-left: 220px;
   }
    </style>
 </head>
 <body>
 <div class="nav">
     <ul>   
-        <li><a href="ShowProduct.jsp">Show Product</a></li>      
-        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
-        <li><a href="MyProfile.jsp">User profile</a></li>
-        
-        <li><a href="ViewMyOrders.jsp">View My Order</a></li>
-        <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        <li><a href="ShowBookServlet">Home</a></li>
+        <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
+        <li><a href="MyProfileServlet">User profile</a></li>        
+        <li><a href="ViewMyOrderServlet">View My Order</a></li>
+        <li><a href="FilterByConditionServlet">Old Books</a></li>
         <li><a href="login.jsp">Log Out</a></li>
         
     </ul>
 </div>
 
 
-<h2>Welcome ${currentuser.name}</h2>
-<h3>Available Wallet : ${currentuser.wallet}</h3>
+<h2>Welcome ${currentuser.name} !...</h2>
+<h2>Available Wallet : ${currentuser.wallet}</h2>
 
 <form action="recharge" method="post">
-    <fieldset class="signup">
-       <h2>Recharge Your Wallet..</h2>
+    <div class="signup">
+       <h3>Recharge Your Wallet..</h3>
 
          <label for="Amount">Amount:</label><br>
          <input type="text" name="Amount" id="amount" placeholder="Enter Amount" Pattern="[1-9][0-9]+{1,5}"  ><br><br>
@@ -161,7 +163,7 @@ ul
           
          <button type="submit">Recharge Wallet</button>
              
-    </fieldset>
+    </div>
     </form>
 </body>
 </html>

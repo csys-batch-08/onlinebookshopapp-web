@@ -20,7 +20,9 @@ body{
     position: fixed;
      
 }
-fieldset{
+.myprofile{
+            border-style:solid;
+            border-color:silver;
             position: absolute;
             top: 120px;
             right: 20%;
@@ -88,12 +90,12 @@ ul
 
 <div class="nav">
     <ul>
-         <li><a href="ShowBook.jsp">Home</a></li> 
-        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
-        <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
+        <li><a href="ShowBookServlet">Home</a></li>
+        <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
+        <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
         
-        <li><a href="ViewMyOrders.jsp">View My Order</a></li>
-        <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        <li><a href="ViewMyOrderServlet">View My Order</a></li>
+        <li><a href="FilterByConditionServlet">Old Books</a></li>
         <li><a href="login.jsp">Log Out</a></li>
         
     </ul>
@@ -108,7 +110,7 @@ ul
 <c:set var="count" value="${count+1}"/>
 
 
-<fieldset>
+<div class = "myprofile">
 
 <pre><strong>Name         :  </strong>${user.name}<br>
 <strong>Phone No     :  </strong>${user.phoneNo}<br>
@@ -117,8 +119,8 @@ ul
 <strong>Password     :  </strong>${user.password}<br>
 <strong>Wallet       :  </strong>${user.wallet}<br></pre>
 
-<a href="UpdateProfile.jsp"><button type="submit">Update Profile</button></a>
-</fieldset>
+<a href="updateProfile.jsp"><button type="submit">Update Profile</button></a>
+</div>
 
 </c:forEach>
 </div>

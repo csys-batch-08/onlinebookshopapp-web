@@ -7,11 +7,11 @@
 <title>Admin</title>
 <style>
 body{
-    background-image: url(image/new4.jpg);
+    background-image: url(image/new8.jpg);
     background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
+    background-size:1400px 625px;
+    color: white;
+    background-image: fixed;
 }
 *{
 			margin:0;
@@ -20,33 +20,41 @@ body{
 ul
     {
         list-style: none;
-        background-color: #1c1c1c;
-        margin:0;./,
+          background: linear-gradient(to bottom, #33cccc 7%, #006666 74%);
+        color: black;
+        position: fixed;
+        margin-bottom: 300px;
+        margin-top: 20px;
     }
   li{
       display:inline-block;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 16px;
+      padding-bottom: 16px;
       text-align: center;
-      font-size: 17px;
+      font-size: 15px;
+  }
+  li a:hover{
+  	opacity: 0.6;
+  	color: black;
+  	font-weight: bold;
   }
   li a{
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 40px;
-      padding-left: 7px;
+      padding-right: 35px;
+      padding-left: 35px;
   }
- li  button{
-      margin-right: 500px;
+ 
+  
+  a:hover{
+  	opacity: 0.6;
+  	color: gold;
+  	font-weight: bold;
   }
-        h2{
-        margin-top:50px;
-        text-align: center;
         
-        }
         h1{
-        margin-top: 100px;
+        margin-top: 250px;
         }
         
 </style>
@@ -66,7 +74,7 @@ ul
 		
 		<li><a href="ViewAllOrderServlet">View ALL Orders</a></li>
 </ul>
-	<h2>Books Wagon</h2>
+	
 	<marquee><h1>Welcome Admin!...</h1></marquee>
 </body>
 </html>

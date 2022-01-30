@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.onlinebookshop.daoimpl.AuthorDetailsDaoimpl;
-import com.onlinebookshop.model.AuthorDetails;
+
 
 @WebServlet("/updateauthor")
 public class UpdateAuthor extends HttpServlet {
@@ -24,7 +24,7 @@ public class UpdateAuthor extends HttpServlet {
           AuthorDetailsDaoimpl authordao = new AuthorDetailsDaoimpl();
           authordao.updateAuthor(authoremail, authorname);
      
-          response.sendRedirect("ViewAuthor.jsp");
+          response.sendRedirect("viewAuthor.jsp");
 		
 	}
 

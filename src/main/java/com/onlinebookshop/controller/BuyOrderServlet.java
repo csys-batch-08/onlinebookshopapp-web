@@ -1,9 +1,7 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +30,7 @@ public class BuyOrderServlet extends HttpServlet {
 		
 		request.setAttribute("orderlist", bookdetail);
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("BuyOrder.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("buyOrder.jsp");
 		requestDispatcher.forward(request, response);
 			
 	}

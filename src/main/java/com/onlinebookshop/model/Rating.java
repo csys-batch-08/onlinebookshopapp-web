@@ -5,7 +5,7 @@ public class Rating {
 	private int id;
 	private int cusid;
 	private int bookid;
-	private double rating;
+	private double ratings;
 	public int getId() {
 		return id;
 	}
@@ -25,23 +25,25 @@ public class Rating {
 		this.bookid = bookid;
 	}
 	public double getRating() {
-		return rating;
+		return ratings;
 	}
-	public void setRating(double rating) {
-		this.rating = rating;
+	public void setRating(double ratings) {
+		this.ratings = ratings;
 	}
-	public Rating(int id, int cusid, int bookid, double rating) {
+	public Rating(int id, int cusid, int bookid, double ratings) {
 		super();
 		this.id = id;
 		this.cusid = cusid;
 		this.bookid = bookid;
-		this.rating = rating;
+		this.ratings = ratings;
 	}
-	public Rating(int cusid, int bookid, double rating) {
+	
+	
+	public Rating(int cusid, int bookid, double ratings) {
 		super();
 		this.cusid = cusid;
 		this.bookid = bookid;
-		this.rating = rating;
+		this.ratings = ratings;
 	}
 	public Rating(int bookid) {
 		super();
@@ -55,7 +57,7 @@ public class Rating {
 	}
 	@Override
 	public String toString() {
-		return "Rating [id=" + id + ", cusid=" + cusid + ", bookid=" + bookid + ", rating=" + rating + "]";
+		return "Rating [id=" + id + ", cusid=" + cusid + ", bookid=" + bookid + ", ratings=" + ratings + "]";
 	}
 	
 }

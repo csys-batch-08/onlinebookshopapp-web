@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.onlinebookshop.daoimpl.BookdetailsDaoimpl;
 import com.onlinebookshop.daoimpl.Ratingdaoimpl;
 import com.onlinebookshop.model.Rating;
 
@@ -49,7 +47,7 @@ public class RatingServlet extends HttpServlet {
 				requestDispatcher.forward(request, response);
 			}else {
 				
-				response.sendRedirect("AlreadyRating.jsp");
+				response.sendRedirect("alreadyRating.jsp");
 			}
 		} catch (SQLException e) {
 

@@ -7,8 +7,8 @@ import com.onlinebookshop.model.Userdetails;
 public interface UserDetailsDao {
 
 	public void insertUser(Userdetails user);
-	public Userdetails admin(String email_id,String password);
-	public Userdetails validateUser(String email_id,String password);
+	public Userdetails admin(String emailid,String password);
+	public Userdetails validateUser(String emailid,String password);
 	public void update(Userdetails user);
 	public void deleteuser(String delete);
 	public List<Userdetails> viewUser();

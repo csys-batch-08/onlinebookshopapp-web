@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.onlinebookshop.daoimpl.CartDaoimpl;
-import com.onlinebookshop.daoimpl.Ratingdaoimpl;
-import com.onlinebookshop.model.Cart;
 import com.onlinebookshop.model.ProductDetails;
 
 
@@ -34,7 +32,7 @@ public class ShowCartServlet extends HttpServlet {
 		  
 		  request.setAttribute("cartList", productsList);
 		
-		  RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowCart.jsp");
+		  RequestDispatcher requestDispatcher = request.getRequestDispatcher("showCart.jsp");
 		  
 		  requestDispatcher.forward(request, response);
 

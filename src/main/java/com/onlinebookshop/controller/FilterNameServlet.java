@@ -39,7 +39,7 @@ public class FilterNameServlet extends HttpServlet {
 		
 		session.setAttribute("Bookname", name);
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("FilterName.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("filterName.jsp");
 		requestDispatcher.forward(request, response);
 		
 		}else {

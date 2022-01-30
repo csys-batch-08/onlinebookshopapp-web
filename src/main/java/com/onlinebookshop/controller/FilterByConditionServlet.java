@@ -30,7 +30,7 @@ public class FilterByConditionServlet extends HttpServlet {
 		
 		request.setAttribute("oldBookList", showProduct);
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("FilterByCondition.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("filterByCondition.jsp");
 		
 		requestDispatcher.forward(request, response);
 		

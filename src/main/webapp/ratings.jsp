@@ -133,15 +133,13 @@ ul
 			<ul>
 
 
-		<li><a href="ShowBookServlet">Home</a></li>
-        <li><a href="FilterByCondition.jsp">Old Books</a></li>
-        <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
-        <li><a href="MyProfile.jsp">User profile</a></li>
-        <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
-        
-        <li><a href="ViewMyOrders.jsp">View My Order</a></li>
+		 <li><a href="ShowBookServlet" class="set1">Home</a></li>     
+        <li><a href="ShowCartServlet">My Cart</a></li>
+        <li><a href="MyProfileServlet">User profile</a></li>
+        <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
+        <li><a href="ViewMyOrderServlet">View My Order</a></li>
+        <li><a href="FilterByConditionServlet">Old Books</a></li>
         <li><a href="login.jsp">Log Out</a></li>
-
 			</ul>
 		</div>
 
@@ -176,7 +174,7 @@ ul
                                         <p><strong class="desc">DESCRIPTION :</strong>${booklist.description}<br></p>
                                         <p><strong class="title">BOOK TITLE  :   </strong>${booklist.booktitle}<br></p>
                                         <p><strong class="title">BOOK CODE  :   </strong>${booklist.bookcode}<br></p>
-                                        <p><strong class="price">PRICE :  <</strong>${booklist.price}<br></p>
+                                        <p><strong class="price">PRICE :  </strong>${booklist.price}<br></p>
                                         <p><strong class="date">PUBLISH DATE   :   </strong>${booklist.publishdate}<br></p>
                                         <p><strong class="condition">CONDITION   :   </strong>${booklist.condition}<br></p>
                                         <p><strong class="aname">AUTHOR NAME   :  </strong>${booklist.name}<br></p>

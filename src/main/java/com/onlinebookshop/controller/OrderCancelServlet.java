@@ -31,7 +31,7 @@ public class OrderCancelServlet extends HttpServlet {
 		
 		if(status.equals("order canceled")) {
 			
-			response.sendRedirect("AlreadyCancel.jsp");
+			response.sendRedirect("alreadyCancel.jsp");
 			
 		}else {
 			
@@ -57,7 +57,7 @@ public class OrderCancelServlet extends HttpServlet {
 				
 				
 				
-				response.sendRedirect("OrderCancel.jsp");
+				response.sendRedirect("orderCancel.jsp");
 			
 		}
 		

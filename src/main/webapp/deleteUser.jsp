@@ -7,11 +7,11 @@
 <title>Delete User</title>
 <style>
 body{
-    background-image: url(image/new4.jpg);
+    background-image: url(image/new8.jpg);
     background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
+    background-size:1400px 625px;
+    color: white;
+    background-image: fixed;
 }
 *{
 			margin:0;
@@ -20,25 +20,36 @@ body{
 ul
     {
         list-style: none;
-        background-color: #1c1c1c;
-        margin:0;
+          background: linear-gradient(to bottom, #33cccc 7%, #006666 74%);
+        color: black;
+        position: fixed;
+        margin-bottom: 300px;
     }
   li{
       display:inline-block;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 12px;
+      padding-bottom: 12px;
       text-align: center;
-      font-size: 17px;
+      font-size: 15px;
+  }
+  li a:hover{
+  	opacity: 0.6;
+  	color: black;
+  	font-weight: bold;
   }
   li a{
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 40px;
-      padding-left: 7px;
+      padding-right: 35px;
+      padding-left: 35px;
   }
- li  button{
-      margin-right: 500px;
+ 
+  
+  a:hover{
+  	opacity: 0.6;
+  	color: gold;
+  	font-weight: bold;
   }
         h2{
         margin-top:50px;
@@ -49,23 +60,43 @@ ul
         margin-top: 100px;
         }
         
-fieldset{
+.delete{
+    border-style:solid;
+    border-color:threedlightshadow;
     position: absolute;
     top: 140px;
     right: 40%;
     padding: 30px 30px;
-    border: 2px solid black;
     
+    
+}
+button{
+
+    padding: 5px;
+  	border-radius: 4px;
+  	background: linear-gradient(to bottom, #33ccff 45%, #006666 100%);
+  	color: white;
+  	font-weight: bold;
+  	border-color: transparent;
+}
+button:hover{
+    opacity: 0.7;
+  	background: linear-gradient(to bottom, #33cccc -1%, #006666 103%);
+  	font-weight: bold;
 }
 a{
     text-decoration: none;
     color: white;
 }
+input {
+
+	height: 25px;
+}
            
 </style>
 </head>
 <body>
-<aside>
+
 <ul>
        <li><a href="ViewUser.jsp">View User</a></li>
 		<li><a href="DeleteUser.jsp">Delete User</a></li>
@@ -80,11 +111,11 @@ a{
 		
 		<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
 </ul>
-</aside>
+
  <h2>Books Wagon</h2>
 
 <form action="deleteuser" method="post">
-<fieldset>
+
 <div class="delete">
 
  <h4>Delete User  :</h4><br>
@@ -92,7 +123,7 @@ a{
 <input type="text" name="emailid" class="emailid"  pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
 <button type="submit">Delete</button>
 </div>
-</fieldset>
+
 </form>
 </body>
 </html>

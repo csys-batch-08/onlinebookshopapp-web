@@ -1,7 +1,6 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -37,7 +36,7 @@ public class RatingNewServlet extends HttpServlet {
 			request.setAttribute("books", bookdetail);
     		
 
-  		    RequestDispatcher requestDispatcher = request.getRequestDispatcher("Ratings.jsp");
+  		    RequestDispatcher requestDispatcher = request.getRequestDispatcher("ratings.jsp");
   		    
 			requestDispatcher.forward(request, response);
     		

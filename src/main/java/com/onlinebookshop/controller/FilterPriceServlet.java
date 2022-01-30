@@ -1,9 +1,7 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.onlinebookshop.daoimpl.BookdetailsDaoimpl;
-import com.onlinebookshop.model.Bookdetails;
 import com.onlinebookshop.model.ProductDetails;
 
 
@@ -39,7 +36,7 @@ public class FilterPriceServlet extends HttpServlet {
 		
 		session.setAttribute("filteredbook", price);
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("FilterPriceProduct.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("filterPriceProduct.jsp");
 		requestDispatcher.forward(request, response);
 		
 		

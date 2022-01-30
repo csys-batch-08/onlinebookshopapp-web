@@ -8,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.onlinebookshop.daoimpl.AuthorDetailsDaoimpl;
 import com.onlinebookshop.daoimpl.BookdetailsDaoimpl;
 import com.onlinebookshop.model.AuthorDetails;

@@ -5,13 +5,54 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Register</title>
-<link rel="stylesheet" href="Register.css">
+<style>
+body{
+            background-image: url(image/book.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+        }
+.register{
+            border-style:solid;
+            border-color:threedlightshadow;
+            position: absolute;
+            top: 120px;
+            right: 40%;
+            padding-right: 30px;
+            padding-left: 30px;
+            padding-bottom: 10px;
+            
+}
+button{
+
+    padding: 7px;
+  	border-radius: 4px;
+  	background-color: GoldenRod;
+  	color: black;
+  	font-weight: bold;
+  	border-color: transparent;
+}
+button:hover{
+opacity: 0.7;
+  	color: gold;
+  	font-weight: bold;
+}
+ a{
+            text-decoration: none;
+            color: white;
+}
+        
+  h1{
+    text-align: center;
+  }
+  </style>
 </head>
 <body>
 
 <form action="RegisterServlet" method="post">
-<fieldset>
-        <h2>Sign In</h2>
+<h1>Register Here!...</h1>
+<div class="register">
+        <h2>Sign In!...</h2>
         <label for="username">User Name :</label><br>
         <input type="text" name="username" class="username" pattern="[A-Za-z]{5,}" required><br><br>
         <label for="phonenumber">Phone number :</label><br>
@@ -24,8 +65,8 @@
         <input type="text" name="password" class="password" pattern="[A-Za-z0-9]{8,10}"  required><br><br>
         <label for="password">Repeat Password :</label><br>
         <input type="password" name="repeat" class="repeat"  pattern="[A-Za-z0-9]{8,10}" required><br><br>
-        <button type="submit">Sign in :</button>
-    </fieldset>
+        <button type="submit" class ="sign">Sign in </button>
+ </div>
 </form>
 </body>
 </html>

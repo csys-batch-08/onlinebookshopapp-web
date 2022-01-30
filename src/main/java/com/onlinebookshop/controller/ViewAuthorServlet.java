@@ -1,7 +1,6 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -28,7 +27,7 @@ public class ViewAuthorServlet extends HttpServlet {
         
         request.setAttribute("authorlist", authorList);
         
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ViewAuthor.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("viewAuthor.jsp");
 		
 		requestDispatcher.forward(request, response);
 	}

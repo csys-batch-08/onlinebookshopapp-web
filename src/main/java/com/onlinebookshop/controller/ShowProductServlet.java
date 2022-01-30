@@ -31,7 +31,7 @@ public class ShowProductServlet extends HttpServlet {
 	
 	request.setAttribute("booklist", showProduct);
 	
-	RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowProduct.jsp");
+	RequestDispatcher requestDispatcher = request.getRequestDispatcher("showProduct.jsp");
 	
 	requestDispatcher.forward(request, response);
 	}

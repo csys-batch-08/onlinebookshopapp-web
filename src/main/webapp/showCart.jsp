@@ -122,10 +122,10 @@ margin-left: 30px;
     <ul>        
         <li><a href="ShowBookServlet">Home</a></li> 
         <li><a href="MyProfileServlet">User profile</a></li>
-        <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
+        <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
         
-        <li><a href="ViewMyOrders.jsp">View My Order</a></li>
-        <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        <li><a href="ViewMyOrdersServlet">View My Order</a></li>
+        <li><a href="FilterByConditionServlet">Old Books</a></li>
         <li><a href="login.jsp">Log Out</a></li>
         
     </ul>

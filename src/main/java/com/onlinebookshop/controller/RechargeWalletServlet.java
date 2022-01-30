@@ -43,7 +43,7 @@ public class RechargeWalletServlet extends HttpServlet {
 		
 		 if(wall)
 		 {
-			 response.sendRedirect("ShowBook.jsp");
+			 response.sendRedirect("ShowBookServlet");
 		 }
 		 else {
 			 response.getWriter().print("Wallet not recharged");

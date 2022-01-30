@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html lang = "eng">
+<html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
 <title>Old Books</title>
@@ -121,14 +121,14 @@ li button {
 	<form action="filterprice" method="post">
 		<div class="nav">
 			<ul>
-				<li><a href="ShowBook.jsp">Home</a></li>
-				<li><a href="ShowCartServlet" class="set1">My Cart</a></li>
-				<li><a href="MyProfile.jsp">User profile</a></li>
-				<li><a href="RechargeWallet.jsp">Recharge Wallet</a>
-				<li>
-				<li><a href="ViewMyOrders.jsp">View My Order</a></li>
-
-				<li><a href="login.jsp">Log Out</a></li>
+		       <li><a href="ShowBookServlet">Home</a></li>
+			
+		       <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
+               <li><a href="MyProfileServlet">User profile</a></li>
+               <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
+        
+               <li><a href="ViewMyOrderServlet">View My Order</a></li>
+               <li><a href="login.jsp">Log Out</a></li>
 			</ul>
 		</div>
 	</form>
@@ -150,23 +150,14 @@ li button {
 											src="image/${oldBook.bookimages}" width=50 height=350
 											alt="book"></a></td>
 									<td class="book">
-										<p>
-											<strong>CATEGORY : </strong>${oldBook.category}<br>
-										</p>
+									
+										<p><strong>CATEGORY : </strong>${oldBook.category}<br></p>
 
-										<p>
-											<strong>BOOK TITLE : </strong>${oldBook.booktitle}<br>
-										</p>
+										<p><strong>BOOK TITLE : </strong>${oldBook.booktitle}<br></p>
 
-										<p>
-											<strong>PRICE : </strong>${oldBook.price}<br>
-										</p>
+										<p><strong>PRICE : </strong>${oldBook.price}<br></p>
 
-										<p>
-											<strong>Ratings :</strong>${oldBook.rating}<br>
-										</p>
-
-
+										<p><strong>Ratings :</strong>${oldBook.rating}<br></p>
 
 									</td>
 								</tr>

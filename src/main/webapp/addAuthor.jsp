@@ -49,7 +49,9 @@ ul
         margin-top: 100px;
         }
         
-fieldset{
+.addauthor{
+    border-style:solid;
+    border-color: threedlightshadow;
     position: absolute;
     top: 140px;
     right: 40%;
@@ -85,7 +87,7 @@ a{
 </head>
 <body>
 <form action="AddAuthor" method="post">
-<fieldset>
+<div class = "addauthor">
 <label for="name">Name :</label><br>
 <input type="text" name="authorname" class="author" required><br><br>
 <label for="email">Email_Id :</label><br>
@@ -93,20 +95,7 @@ a{
 <label for="booktitle">Book Name :</label><br>
 <input type="text" name="bookname" class="author" required><br><br>
 <button type ="submit">Add</button>
-</fieldset>
-<%!
-		String flag1;
-	%>
-	<%
-		if(session.getAttribute("addauthor") != null){
-		flag1 = session.getAttribute("addauthor").toString();
-	%>
-		<h4><%=flag1%></h4>
-	<% }%>
- 
-	<%session.removeAttribute("addauthor");
-    %>
-
+</div>
 
 </form>
 </body>

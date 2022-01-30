@@ -9,77 +9,80 @@
 <meta charset="ISO-8859-1">
 <title>USERS LIST PAGE</title>
 <style>
-body {
-	background-image: url(image/new4.jpg);
-	background-repeat: no-repeat;
-	background-size: 2000px 2470px;
-	color: black;
-	font-weight: 100px;
+body{
+    background-image: url(image/new8.jpg);
+    background-repeat: no-repeat;
+    background-size:1400px 625px;
+    color: white;
+    background-image: fixed;
 }
+*{
+			margin:0;
+			padding:0;
+		}
+ul
+    {
+        list-style: none;
+          background: linear-gradient(to bottom, #33cccc 7%, #006666 74%);
+        color: black;
+        position: fixed;
+        margin-bottom: 300px;
+        margin-top: 10px;
+    }
+  li{
+      display:inline-block;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      font-size: 15px;
+  }
+  li a:hover{
+  	opacity: 0.6;
+  	color: black;
+  	font-weight: bold;
+  }
+  li a{
+      text-decoration: none;
+      color:white;
+      display:block;
+      padding-right: 55px;
+      padding-left: 56px;
+  }
+ 
+  
+  a:hover{
+  	opacity: 0.6;
+  	color: gold;
+  	font-weight: bold;
+  }
 
-* {
-	margin: 0;
-	padding: 0;
-}
-
-ul {
-	list-style: none;
-	background-color: #1c1c1c;
-	margin: 0;
-}
-
-li {
-	display: inline-block;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	text-align: center;
-	font-size: 17px;
-}
-
-li a {
-	text-decoration: none;
-	color: white;
-	display: block;
-	padding-right: 40px;
-	padding-left: 7px;
-}
-
-li  button {
-	margin-right: 500px;
-}
-
-h2 {
-	margin-top: 50px;
-	text-align: center;
-}
-
-h1 {
-	margin-top: 100px;
-}
 
 table {
-	border: 2px solid black;
-	margin: 10px 100px;
+	border: solid silver;
+	margin: 30px 50px;
 }
 
 th, td {
-	border: 2px solid black;
-	border-collapse: collapse;
 	padding: 10px;
 	font-weight: bold;
+	font-size: 17px;
 }
 
-h2 {
-	text-align: center;
+button{
+
+    padding: 5px;
+  	border-radius: 4px;
+  	background: linear-gradient(to bottom, #33ccff 45%, #006666 100%);
+  	color: white;
+  	font-weight: bold;
+  	border-color: transparent;
 }
 </style>
 </head>
 <body>
-	<aside>
+	
 		<ul>
-			<li><a href="ViewUser.jsp">View User</a></li>
-			<li><a href="DeleteUser.jsp">Delete User</a></li>
-
+			
 			<li><a href="AddBooks.jsp">Add Books</a></li>
 			<li><a href="UpdateBook.jsp">Update Book</a></li>
 			<li><a href="ViewAllBook.jsp">All Books</a></li>
@@ -89,13 +92,10 @@ h2 {
 			<li><a href="ViewAuthor.jsp">View Author</a></li>
 
 			<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
-		</ul>
-	</aside>
-	<h2>Books Wagon</h2>
-
-	
+		</ul>	
 
 	<div class="table">
+
 		<table id="allusers">
 			<thead>
 				<tr>

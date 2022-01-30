@@ -92,19 +92,18 @@ padding: 6px 6px;
 <body>
 <div class="nav">
     <ul>       
-        <li><a href="ShowBook.jsp">Home</a></li>   
-        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
-        <li><a href="MyProfile.jsp">User profile</a></li>
-        <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
-        
-        <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        <li><a href="ShowBookServlet">Home</a></li>
+        <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
+        <li><a href="MyProfileServlet">User profile</a></li>
+        <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
+        <li><a href="FilterByConditionServlet">Old Books</a></li>
         <li><a href="login.jsp">Log Out</a></li>
         
     </ul>
 </div>
 
 <h3>My Orders</h3>
-<div>
+<div class = "user">
 <table id="allusers">
 <thead>
 <tr>
