@@ -29,14 +29,14 @@ public class Ratingdaoimpl implements RatingDao{
 				
 			} catch (SQLException e) {
 
-				e.printStackTrace();
+				e.getMessage();
 				
 			}finally {
 				if (statement != null) {
 					try {
 						statement.close();
 					} catch (SQLException e) {
-						e.printStackTrace();
+						e.getMessage();
 					}
 				}
 				if(con != null) {
@@ -44,7 +44,7 @@ public class Ratingdaoimpl implements RatingDao{
 						con.close();
 					} catch (SQLException e) {
 					
-						e.printStackTrace();
+						e.getMessage();
 					}
 				}
 			}
@@ -70,13 +70,13 @@ public class Ratingdaoimpl implements RatingDao{
 				
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -84,7 +84,7 @@ public class Ratingdaoimpl implements RatingDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -92,7 +92,7 @@ public class Ratingdaoimpl implements RatingDao{
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -116,13 +116,13 @@ public class Ratingdaoimpl implements RatingDao{
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -130,7 +130,7 @@ public class Ratingdaoimpl implements RatingDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -138,7 +138,7 @@ public class Ratingdaoimpl implements RatingDao{
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}

@@ -22,7 +22,7 @@ public class UserActiveServlet extends HttpServlet {
 		UserdetailsDao userdetailsdao = new UserdetailsDao();
 		userdetailsdao.activeUser(email);
 		
-		response.sendRedirect("inactiveMessage.jsp");
+		response.sendRedirect("ViewUserServlet");
 	
 	}
 

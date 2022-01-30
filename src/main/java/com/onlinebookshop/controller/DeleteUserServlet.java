@@ -24,7 +24,7 @@ public class DeleteUserServlet extends HttpServlet {
 		UserdetailsDao userdetailsdao = new UserdetailsDao();
 		userdetailsdao.deleteuser(email);
 		
-		response.sendRedirect("inactiveMessage.jsp");
+		response.sendRedirect("ViewUserServlet");
 	
 	}
 

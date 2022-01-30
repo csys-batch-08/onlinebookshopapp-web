@@ -51,7 +51,7 @@ public class RatingServlet extends HttpServlet {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 

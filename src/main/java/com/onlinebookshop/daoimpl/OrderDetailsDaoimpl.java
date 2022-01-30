@@ -31,13 +31,13 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			statement.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -45,7 +45,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -71,13 +71,13 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -85,7 +85,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -93,7 +93,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -114,14 +114,14 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 			
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -129,7 +129,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -152,13 +152,13 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -166,7 +166,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -190,13 +190,13 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 				}
 			} catch (SQLException e) {
 				
-				e.printStackTrace();
+				e.getMessage();
 			}finally {
 				if (statement != null) {
 					try {
 						statement.close();
 					} catch (SQLException e) {
-						e.printStackTrace();
+						e.getMessage();
 					}
 				}
 				if(con != null) {
@@ -204,7 +204,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 						con.close();
 					} catch (SQLException e) {
 					
-						e.printStackTrace();
+						e.getMessage();
 					}
 				}
 				if(resultSet != null) {
@@ -212,7 +212,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 						resultSet.close();
 					} catch (SQLException e) {
 					
-						e.printStackTrace();
+						e.getMessage();
 					}
 				}
 			}
@@ -241,13 +241,13 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -255,7 +255,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -263,7 +263,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -287,13 +287,13 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -301,7 +301,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -309,7 +309,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -333,13 +333,13 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -347,7 +347,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -355,7 +355,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}

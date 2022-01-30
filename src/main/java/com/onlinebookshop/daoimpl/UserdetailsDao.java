@@ -35,13 +35,13 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -49,7 +49,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			
@@ -76,13 +76,13 @@ public class UserdetailsDao implements UserDetailsDao {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -90,7 +90,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultset != null) {
@@ -98,7 +98,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -126,14 +126,14 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -141,7 +141,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -149,7 +149,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -173,14 +173,14 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -188,7 +188,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			
@@ -206,16 +206,17 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement = con.prepareStatement(deleteQuery);
 			statement.setString(1, delete);
 			statement.executeUpdate();
-
+			statement.execute("commit");
+			
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -223,7 +224,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			
@@ -239,16 +240,16 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement = con.prepareStatement(deleteQuery);
 			statement.setString(1, delete);
 			statement.executeUpdate();
-
+			statement.execute("commit");
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -256,7 +257,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			
@@ -281,13 +282,13 @@ public class UserdetailsDao implements UserDetailsDao {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -295,7 +296,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -303,7 +304,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -327,13 +328,13 @@ public class UserdetailsDao implements UserDetailsDao {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -341,7 +342,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -349,7 +350,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -371,13 +372,13 @@ public class UserdetailsDao implements UserDetailsDao {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -385,7 +386,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -393,7 +394,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -416,14 +417,14 @@ public class UserdetailsDao implements UserDetailsDao {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}
 		finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -431,7 +432,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -439,7 +440,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -463,13 +464,13 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -477,7 +478,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			
@@ -504,13 +505,13 @@ public class UserdetailsDao implements UserDetailsDao {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -518,7 +519,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultSet != null) {
@@ -526,7 +527,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -550,13 +551,13 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -564,7 +565,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			
@@ -585,14 +586,14 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -600,7 +601,7 @@ public class UserdetailsDao implements UserDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			

@@ -30,14 +30,14 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 
 		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -45,7 +45,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -64,14 +64,14 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 
 		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -79,7 +79,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 		}
@@ -102,13 +102,13 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(con != null) {
@@ -116,7 +116,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 			}
 			if(resultset != null) {
@@ -124,7 +124,6 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
 				}
 			}
 		}

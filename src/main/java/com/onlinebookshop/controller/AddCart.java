@@ -50,7 +50,7 @@ public class AddCart extends HttpServlet {
 				requestDispatcher.forward(request, response);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		
 		
