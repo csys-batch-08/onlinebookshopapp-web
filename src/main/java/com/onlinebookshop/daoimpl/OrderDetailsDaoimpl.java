@@ -1,10 +1,12 @@
 package com.onlinebookshop.daoimpl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +66,108 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			con = Connectionutil.getDbConnection();
 			statement = con.createStatement();
 			resultSet = statement.executeQuery(view);
+			while(resultSet.next())
+			{
+				OrderDetails order = new OrderDetails(resultSet.getInt(1),resultSet.getInt(2),resultSet.getInt(3),resultSet.getDouble(4),resultSet.getDate(5).toLocalDate(),resultSet.getString(6));
+				orderList.add(order);
+			}
+		} catch (SQLException e) {
+			
+			e.getMessage();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.getMessage();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.getMessage();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.getMessage();
+				}
+			}
+		}
+		return orderList;
+	}
+	
+	public List<OrderDetails> filterOrderDate(String orderdate)
+	{
+		List<OrderDetails> orderList=new ArrayList<>();
+				
+		String view = "select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where order_date = ?";
+		Connection con = null;
+		PreparedStatement statement = null ;
+		ResultSet resultSet = null;
+		try {
+			con = Connectionutil.getDbConnection();
+			statement = con.prepareStatement(view);
+			statement.setString(1,orderdate);
+			
+			
+			resultSet = statement.executeQuery();
+			while(resultSet.next())
+			{
+				OrderDetails order = new OrderDetails(resultSet.getInt(1),resultSet.getInt(2),resultSet.getInt(3),resultSet.getDouble(4),resultSet.getDate(5).toLocalDate(),resultSet.getString(6));
+				orderList.add(order);
+			}
+		} catch (SQLException e) {
+			
+			e.getMessage();
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.getMessage();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+					e.getMessage();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+				
+					e.getMessage();
+				}
+			}
+		}
+		return orderList;
+	}
+	
+	public List<OrderDetails> cancelledOrder()
+	{
+		List<OrderDetails> orderList=new ArrayList<>();
+				
+		String cancelorder = "select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where status = 'order canceled'";
+		Connection con = null;
+		Statement statement = null ;
+		ResultSet resultSet = null;
+		try {
+			con = Connectionutil.getDbConnection();
+			statement = con.createStatement();
+			
+			
+			
+			resultSet = statement.executeQuery(cancelorder);
 			while(resultSet.next())
 			{
 				OrderDetails order = new OrderDetails(resultSet.getInt(1),resultSet.getInt(2),resultSet.getInt(3),resultSet.getDouble(4),resultSet.getDate(5).toLocalDate(),resultSet.getString(6));

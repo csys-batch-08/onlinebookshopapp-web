@@ -39,7 +39,7 @@ public class RechargeWalletServlet extends HttpServlet {
 		 
 		    Userdetails updatewallet = new Userdetails(null,0,null,email,null,addwallet);
 		 		 	 
-		   boolean wall= userdao.updatewall(updatewallet);
+		   boolean wall= userdao.updatewallet(updatewallet);
 		
 		 if(wall)
 		 {

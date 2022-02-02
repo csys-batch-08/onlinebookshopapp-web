@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang = "eng">
@@ -124,6 +125,18 @@ ul
         	padding-top: 7px;
             
         }
+form{
+            border-style:solid;
+            border-color:silver;
+            position: absolute;
+            top: 140px;
+            right: 13%;
+            padding-right: 30px;
+            padding-left: 30px;
+            padding-top: 20px;
+            padding-bottom:20px;
+            
+        }
 </style>
 </head>
 <body>
@@ -140,39 +153,42 @@ ul
     </ul>
 </div>
 
-<fieldset>
+
 <form action="OrderServlet">
 <h3>Add Quantity!...</h3>
 <label for="quantity">Quantity:</label><br>
 <input type="text" name="quantity" class="quantity" pattern="[1-9]+" required><br><br>
 <button type="submit">Order</button>
 </form>
-</fieldset>
+
 <table>
+<caption></caption>
             <tbody>
                 <tr>
                 
                 <c:set var="count" value="1"/>
                 <c:forEach items="${orderlist}" var="orderbook">	
-                	
+                	<th id ="head">
                     <td>
                         <table id="producttable">
+                        <caption></caption>
                             <tbody>
                                 <tr>
-                                   <td><img src="image/${orderbook.bookimages}" width=50 height=350 alt="book"></td>    
+                                   <th id="image"><img src="image/${orderbook.bookimages}" width=50 height=350 alt="book"></th>    
                                     <td class="book">
-                                        <p><b class="cat">CATEGORY   :   </b>${orderbook.category}<br></p>
-                                        <p><b class="desc">DESCRIPTION :</b>${orderbook.description}<br></p>
-                                        <p><b class="title">BOOK TITLE  :   </b>${orderbook.booktitle}<br></p>
-                                        <p><b class="title">BOOK CODE  :   </b>${orderbook.bookcode}<br></p>
-                                        <p><b class="price">PRICE :  </b>${orderbook.price}<br></p>
-                                        <p><b class="date">PUBLISH DATE   :   </b>${orderbook.publishdate}<br></p>
-                                        <p><b class="condition">CONDITION   :   </b>${orderbook.condition}<br></p>
-                                        <p><b class="aname">AUTHOR NAME   :  </b>${orderbook.name}<br></p>
-                                        <p><b class="aemail">AUTHOR EMAIL   :  </b>${orderbook.emailid}<br></p>
+                                        <p><strong class="cat">CATEGORY   :   </strong>${orderbook.category}<br></p>
+                                        <p><strong class="desc">DESCRIPTION :</strong>${orderbook.description}<br></p>
+                                        <p><strong class="title">BOOK TITLE  :   </strong>${orderbook.booktitle}<br></p>
+                                        <p><strong class="title">BOOK CODE  :   </strong>${orderbook.bookcode}<br></p>
+                                        <p><strong class="price">PRICE :  </strong>${orderbook.price}<br></p>
+                                        <p><strong class="date">PUBLISH DATE   :   </strong><fmt:parseDate value="${orderbook.publishdate}" pattern="yyyy-MM-dd" var="publishDate" type="date"/>
+                                        <fmt:formatDate pattern="dd-MM-yyyy" value="${publishDate}"/><br></p>
+                                        <p><strong class="condition">CONDITION   :   </strong>${orderbook.condition}<br></p>
+                                        <p><strong class="aname">AUTHOR NAME   :  </strong>${orderbook.name}<br></p>
+                                        <p><strong class="aemail">AUTHOR EMAIL   :  </strong>${orderbook.emailid}<br></p>
                                          
                                          
-                                         <p><b class="rating">RATINGS    :</b>${orderbook.rating}<br><br></p>
+                                         <p><strong class="rating">RATINGS    :</strong>${orderbook.rating}<br><br></p>
                                          
                                     </td>
                                 </tr>
@@ -183,8 +199,7 @@ ul
                         <c:choose>
                           <c:when test="${count==2}">
                               <c:set var="count" value="1"/>
-                    	   </tr>
-                    	   <tr>              
+                    	
                       </c:when> 
                     	   <c:otherwise>
                     	   <c:set var="count" value="${count+1}"/>
@@ -192,7 +207,8 @@ ul
                           
                        </c:choose>
                        </c:forEach>
-                       
+                          </tr>
+                    	   <tr>              
                 </tr>
             </tbody>
         </table>

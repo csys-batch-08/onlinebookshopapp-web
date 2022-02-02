@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -156,18 +156,21 @@ ul
                                 <tr>
                                     <td><img src="image/${book.bookimages}" width=50 height=350 alt="book"></td>    
                                     <td class="book">
-                                        <p><b class="cat">CATEGORY   :   </b>${book.category}<br></p>
-                                        <p><b class="desc">DESCRIPTION :</b>${book.description}<br></p>
-                                        <p><b class="title">BOOK TITLE  :   </b>${book.booktitle}<br></p>
-                                        <p><b class="title">BOOK CODE  :   </b>${book.bookcode}<br></p>
-                                        <p><b class="price">PRICE :  </b>${book.price}<br></p>
-                                        <p><b class="date">PUBLISH DATE   :   </b>${book.publishdate}<br></p>
-                                        <p><b class="condition">CONDITION   :   </b>${book.condition}<br></p>
-                                        <p><b class="aname">AUTHOR NAME   :  </b>${book.name}<br></p>
-                                        <p><b class="aemail">AUTHOR EMAIL   :  </b>${book.emailid}<br></p>
+                                        <p><strong class="cat">CATEGORY   :   </strong>${book.category}<br></p>
+                                        <p><strong class="desc">DESCRIPTION :</strong>${book.description}<br></p>
+                                        <p><strong class="title">BOOK TITLE  :   </strong>${book.booktitle}<br></p>
+                                        <p><strong class="title">BOOK CODE  :   </strong>${book.bookcode}<br></p>
+                                        <p><strong class="price">PRICE :  </strong>${book.price}<br></p>
+                                        
+                                        <p><strong class="date">PUBLISH DATE   :   </strong><fmt:parseDate value="${book.publishdate}" pattern="yyyy-MM-dd" var="publishDate" type="date"/>
+                                        <fmt:formatDate pattern="dd-MM-yyyy" value="${publishDate}"/><br></p>
+
+                                        <p><strong class="condition">CONDITION   :   </strong>${book.condition}<br></p>
+                                        <p><strong class="aname">AUTHOR NAME   :  </strong>${book.name}<br></p>
+                                        <p><strong class="aemail">AUTHOR EMAIL   :  </strong>${book.emailid}<br></p>
                                          
                                          
-                                         <p><b class="rating">RATINGS    :</b>${book.rating}<br><br></p>
+                                         <p><strong class="rating">RATINGS    :</strong>${book.rating}<br><br></p>
                                          <a href = "addcartserv?bookid=${book.bookid}"><button class="btn">Add to Cart</button></a>
                                          <a href = "RatingNewServlet?bookd=${book.bookid}"><button>Add Ratings</button></a>
                                          

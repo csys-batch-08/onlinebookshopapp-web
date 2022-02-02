@@ -14,19 +14,17 @@ body{
     background-repeat: no-repeat;
     background-size:1400px 625px;
     color: white;
-    background-image: fixed;
+    background-attachment: fixed;
 }
 *{
 			margin:0;
 			padding:0;
 		}
-ul
+.nav
     {
         list-style: none;
           background: linear-gradient(to bottom, #33cccc 7%, #006666 74%);
         color: black;
-        position: fixed;
-        margin-bottom: 300px;
         margin-top: 10px;
     }
   li{
@@ -34,7 +32,7 @@ ul
       padding-top: 12px;
       padding-bottom: 12px;
       text-align: center;
-      font-size: 15px;
+      font-size: 13px;
   }
   li a:hover{
   	opacity: 0.6;
@@ -77,10 +75,14 @@ button{
   	font-weight: bold;
   	border-color: transparent;
 }
+h1{
+text-align: center;
+}
+
 </style>
 </head>
 <body>
-	
+<div class="nav">	
 		<ul>
 			
 			<li><a href="AddBooks.jsp">Add Books</a></li>
@@ -90,15 +92,24 @@ button{
 			<li><a href="AddAuthor.jsp">Add Author</a></li>
 			<li><a href="AuthorUpdate.jsp">Update Author</a></li>
 			<li><a href="ViewAuthor.jsp">View Author</a></li>
-
 			<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
 		</ul>	
-
+</div>
+<div class="head">
+<h1>All Users</h1>
+<form action="ViewParticularUserServlet">
+<input type="text" name="search" class="text" placeholder="Enter Title">
+<a href=><button>Search</button></a>
+</form>
+</div>
 	<div class="table">
 
 		<table id="allusers">
+		<caption></caption>
 			<thead>
+			
 				<tr>
+				
 					<th id = "sno">S.no</th>
 					<th id = "cusid">Customer ID</th>
 					<th id = "name">Name</th>
@@ -112,9 +123,7 @@ button{
 					<th id = "inactive">Active</th>
 				</tr>
 			</thead>
-			<br>
-			<br>
-
+			
 			<tbody>
 				<c:set var="count" value="0" />
 				<c:forEach items="${userlist}" var="userList">

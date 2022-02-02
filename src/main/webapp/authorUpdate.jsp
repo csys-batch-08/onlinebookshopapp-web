@@ -7,11 +7,11 @@
 <title>Author Update</title>
 <style>
 body{
-    background-image: url(image/new4.jpg);
+    background-image: url(image/new8.jpg);
     background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
+    background-size:1400px 625px;
+    color: white;
+    background-image: fixed;
 }
 *{
 			margin:0;
@@ -20,54 +20,78 @@ body{
 ul
     {
         list-style: none;
-        background-color: #1c1c1c;
-        margin:0;
+        background: linear-gradient(to bottom, #33cccc 7%, #006666 74%);
+        color: black;
+        margin-top: 20px;
+        
     }
   li{
       display:inline-block;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 16px;
+      padding-bottom: 16px;
       text-align: center;
-      font-size: 17px;
+      font-size: 18px;
+  }
+  li a:hover{
+  	opacity: 0.6;
+  	color: black;
+  	font-weight: bold;
   }
   li a{
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 40px;
-      padding-left: 7px;
+      padding-right: 38px;
+      padding-left: 35px;
   }
- li  button{
-      margin-right: 500px;
+ 
+  
+  a:hover{
+  	opacity: 0.6;
+  	color: gold;
+  	font-weight: bold;
   }
-        h2{
-        margin-top:50px;
-        text-align: center;
-        
-        }
         h1{
-        margin-top: 100px;
+        margin-bottom: 20px;
         }
         
-fieldset{
-    position: absolute;
-    top: 140px;
-    right: 40%;
-    padding-right: 30px;
-    padding-left: 30px;
-    
-}
+form
+        {
+        	
+        	border-style: solid;
+        	border-color: silver;
+        	padding-right: 20px;
+        	padding-left: 40px;
+        	margin-top: 60px;
+        	margin-right: 530px;
+        	margin-left: 440px;
+        	padding-bottom: 10px;
+        	padding-top: 10px;
+        	
+        }
 a{
     text-decoration: none;
     color: white;
-}</style>
+}
+button{
+
+    padding: 5px;
+  	border-radius: 4px;
+  	background: linear-gradient(to bottom, #33ccff 45%, #006666 100%);
+  	color: white;
+  	font-weight: bold;
+  	border-color: transparent;
+}
+button:hover{
+  	opacity: 0.6;
+  	background: linear-gradient(to bottom, #009999 0%, #33cccc 100%);
+  	font-weight: bold;
+  }
+</style>
 </head>
 <body>
-<aside>
 <ul>
-         <li><a href="ViewUser.jsp">View User</a></li>
-		<li><a href="DeleteUser.jsp">Delete User</a></li>
-		
+         <li><a href="ViewUser.jsp">View User</a></li>		
         <li><a href="AddBooks.jsp">Add Books</a></li>
 		<li><a href="UpdateBook.jsp">Update Book</a></li>
 		<li><a href="ViewAllBook.jsp">All Books</a></li>
@@ -79,17 +103,14 @@ a{
 		<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
 
 </ul>
-</aside>
- <h2>Books Wagon</h2>
  
 <form action="updateauthor" method="post">
-<fieldset>
+<h1>Author Update!...</h1>
 <label for="emailid">Email Id :</label><br>
 <input type="text" name="emailid" class="emailid" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}"  required><br><br>
 <label for="authorname">Author Name :</label><br>
 <input type="text" name="authorname" class="authorname" pattern="[A-Za-z]{5,}" required><br><br>
 <button type="submit">Update Author</button>
-</fieldset>
 </form>
 </body>
 </html>

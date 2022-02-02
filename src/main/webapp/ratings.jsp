@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang = "eng">
@@ -175,7 +176,8 @@ ul
                                         <p><strong class="title">BOOK TITLE  :   </strong>${booklist.booktitle}<br></p>
                                         <p><strong class="title">BOOK CODE  :   </strong>${booklist.bookcode}<br></p>
                                         <p><strong class="price">PRICE :  </strong>${booklist.price}<br></p>
-                                        <p><strong class="date">PUBLISH DATE   :   </strong>${booklist.publishdate}<br></p>
+                                        <p><strong class="date">PUBLISH DATE   :   </strong><fmt:parseDate value="${book.publishdate}" pattern="yyyy-MM-dd" var="publishDate" type="date"/>
+                                        <fmt:formatDate pattern="dd-MM-yyyy" value="${publishDate}"/><br></p>
                                         <p><strong class="condition">CONDITION   :   </strong>${booklist.condition}<br></p>
                                         <p><strong class="aname">AUTHOR NAME   :  </strong>${booklist.name}<br></p>
                                         <p><strong class="aemail">AUTHOR EMAIL   :  </strong>${booklist.emailid}<br></p>

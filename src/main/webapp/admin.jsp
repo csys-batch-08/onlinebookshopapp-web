@@ -31,7 +31,7 @@ ul
       padding-top: 16px;
       padding-bottom: 16px;
       text-align: center;
-      font-size: 15px;
+      font-size: 18px;
   }
   li a:hover{
   	opacity: 0.6;
@@ -42,7 +42,7 @@ ul
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 35px;
+      padding-right: 38px;
       padding-left: 35px;
   }
  
@@ -62,17 +62,17 @@ ul
 <body>
 <ul>
         <li><a href="ViewUserServlet">View User</a></li>
-		<li><a href="DeleteUser.jsp">Delete User</a></li>
 		
-        <li><a href="AddBooks.jsp">Add Books</a></li>
-		<li><a href="UpdateBook.jsp">Update Book</a></li>
+        <li><a href="addBooks.jsp">Add Books</a></li>
+		<li><a href="updateBook.jsp">Update Book</a></li>
 		<li><a href="ViewAllBookServlet">All Books</a></li>
 		
-		<li><a href="AddAuthor.jsp">Add Author</a></li>
-		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
+		<li><a href="addAuthor.jsp">Add Author</a></li>
+		<li><a href="authorUpdate.jsp">Update Author</a></li>
 		<li><a href="ViewAuthorServlet">View Author</a></li>
 		
 		<li><a href="ViewAllOrderServlet">View ALL Orders</a></li>
+		<li><a href="CancelledOrdersServlet">Cancelled Orders</a></li>
 </ul>
 	
 	<marquee><h1>Welcome Admin!...</h1></marquee>

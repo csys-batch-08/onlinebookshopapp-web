@@ -7,17 +7,16 @@ create table user_details(cus_id int Default cus_id.nextval,
                          password VARCHAR2(30)NOT NULL,
                          wallet int Default 0,
                          CONSTRAINT cus PRIMARY KEY(cus_id),UNIQUE(email_id),UNIQUE(phoneNo));
-ALTER TABLE user_details
-MODIFY  wallet int Default 0;
+
 
 insert into user_details (name,phoneNo,role,address,email_id,password,wallet) values('karthick','9345257036','admin','Mylapore,chennai,600019','karthick30@gmail.com','karthick30',0);
 insert into user_details (name,phoneNo,role,address,email_id,password) values('keerthi','9345257096','admin','Mylapore,chennai,600019','keke05@gmail.com','keke05020');
 insert into user_details (name,phoneNo,role,address,email_id,password) values('uma','9345250036','admin','Mylapore,chennai,600019','keerthi02@gmail.com','keerthi05');
 
-update user_details SET wallet=0 where role='admin';
+
 
 create sequence cus_id increment by 1 start with 100;
-drop sequence cus_id;
+
 commit;
 
 create table bookdetails(book_id int DEFAULT book_id.nextval,
@@ -32,7 +31,7 @@ create table bookdetails(book_id int DEFAULT book_id.nextval,
                         CONSTRAINT BOOK PRIMARY KEY(book_id));
 
 create SEQUENCE book_id increment by 1 start with 1000;
-drop sequence book_id;
+
 
 
 insert into bookdetails(category,description,book_title,book_code,price,publish_date,condition,bookimages)values('Architecture','A fascinating, thought-provoking journey into our built environment','The Great Indoors','B10',800,'10-12-2021','New','https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/725/9781787395725.jpg');
@@ -54,19 +53,15 @@ create table orderdetails(order_id int DEFAULT ORDER_ID.nextval,
                  book_id int not null,
                  quantity int NOT NULL,
                  total_cost decimal NOT NULL,
-                 order_date Default SYSDATE,
+                 order_date date Default SYSDATE,
                  status varchar2(20) Default 'ordered',
                  CONSTRAINT orders_id PRIMARY KEY(order_id),
                  CONSTRAINT customer_id FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
                  CONSTRAINT books_id FOREIGN KEY(book_id) REFERENCES bookdetails(book_id));
 
-                                               
-                          
-ALTER TABLE orderdetails
-MODIFY  order_date Default SYSDATE;
+
 
 create SEQUENCE order_id increment by 1 start with 300;
-drop sequence order_id;
 
 create table rating(id int generated always as identity(start with 1 increment by 1),
                    cus_id int  not null,
@@ -100,8 +95,11 @@ select * from bookdetails;
 select * from author_details;
 select * from rating;
 
-delete from rating where cus_id=107;
-commit;
+
+select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where order_date='30-01-22 07:10:23.000000000 PM';
+
+select book_id,sum(quantity) from orderdetails group by book_id;
+
 ------
 select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,
 NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id  where b.book_id in 
@@ -120,7 +118,7 @@ group by book_id);
 
 select book_id,sum(quantity) quantity
 from orderdetails
-group by book_id;
+group by book_id having quantity>10;
 
 select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),
 b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where status='Available' and b.book_id=1045;
@@ -168,12 +166,11 @@ select b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,
 ---condition
 select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.condition='old';
 
-delete from cart where book_id=1047 and cus_id= 106;
-
 select order_id, cus_id,book_id,quantity,total_cost,order_date,status from orderdetails order by order_id desc;
 
 select order_id,cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where cus_id=107 order by order_id desc;
 
+commit;
 ---Like operator
 select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,
 NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_title Like '%For%';

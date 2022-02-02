@@ -18,7 +18,6 @@ public class UserdetailsDao implements UserDetailsDao {
 	public void insertUser(Userdetails user) {
 		String insertQuery = "insert into user_details(name,phoneNo,address,email_id,password) values(?,?,?,?,?)";
 
-		
 		Connection con =null;
 		PreparedStatement statement = null;
 
@@ -311,20 +310,22 @@ public class UserdetailsDao implements UserDetailsDao {
 		return userList;
 	}
 
-	public List<Userdetails> viewParticularUser() {
+	public List<Userdetails> viewParticularUser(String emailid) {
 		List<Userdetails> userList = new ArrayList<>();
-		String show = "select select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role='user'";
+		String show = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where email_id = ?";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-            resultSet = statement.executeQuery(show);
+			statement = con.prepareStatement(show);
+			statement.setString(1, emailid);
+            resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				Userdetails user = new Userdetails(resultSet.getInt(1), resultSet.getString(2), resultSet.getLong(3), resultSet.getString(4),
 						resultSet.getString(5), resultSet.getString(6), resultSet.getString(7), resultSet.getInt(8));
 				userList.add(user);
+				System.out.println(userList);
 			}
 		} catch (SQLException e) {
 
@@ -448,7 +449,7 @@ public class UserdetailsDao implements UserDetailsDao {
 	}
 
 	// update wallet:
-	public boolean updatewall(Userdetails userdetails) {
+	public boolean updatewallet(Userdetails userdetails) {
 
 		
 		String query = "update user_details set wallet = ? where email_id = ?";
@@ -534,7 +535,7 @@ public class UserdetailsDao implements UserDetailsDao {
 		return userList;
 	}
 
-	public boolean refundWall(Userdetails userdetails) {
+	public boolean refundWallet(Userdetails userdetails) {
 
 		
 		String query = "update user_details set wallet = ? where email_id = ?";

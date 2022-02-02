@@ -69,7 +69,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			statement=con.prepareStatement(delete);
 			statement.setInt(1, product);
 			statement.executeUpdate();
-			
+			statement.execute("commit");
 		} catch (SQLException e) {
 
 			e.getMessage();
@@ -176,6 +176,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			{
 				rating.setBookid(resultset.getInt(1));
 	            double rate = ratingdaoimpl.fetchrating(rating);
+	            
 				ProductDetails product = new ProductDetails(resultset.getInt(1),resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5),resultset.getInt(6),resultset.getDate(7).toLocalDate(),resultset.getString(8),resultset.getString(9),resultset.getString(10),rate,resultset.getString(11));
 				productsList.add(product);
 						

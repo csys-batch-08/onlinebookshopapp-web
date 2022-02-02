@@ -53,7 +53,7 @@ public class OrderCancelServlet extends HttpServlet {
 				
 				Userdetails updatewallet = new Userdetails(null,0,null,email,null,refund);
 				
-				userdao.updatewall(updatewallet);
+				userdao.updatewallet(updatewallet);
 				
 				
 				

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- 
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang = "eng">
 <head>
@@ -105,6 +106,7 @@ padding: 6px 6px;
 <h3>My Orders</h3>
 <div class = "user">
 <table id="allusers">
+<caption></caption>
 <thead>
 <tr>
 <th id = "sno">S.no</th>
@@ -116,9 +118,6 @@ padding: 6px 6px;
 <th id = "cancel">Cancel Order</th>
 </tr>
 </thead>
-<br>
-<br>
-
 <tbody>
 
 
@@ -134,7 +133,8 @@ padding: 6px 6px;
 <td>${viewOrder.bookid}</td>
 <td>${viewOrder.quantity}</td>
 <td>${viewOrder.totalcost}</td>
-<td>${viewOrder.orderdate}</td>
+<td><fmt:parseDate value="${viewOrder.orderdate}" pattern="yyyy-MM-dd" var="orderDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${orderDate}"/></td>
 <td>${viewOrder.status}</td>
 <td><span><a href ="cancelorder?orderid=${viewOrder.orderid}"><button>Cancel</button></a></span><td>
 </tr>

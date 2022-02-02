@@ -63,7 +63,7 @@ public class OrderServlet extends HttpServlet {
 			
 			Userdetails user = new Userdetails(null, 0, null, userName, null, newWallet);
 
-			userdao.updatewall(user);
+			userdao.updatewallet(user);
 
 			response.sendRedirect("ordermsg.jsp");
 

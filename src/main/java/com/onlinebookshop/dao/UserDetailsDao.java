@@ -14,5 +14,5 @@ public interface UserDetailsDao {
 	public List<Userdetails> viewUser();
 	public int findUserId(String emailId);
 	public int walletballance(int userid);
-	public boolean  updatewall(Userdetails userdetails);
+	public boolean  updatewallet(Userdetails userdetails);
 }

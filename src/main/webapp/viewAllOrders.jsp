@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <!DOCTYPE html>
 <html lang = "eng">
@@ -9,11 +11,11 @@
 <title>View Orders</title>
 <style>
 body{
-    background-image: url(image/new4.jpg);
+    background-image: url(image/new8.jpg);
     background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
+    background-size:1400px 625px;
+    color: white;
+    background-attachment: fixed;
 }
 *{
 			margin:0;
@@ -21,50 +23,44 @@ body{
 		}
 ul
     {
-        list-style: none;
-        background-color: #1c1c1c;
-        margin:0;
+       list-style: none;
+        background: linear-gradient(to bottom, #33cccc 7%, #006666 74%);
+        color: black;
+        margin-top: 10px;
+        
     }
   li{
       display:inline-block;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 12px;
+      padding-bottom: 12px;
       text-align: center;
-      font-size: 17px;
+      font-size: 15px;
+  }
+  li a:hover{
+  	opacity: 0.6;
+  	color: black;
+  	font-weight: bold;
   }
   li a{
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 40px;
-      padding-left: 7px;
+      padding-right: 57px;
+      padding-left: 56px;
   }
- li  button{
-      margin-right: 500px;
+ 
+  
+  a:hover{
+  	opacity: 0.6;
+  	color: gold;
+  	font-weight: bold;
   }
-        h2{
-        margin-top:20px;
-        text-align: center;
-        
-        }
-        h1{
-        margin-top: 70px;
-        }
-        
-fieldset{
-    position: absolute;
-    top: 140px;
-    right: 40%;
-    padding-right: 30px;
-    padding-left: 30px;
-    
-}
 a{
     text-decoration: none;
     color: white;
 }
-table{
-margin-top: 10px;
+.table{
+margin-top: 40px;
 margin-left: 450px;
 }
 th{
@@ -80,27 +76,26 @@ margin-top: 20px;
 </style>
 </head>
 <body>
-<aside>
+<form action="FilterOrderServlet">
 <ul>
+        <li><input type="date" name="search" class="text"></li>
+        <li><a href=><button>Search</button></a></li>
         <li><a href="ViewUser.jsp">View User</a></li>
-		<li><a href="DeleteUser.jsp">Delete User</a></li>
-		
         <li><a href="AddBooks.jsp">Add Books</a></li>
 		<li><a href="UpdateBook.jsp">Update Book</a></li>
 		<li><a href="ViewAllBook.jsp">All Books</a></li>
 		
 		<li><a href="AddAuthor.jsp">Add Author</a></li>
 		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
-		<li><a href="ViewAuthor.jsp">View Author</a></li>
-		
-		
+		<li><a href="ViewAuthor.jsp">View Author</a></li>		
 </ul>
-</aside>
- <h2>Books Wagon</h2>
- <h3>All Orders</h3>
+</form>
 
-<div>
-<table border="2" id="allusers">
+<h3>All Orders</h3>
+
+<div class="table">
+<table id="allusers">
+<caption></caption>
 <thead>
 <tr>
   <th id = "sno">S.no</th>
@@ -112,8 +107,6 @@ margin-top: 20px;
 <th id = "status">Status</th>
 </tr>
 </thead>
-<br>
-<br>
 
 <tbody>
 <c:set var="count" value="0"/>
@@ -128,7 +121,8 @@ margin-top: 20px;
 <td>${viewallorder.bookid}</td>
 <td>${viewallorder.quantity}</td>
 <td>${viewallorder.totalcost}</td>
-<td>${viewallorder.orderdate}</td>
+<td><fmt:parseDate value="${viewallorder.orderdate}" pattern="yyyy-MM-dd" var="publishDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${publishDate}"/></td>
 <td>${viewallorder.status}</td>
 </tr>
 
