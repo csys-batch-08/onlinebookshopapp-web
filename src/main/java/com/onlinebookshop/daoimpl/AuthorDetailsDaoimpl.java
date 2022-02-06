@@ -15,6 +15,9 @@ import com.onlinebookshop.util.Connectionutil;
 
 public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 
+	/**
+	 * This method is used to insert author details.
+	 */
 	public void insertAuthor(AuthorDetails author) {
 
 		String insert = "insert into author_details(name,email_id,book_id)values(?,?,?)";
@@ -50,7 +53,9 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 			}
 		}
 	}
-
+/**
+ * This method is used to update author details.
+ */
 	public void updateAuthor(String emailid, String name) {
 		String updateQuery = "update author_details set name=? where email_id=?";
 		Connection con = null;
@@ -85,6 +90,9 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 		}
 	}
 
+	/**
+	 * This method is used to show all authors.
+	 */
 	public List<AuthorDetails> showAuthor() {
 		List<AuthorDetails> authorList = new ArrayList<>();
 

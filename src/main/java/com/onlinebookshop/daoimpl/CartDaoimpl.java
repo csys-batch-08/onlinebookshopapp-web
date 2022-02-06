@@ -32,13 +32,13 @@ public class CartDaoimpl {
 			
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -46,7 +46,7 @@ public class CartDaoimpl {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 		}
@@ -71,13 +71,13 @@ public class CartDaoimpl {
 					return true;
 				}
 			} catch (SQLException e) {
-				e.getMessage();
+				e.printStackTrace();
 			}finally {
 				if (statement != null) {
 					try {
 						statement.close();
 					} catch (SQLException e) {
-						e.getMessage();
+						e.printStackTrace();
 					}
 				}
 				if(con != null) {
@@ -85,7 +85,7 @@ public class CartDaoimpl {
 						con.close();
 					} catch (SQLException e) {
 					
-						e.getMessage();
+						e.printStackTrace();
 					}
 				}
 				if(resultset != null) {
@@ -93,7 +93,7 @@ public class CartDaoimpl {
 						resultset.close();
 					} catch (SQLException e) {
 					
-						e.getMessage();
+						e.printStackTrace();
 					}
 				}
 			}
@@ -127,13 +127,13 @@ public class CartDaoimpl {
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -141,7 +141,7 @@ public class CartDaoimpl {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -149,7 +149,7 @@ public class CartDaoimpl {
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 		}
@@ -172,13 +172,13 @@ public class CartDaoimpl {
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -186,7 +186,7 @@ public class CartDaoimpl {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -194,7 +194,7 @@ public class CartDaoimpl {
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 		}
@@ -217,13 +217,13 @@ public class CartDaoimpl {
 			
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -231,7 +231,7 @@ public class CartDaoimpl {
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 		}

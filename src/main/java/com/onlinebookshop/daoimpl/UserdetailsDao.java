@@ -14,15 +14,14 @@ import com.onlinebookshop.util.Connectionutil;
 
 public class UserdetailsDao implements UserDetailsDao {
 
-
 	public void insertUser(Userdetails user) {
 		String insertQuery = "insert into user_details(name,phoneNo,address,email_id,password) values(?,?,?,?,?)";
 
-		Connection con =null;
+		Connection con = null;
 		PreparedStatement statement = null;
 
 		try {
-			con =Connectionutil.getDbConnection();
+			con = Connectionutil.getDbConnection();
 			statement = con.prepareStatement(insertQuery);
 			statement.setString(1, user.getName());
 			statement.setLong(2, user.getPhoneNo());
@@ -34,70 +33,71 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}finally {
+			e.printStackTrace();
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			
+
 		}
 	}
 
-	// admin
 	public Userdetails admin(String emailid, String password) {
-		String adminQuery = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role='admin'and email_id='"
-				+ emailid + "'and password='" + password + "'";
+		String adminQuery = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role='admin'and email_id = ? and password = ?";
 
 		Userdetails user = null;
-		
+
 		Connection con = null;
 		ResultSet resultset = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset = statement.executeQuery(adminQuery);
+			statement = con.prepareStatement(adminQuery);
+			statement.setString(1, emailid);
+			statement.setString(2, password);
+			resultset = statement.executeQuery();
 			if (resultset.next()) {
-				user = new Userdetails(resultset.getInt("cus_id"), resultset.getString("name"), resultset.getLong("phoneNo"), resultset.getString("role"), resultset.getString("address"),
+				user = new Userdetails(resultset.getInt("cus_id"), resultset.getString("name"),
+						resultset.getLong("phoneNo"), resultset.getString("role"), resultset.getString("address"),
 						emailid, password, resultset.getInt("wallet"));
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}finally {
+			e.printStackTrace();
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			if(resultset != null) {
+			if (resultset != null) {
 				try {
 					resultset.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
 		}
@@ -106,49 +106,51 @@ public class UserdetailsDao implements UserDetailsDao {
 
 	// user
 	public Userdetails validateUser(String emailid, String password) {
-		String validateQuery = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where email_id='"
-				+ emailid + "' and password='" + password + "' and role='user' ";
-		
+		String validateQuery = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role='user'  and  email_id = ? and password = ? ";
+
 		Userdetails user = null;
-		
+
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultSet = statement.executeQuery(validateQuery);
+			statement = con.prepareStatement(validateQuery);
+			statement.setString(1, emailid);
+			statement.setString(2, password);
+			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"), resultSet.getLong("phoneNo"), resultSet.getString("role"), resultSet.getString("address"),
+				user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"),
+						resultSet.getLong("phoneNo"), resultSet.getString("role"), resultSet.getString("address"),
 						emailid, password, resultSet.getInt("wallet"));
 			}
 
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 
-		}finally {
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			if(resultSet != null) {
+			if (resultSet != null) {
 				try {
 					resultSet.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
 		}
@@ -162,35 +164,35 @@ public class UserdetailsDao implements UserDetailsDao {
 		PreparedStatement statement = null;
 		try {
 			con = Connectionutil.getDbConnection();
-		    statement = con.prepareStatement(updateQuery);
+			statement = con.prepareStatement(updateQuery);
 			statement.setString(1, user.getName());
 			statement.setLong(2, user.getPhoneNo());
 			statement.setString(3, user.getAddress());
 			statement.setString(4, user.getPassword());
 			statement.setString(5, user.getEmailid());
-		    statement.executeUpdate();
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 
-		}finally {
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			
+
 		}
 
 	}
@@ -206,33 +208,33 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement.setString(1, delete);
 			statement.executeUpdate();
 			statement.execute("commit");
-			
+
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}finally {
+			e.printStackTrace();
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			
+
 		}
 	}
 
 	public void activeUser(String delete) {
 		String deleteQuery = "update user_details set role='user' where email_id=?";
-		Connection con = null ;
+		Connection con = null;
 		PreparedStatement statement = null;
 		try {
 			con = Connectionutil.getDbConnection();
@@ -242,24 +244,24 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement.execute("commit");
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}finally {
+			e.printStackTrace();
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			
+
 		}
 
 	}
@@ -267,43 +269,44 @@ public class UserdetailsDao implements UserDetailsDao {
 	public List<Userdetails> viewUser() {
 		List<Userdetails> userList = new ArrayList<>();
 		String show = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role!='admin'";
-		Connection con = null ;
+		Connection con = null;
 		Statement statement = null;
-	    ResultSet resultSet = null;
+		ResultSet resultSet = null;
 		try {
 			con = Connectionutil.getDbConnection();
 			statement = con.createStatement();
 			resultSet = statement.executeQuery(show);
 			while (resultSet.next()) {
-				Userdetails user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"), resultSet.getLong("phoneNo"), resultSet.getString("role"),
-						resultSet.getString("address"), resultSet.getString("email_id"), resultSet.getString("password"), resultSet.getInt("wallet"));
+				Userdetails user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"),
+						resultSet.getLong("phoneNo"), resultSet.getString("role"), resultSet.getString("address"),
+						resultSet.getString("email_id"), resultSet.getString("password"), resultSet.getInt("wallet"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}finally {
+			e.printStackTrace();
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			if(resultSet != null) {
+			if (resultSet != null) {
 				try {
 					resultSet.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
 		}
@@ -320,38 +323,39 @@ public class UserdetailsDao implements UserDetailsDao {
 			con = Connectionutil.getDbConnection();
 			statement = con.prepareStatement(show);
 			statement.setString(1, emailid);
-            resultSet = statement.executeQuery();
+			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				Userdetails user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"), resultSet.getLong("phoneNo"), resultSet.getString("role"),
-						resultSet.getString("address"), resultSet.getString("email_id"), resultSet.getString("password"), resultSet.getInt("wallet"));
+				Userdetails user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"),
+						resultSet.getLong("phoneNo"), resultSet.getString("role"), resultSet.getString("address"),
+						resultSet.getString("email_id"), resultSet.getString("password"), resultSet.getInt("wallet"));
 				userList.add(user);
-				
+
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}finally {
+			e.printStackTrace();
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			if(resultSet != null) {
+			if (resultSet != null) {
 				try {
 					resultSet.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
 		}
@@ -359,43 +363,44 @@ public class UserdetailsDao implements UserDetailsDao {
 	}
 
 	public int findUserId(String emailId) {
-		String findUser = "select cus_id from user_details where email_id='" + emailId + "'";
+		String findUser = "select cus_id from user_details where email_id = ?";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		int cusId = 0;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultSet = statement.executeQuery(findUser);
+			statement = con.prepareStatement(findUser);
+			statement.setString(1, emailId);
+			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				cusId = resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}finally {
+			e.printStackTrace();
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			if(resultSet != null) {
+			if (resultSet != null) {
 				try {
 					resultSet.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
 		}
@@ -403,7 +408,7 @@ public class UserdetailsDao implements UserDetailsDao {
 	}
 
 	public int walletballance(int userid) {
-		
+
 		String query = "select wallet from user_details where cus_id = ?";
 		PreparedStatement statement = null;
 		Connection con = null;
@@ -418,30 +423,29 @@ public class UserdetailsDao implements UserDetailsDao {
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}
-		finally {
+			e.printStackTrace();
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			if(resultSet != null) {
+			if (resultSet != null) {
 				try {
 					resultSet.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
 		}
@@ -451,7 +455,6 @@ public class UserdetailsDao implements UserDetailsDao {
 	// update wallet:
 	public boolean updatewallet(Userdetails userdetails) {
 
-		
 		String query = "update user_details set wallet = ? where email_id = ?";
 
 		PreparedStatement statement = null;
@@ -465,24 +468,24 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}finally {
+			e.printStackTrace();
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			
+
 		}
 		return true;
 	}
@@ -490,7 +493,7 @@ public class UserdetailsDao implements UserDetailsDao {
 	public List<Userdetails> myProfile(int userid) {
 		List<Userdetails> userList = new ArrayList<>();
 		String profile = "select name,phoneno,address,email_id,password,wallet from user_details where cus_id=?";
-		Connection con =null;
+		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
@@ -500,35 +503,36 @@ public class UserdetailsDao implements UserDetailsDao {
 
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				Userdetails user = new Userdetails(resultSet.getString("name"), resultSet.getLong("phoneno"), resultSet.getString("address"), resultSet.getString("email_id"),
+				Userdetails user = new Userdetails(resultSet.getString("name"), resultSet.getLong("phoneno"),
+						resultSet.getString("address"), resultSet.getString("email_id"),
 						resultSet.getString("password"), resultSet.getInt("wallet"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}finally {
+			e.printStackTrace();
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			if(resultSet != null) {
+			if (resultSet != null) {
 				try {
 					resultSet.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
 		}
@@ -537,7 +541,6 @@ public class UserdetailsDao implements UserDetailsDao {
 
 	public boolean refundWallet(Userdetails userdetails) {
 
-		
 		String query = "update user_details set wallet = ? where email_id = ?";
 
 		Connection con = null;
@@ -552,24 +555,24 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}finally {
+			e.printStackTrace();
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			
+
 		}
 		return true;
 	}
@@ -587,25 +590,25 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 
-		}finally {
+		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-				
-					e.getMessage();
+
+					e.printStackTrace();
 				}
 			}
-			
+
 		}
 
 	}

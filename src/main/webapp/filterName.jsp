@@ -8,26 +8,25 @@
 <meta charset="ISO-8859-1">
 <title>Filter By Name</title>
 <style>
-body{
-    background-image: url(image/back5.jpeg);
-    background-repeat:repeat;
-    color:white;
-    background-size:2600px 900px ;
-    font-weight: 1000;
-    font-size: 15px;
-    font-weight: 100px;  
+body {
+	background-image: url(image/book.jpg);
+	background-repeat: repeat;
+	color: white;
+	background-size: 1700px 700px;
+	background-attachment: fixed;
+	font-weight: 1000;
+	font-size: 18px;
+	font-weight: bold;
 }
-img{
-width: 250px;
-padding:20px;
-border-radius: 14%;
+
+img {
+	width: 250px;
+	padding: 20px;
+	border-radius: 14%;
+	margin-top: 50px;
+	margin-left: 60px;
 }
-span{
-position : relative;
-top:280px;
-left: -300px;
-font-size: 16px;
-}
+
 table td{
 padding-bottom: 60px;
 }
@@ -45,34 +44,60 @@ button{
 padding-top: 5px;
 padding-bottom: 5px;
 }
-ul
-    {
-        list-style: none;
-        background-color:rgb(72,72,72);
-        margin:0;
-    }
-  li{
-      display:inline-block;
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: center;
-      font-size: 17px;
-  }
-  li a{
-      text-decoration: none;
-      color:white;
-      display:block;
-      padding-right: 10px;
-      padding-left: 10px;
-  }
- li  button{
-      margin-right: 350px;
-      
-  }
-  
-  .set1{
-      margin-right: 10px;
-  }
+ul {
+	list-style: none;
+	background-color: SaddleBrown;
+	margin: 0;
+	color: black;
+	width: 97%;
+	position: fixed;
+}
+
+li {
+	display: inline-block;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: center;
+	font-size: 17px;
+}
+
+li a {
+	text-decoration: none;
+	color: white;
+	display: block;
+	padding-right: 40px;
+	padding-left: 69px;
+}
+
+li a:hover {
+	opacity: 0.7;
+	color: black;
+	font-weight: bold;
+}
+
+.set1 {
+	margin-right: 10px;
+}
+
+.text {
+	padding: 7px;
+	border-radius: 4px;
+	border-color: transparent;
+}
+
+li button {
+	padding: 5.5px;
+	border-radius: 4px;
+	background-color: SandyBrown;
+	color: White;
+	font-weight: bold;
+	border-color: transparent;
+}
+a:hover {
+	opacity: 0.7;
+	color: gold;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>

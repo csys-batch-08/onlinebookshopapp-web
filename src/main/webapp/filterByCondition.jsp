@@ -27,12 +27,6 @@ img {
 	margin-left: 60px;
 }
 
-span {
-	position: relative;
-	top: 280px;
-	left: -300px;
-	font-size: 16px;
-}
 
 table td {
 	padding-bottom: 60px;

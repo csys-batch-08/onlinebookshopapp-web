@@ -59,9 +59,8 @@ font-size: 20px;
 
 <br>
 <br>                
-<button type ="submit">Log In</button></a><br><br>
+<button type ="submit">Log In</button><br><br>
 </div>
-
 </form>
 </body>
 </html>

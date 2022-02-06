@@ -44,7 +44,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -52,7 +52,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -72,13 +72,13 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			statement.execute("commit");
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -86,7 +86,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -128,7 +128,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -136,7 +136,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultSet != null) {
@@ -144,7 +144,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					resultSet.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -182,13 +182,13 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 						
 			}
 		} catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -196,7 +196,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -204,7 +204,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -229,13 +229,13 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -243,7 +243,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -251,7 +251,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -260,28 +260,29 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		
 	}
 	public String findBookname(int bookid) {
-		String find="select book_title from bookdetails where book_id='"+bookid+"'";
+		String find="select book_title from bookdetails where book_id = ?";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		ResultSet resultset = null;
 		String product =null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement =con.createStatement();
-			resultset =statement.executeQuery(find);
+			statement =con.prepareStatement(find);
+			statement.setInt(1, bookid);
+			resultset =statement.executeQuery();
 			if(resultset.next())
 			{
 				product=resultset.getString(1);
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -289,7 +290,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -297,7 +298,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -307,28 +308,29 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	}
 	
 	public int findPrice(int proid) {
-		String query="select price from bookdetails where book_id='"+proid+"'";
+		String query="select price from bookdetails where book_id = ? ";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		ResultSet resultset = null;
 		int price=0;
 		try {
 			con=Connectionutil.getDbConnection();
-			statement = con.createStatement();
-		    resultset=statement.executeQuery(query);
+			statement = con.prepareStatement(query);
+			statement.setInt(1, proid);
+		    resultset=statement.executeQuery();
 			if(resultset.next())
 			{
 				price=resultset.getInt(1);
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -336,7 +338,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -344,7 +346,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -365,14 +367,14 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 			
 		}finally {
 			if(statement != null) {
 				try {
 					statement.close();
 				}catch (Exception e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -380,7 +382,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -416,7 +418,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -424,7 +426,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -432,7 +434,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -473,7 +475,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -481,7 +483,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -489,7 +491,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -518,14 +520,14 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 	
-			e.getMessage();
+			e.printStackTrace();
 			
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -533,7 +535,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -541,7 +543,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -572,7 +574,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -580,7 +582,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -588,7 +590,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -622,7 +624,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -630,7 +632,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -638,7 +640,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			
@@ -671,13 +673,13 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 			
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(con != null) {
@@ -685,7 +687,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					con.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 			if(resultset != null) {
@@ -693,7 +695,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 					resultset.close();
 				} catch (SQLException e) {
 				
-					e.getMessage();
+					e.printStackTrace();
 				}
 			}
 		}		
