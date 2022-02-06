@@ -167,7 +167,7 @@ public class CartDaoimpl {
 			statement =con.createStatement();
 			resultset = statement.executeQuery(cart);
 			while(resultset.next()) {
-				Cart cartmodel = new Cart(resultset.getInt(1),resultset.getInt(2),resultset.getInt(3));
+				Cart cartmodel = new Cart(resultset.getInt("cart_id"),resultset.getInt("cus_id"),resultset.getInt("book_id"));
 				cartList.add(cartmodel);
 			}
 		} catch (SQLException e) {

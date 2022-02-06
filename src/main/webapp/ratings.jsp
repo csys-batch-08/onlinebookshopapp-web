@@ -31,13 +31,16 @@ margin-left: 10px;
 
 }
 
-fieldset {
+.Rate {
 
 	position: fixed;
 	top: 140px;
 	right: 190px;
 	padding-right: 30px;
 	padding-left: 30px;
+	border-style: solid;
+	border-color: silver;
+	padding-bottom: 15px;
 }
 
 button{
@@ -144,7 +147,7 @@ ul
 			</ul>
 		</div>
 
-		<fieldset>
+		<div class="Rate">
 			<h2>Add Your Ratings..</h2>
 			<br> <label for="ratings">Ratings :</label><br> 
 			<input	type="text" name="ratings" class="ratings" Pattern="[1-9]" title="Positive number between 1-5" required><br>
@@ -156,7 +159,7 @@ ul
             </c:if>
         
             <c:remove var="rating" scope="session"/>
-		</fieldset>
+		</div>
 <table>
             <tbody>
                 <tr>

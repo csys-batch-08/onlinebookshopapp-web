@@ -95,11 +95,52 @@ select * from bookdetails;
 select * from author_details;
 select * from rating;
 
+desc user_details;
 
-select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where order_date='30-01-22 07:10:23.000000000 PM';
+select book_id,sum(quantity) from orderdetails group by book_id having sum(quantity)=(select sum(quantity) from orderdetails 
+group by book_id order by 1 desc offset 0 rows FETCH next 1 rows only);
 
-select book_id,sum(quantity) from orderdetails group by book_id;
+set SERVEROUTPUT on
+DECLARE
+l_qty number;
+CURSOR c_max(p_qty NUMBER) is select book_id,sum(quantity) as sum_qty from orderdetails group by book_id having sum(quantity)=p_qty;
+c_rec c_max%ROWTYPE;
+begin
+select sum(quantity) into l_qty from orderdetails group by book_id order by 1 desc offset 0 rows FETCH next 1 rows only;
+DBMS_OUTPUT.put_line(l_qty);
+begin
+OPEN c_max(l_qty);
+loop
+fetch c_max into c_rec;
+DBMS_OUTPUT.put_line('book_id ='||c_rec.book_id||' '||'qty =' ||c_rec.sum_qty);
+exit when c_max%NOTFOUND;
+end loop;
+close c_max;
+end;
+end;
 
+
+select book_id,sum(quantity) as sum_qty from orderdetails group by book_id having sum(quantity)=23;
+
+select book_id,sum(quantity) from orderdetails group by book_id order by 1 desc;
+
+
+DECLARE
+l_qty number;
+CURSOR c_max(p_qty NUMBER) is select book_id,sum(quantity) as sum_qty from orderdetails group by book_id having sum(quantity)=p_qty;
+c_rec c_max%ROWTYPE;
+begin
+select sum(quantity) into l_qty from orderdetails group by book_id order by 1 desc offset 0 rows FETCH next 1 rows only;
+DBMS_OUTPUT.put_line(l_qty);
+begin
+for i in c_max(l_qty)
+loop
+DBMS_OUTPUT.put_line('book_id ='||i.book_id||' '||'qty =' ||i.sum_qty);
+end loop;
+end;
+end;
+
+select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where to_char(trunc(order_date),'yyyy-mm-dd') ='2022-01-28'; 
 ------
 select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,
 NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id  where b.book_id in 

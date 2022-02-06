@@ -10,9 +10,9 @@ public class Userdetails {
 	private String address;
 	private String emailid;
 	private String password;
-    private int wallet;
-    private String role;
-    
+	private int wallet;
+	private String role;
+
 	public String getRole() {
 		return role;
 	}
@@ -22,20 +22,20 @@ public class Userdetails {
 	}
 
 	public int getCusid() {
-	return cusid;
-}
+		return cusid;
+	}
 
-public void setCusid(int cusid) {
-	this.cusid = cusid;
-}
+	public void setCusid(int cusid) {
+		this.cusid = cusid;
+	}
 
-public int getWallet() {
-	return wallet;
-}
+	public int getWallet() {
+		return wallet;
+	}
 
-public void setWallet(int wallet) {
-	this.wallet = wallet;
-}
+	public void setWallet(int wallet) {
+		this.wallet = wallet;
+	}
 
 	public String getName() {
 		return name;
@@ -82,24 +82,24 @@ public void setWallet(int wallet) {
 
 	}
 
-	public Userdetails(String name, long phoneNo, String address, String email_id, String password,int wallet) {
-		
+	public Userdetails(String name, long phoneNo, String address, String emailid, String password, int wallet) {
+
 		this.name = name;
 		this.phoneNo = phoneNo;
 		this.address = address;
-		this.emailid = email_id;
+		this.emailid = emailid;
 		this.password = password;
 		this.wallet = wallet;
 	}
-	public Userdetails(int cusid) {
-		
-		this.cusid = cusid;
-		
-	}
-	
 
-	public Userdetails(int cusid,String name, long phoneNo,String role,String address, String emailid, String password, 
-			int wallet) {
+	public Userdetails(int cusid) {
+
+		this.cusid = cusid;
+
+	}
+
+	public Userdetails(int cusid, String name, long phoneNo, String role, String address, String emailid,
+			String password, int wallet) {
 		super();
 		this.cusid = cusid;
 		this.name = name;
@@ -109,7 +109,7 @@ public void setWallet(int wallet) {
 		this.emailid = emailid;
 		this.password = password;
 		this.wallet = wallet;
-		
+
 	}
 
 	@Override
@@ -132,10 +132,9 @@ public void setWallet(int wallet) {
 		if (getClass() != obj.getClass())
 			return false;
 		Userdetails other = (Userdetails) obj;
-		return Objects.equals(address, other.address) && cusid == other.cusid
-				&& Objects.equals(emailid, other.emailid) && Objects.equals(name, other.name)
-				&& Objects.equals(password, other.password) && phoneNo == other.phoneNo && wallet == other.wallet;
+		return Objects.equals(address, other.address) && cusid == other.cusid && Objects.equals(emailid, other.emailid)
+				&& Objects.equals(name, other.name) && Objects.equals(password, other.password)
+				&& phoneNo == other.phoneNo && wallet == other.wallet;
 	}
 
-	
 }

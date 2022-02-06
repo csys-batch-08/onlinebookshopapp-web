@@ -26,18 +26,11 @@ public class FilterOrderServlet extends HttpServlet {
 
 		String date = request.getParameter("search");
 		
-//		 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); 
-//		 
-//		 String strDate= formatter.format(date); 
-//		 
-//		System.out.println(strDate);
 		OrderDetailsDaoimpl orderDetailsDaoimpl = new OrderDetailsDaoimpl();
 		
         List<OrderDetails> orderList = orderDetailsDaoimpl.filterOrderDate(date);
         
 		request.setAttribute("orderlist", orderList);
-		
-		System.out.println(orderList);
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("viewAllOrders.jsp");
 		requestDispatcher.forward(request, response);

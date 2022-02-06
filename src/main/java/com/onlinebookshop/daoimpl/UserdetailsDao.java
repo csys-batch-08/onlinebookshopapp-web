@@ -70,8 +70,8 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement = con.createStatement();
 			resultset = statement.executeQuery(adminQuery);
 			if (resultset.next()) {
-				user = new Userdetails(resultset.getInt(1), resultset.getString(2), resultset.getLong(3), resultset.getString(4), resultset.getString(5),
-						emailid, password, resultset.getInt(8));
+				user = new Userdetails(resultset.getInt("cus_id"), resultset.getString("name"), resultset.getLong("phoneNo"), resultset.getString("role"), resultset.getString("address"),
+						emailid, password, resultset.getInt("wallet"));
 			}
 		} catch (SQLException e) {
 
@@ -119,8 +119,8 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement = con.createStatement();
 			resultSet = statement.executeQuery(validateQuery);
 			if (resultSet.next()) {
-				user = new Userdetails(resultSet.getInt(1), resultSet.getString(2), resultSet.getLong(3), resultSet.getString(4), resultSet.getString(5),
-						emailid, password, resultSet.getInt(8));
+				user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"), resultSet.getLong("phoneNo"), resultSet.getString("role"), resultSet.getString("address"),
+						emailid, password, resultSet.getInt("wallet"));
 			}
 
 		} catch (SQLException e) {
@@ -275,8 +275,8 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement = con.createStatement();
 			resultSet = statement.executeQuery(show);
 			while (resultSet.next()) {
-				Userdetails user = new Userdetails(resultSet.getInt(1), resultSet.getString(2), resultSet.getLong(3), resultSet.getString(4),
-						resultSet.getString(5), resultSet.getString(6), resultSet.getString(7), resultSet.getInt(8));
+				Userdetails user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"), resultSet.getLong("phoneNo"), resultSet.getString("role"),
+						resultSet.getString("address"), resultSet.getString("email_id"), resultSet.getString("password"), resultSet.getInt("wallet"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -322,10 +322,10 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement.setString(1, emailid);
             resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				Userdetails user = new Userdetails(resultSet.getInt(1), resultSet.getString(2), resultSet.getLong(3), resultSet.getString(4),
-						resultSet.getString(5), resultSet.getString(6), resultSet.getString(7), resultSet.getInt(8));
+				Userdetails user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"), resultSet.getLong("phoneNo"), resultSet.getString("role"),
+						resultSet.getString("address"), resultSet.getString("email_id"), resultSet.getString("password"), resultSet.getInt("wallet"));
 				userList.add(user);
-				System.out.println(userList);
+				
 			}
 		} catch (SQLException e) {
 
@@ -500,8 +500,8 @@ public class UserdetailsDao implements UserDetailsDao {
 
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				Userdetails user = new Userdetails(resultSet.getString(1), resultSet.getLong(2), resultSet.getString(3), resultSet.getString(4),
-						resultSet.getString(5), resultSet.getInt(6));
+				Userdetails user = new Userdetails(resultSet.getString("name"), resultSet.getLong("phoneno"), resultSet.getString("address"), resultSet.getString("email_id"),
+						resultSet.getString("password"), resultSet.getInt("wallet"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {

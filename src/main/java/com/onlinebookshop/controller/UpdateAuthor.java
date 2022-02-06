@@ -1,6 +1,8 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +26,8 @@ public class UpdateAuthor extends HttpServlet {
           AuthorDetailsDaoimpl authordao = new AuthorDetailsDaoimpl();
           authordao.updateAuthor(authoremail, authorname);
      
-          response.sendRedirect("viewAuthor.jsp");
+          RequestDispatcher requestDispatcher = request.getRequestDispatcher("ViewAuthorServlet");
+          requestDispatcher.forward(request, response);
 		
 	}
 

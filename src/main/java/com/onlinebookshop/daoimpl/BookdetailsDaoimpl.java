@@ -122,7 +122,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
@@ -410,7 +410,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {
@@ -467,7 +467,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 			
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			if (statement != null) {
 				try {

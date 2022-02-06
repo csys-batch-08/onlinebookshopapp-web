@@ -7,11 +7,10 @@
 <title>cart success</title>
 <style>
 body{
-    background-image: url(image/new4.jpg);
+    background-image: url(image/book.jpg);
     background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
+    background-size: cover;
+    color: white;
 }
 h1{
 margin-left: 380px;
@@ -27,29 +26,55 @@ a{
 ul
     {
         list-style: none;
-        background-color: #1c1c1c;
+        background-color:SaddleBrown;
         margin:0;
+        color: black;
+        position: fixed;
     }
   li{
       display:inline-block;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 12px;
+      padding-bottom: 12px;
       text-align: center;
       font-size: 17px;
+  }
+  li a:hover{
+  	opacity: 0.7;
+  	color: black;
+  	font-weight: bold;
   }
   li a{
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 7px;
-      padding-left: 7px;
+      padding-right: 54px;
+      padding-left: 54px;
   }
  li  button{
-      margin-right: 700px;
+      margin-right: 350px;
+      
   }
   
   .set1{
       margin-right: 10px;
+  }
+  .text{
+  	padding: 7px;
+  	border-radius: 4px;
+  	border-color: transparent;
+  }
+  li button{
+  	padding: 5.5px;
+  	border-radius: 4px;
+  	background-color: SandyBrown;
+  	color: White;
+  	font-weight: bold;
+  	border-color: transparent;
+  }
+  a:hover{
+  	opacity: 0.7;
+  	color: gold;
+  	font-weight: bold;
   }
 </style>
 </head>

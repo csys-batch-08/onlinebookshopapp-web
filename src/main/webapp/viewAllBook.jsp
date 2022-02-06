@@ -13,7 +13,7 @@ body{
     background-repeat: no-repeat;
     background-size:1400px 625px;
     color: white;
-    background-image: fixed;
+    background-attachment: fixed;
 }
 *{
 			margin:0;
@@ -69,27 +69,50 @@ ul
   	background: linear-gradient(to bottom, #009999 0%, #33cccc 100%);
   	font-weight: bold;
   }
-           
+  .des{
+  width: 20%;
+  }
+td{
+    text-align: center;
+    padding: 10px 10px;
+    }
+th{
+font-size: 15px;
+border-bottom: 1px solid;
+padding: 7px;
+}
+table{
+border-style: solid;
+border-color: silver;
+background-color: rgba(0,0,0, 0.4);
+} 
+.row{
+border-bottom: 1px solid;
+}
+h2{
+text-align: center;
+padding-bottom: 15px;
+padding-top: 10px;
+}
 </style>
 </head>
 <body>
 <ul>
-       <li><a href="ViewUser.jsp">View User</a></li>
-		
-        <li><a href="AddBooks.jsp">Add Books</a></li>
-		<li><a href="UpdateBook.jsp">Update Book</a></li>
-		<li><a href="ViewAllBook.jsp">All Books</a></li>
-		
-		<li><a href="AddAuthor.jsp">Add Author</a></li>
-		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
-		<li><a href="ViewAuthor.jsp">View Author</a></li>
-		
-		<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
+        <li><a href="admin.jsp">Home</a></li>
+        <li><a href="ViewUserServlet">View User</a></li>
+        <li><a href="addBooks.jsp">Add Books</a></li>
+		<li><a href="updateBook.jsp">Update Book</a></li>		
+		<li><a href="addAuthor.jsp">Add Author</a></li>
+	
+		<li><a href="ViewAuthorServlet">View Author</a></li>
+		<li><a href="ViewAllOrderServlet">View ALL Orders</a></li>
+		<li><a href="CancelledOrdersServlet">Cancelled Orders</a></li>
 
 </ul>
-
+<h2>ALL BOOKS</h2>
 <div class="alluser">
-<table border="2" id="allusers">
+<table id="allusers">
+<caption></caption>
 <thead>
 <tr>
   <th id = "sno">S.no</th>
@@ -103,23 +126,21 @@ ul
 <th id = "condition">Condition</th>
 <th id = "bookimages">Book image</th>
 <th id = "status">Status</th>
-<th id = "delete">Delete</th>
+<th id = "delete">Action</th>
 </tr>
 </thead>
-<br>
-<br>
 
 <tbody>
 <c:set var="count" value="0"/>
 <c:forEach items="${viewAllBook}" var="viewallBook">
 <c:set var="count" value="${count+1}"/>
-<tr>
+<tr class="row">
 
 <td>${count}</td>
 
 <td>${viewallBook.bookid}</td>
 <td>${viewallBook.category}</td>
-<td>${viewallBook.description}</td>
+<td class ="des">${viewallBook.description}</td>
 <td>${viewallBook.booktitle}</td>
 <td>${viewallBook.bookcode}</td>
 <td>${viewallBook.price}</td>

@@ -12,24 +12,43 @@ body{
     background-size: cover;
     color: white;
 }
-fieldset{
+.forgot{
     position: absolute;
     top: 140px;
     right: 40%;
     padding-right: 30px;
     padding-left: 30px;
+    border-style: solid;
+    border-color: silver;
     
+}
+button{
+
+    padding: 7px;
+  	border-radius: 4px;
+  	background-color: GoldenRod;
+  	color: black;
+  	font-weight: bold;
+  	border-color: transparent;
+}
+button:hover{
+opacity: 0.7;
+  	color: gold;
+  	font-weight: bold;
 }
 a{
     text-decoration: none;
     color: white;
+}
+h3{
+font-size: 20px;
 }
 
 </style>
 </head>
 <body>
 <form action="forgotpassword" method="post">
-<fieldset>
+<div class="forgot">
 <h3>Reset your password here!...</h3>
 <label for="userid">Email Id :</label><br>
 <input type="text" class="textfield" name="userId" pattern="[a-z]+[0-9.]+[@][a-z]+[.][a-z]+{8,15}"><br><br>
@@ -41,7 +60,7 @@ a{
 <br>
 <br>                
 <button type ="submit">Log In</button></a><br><br>
-</fieldset>
+</div>
 
 </form>
 </body>

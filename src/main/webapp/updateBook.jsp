@@ -97,16 +97,19 @@ button:hover{
 <body>
 
 <ul>
-        <li><a href="ViewUserServlet">View User</a></li>
+         <li><a href="admin.jsp">Home</a></li>
+         <li><a href="ViewUserServlet">View User</a></li>
 		
         <li><a href="addBooks.jsp">Add Books</a></li>
 		
-		<li><a href="ViewAllBookServlet">All Books</a></li>		
-		<li><a href="AddAuthor.jsp">Add Author</a></li>
-		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
-		<li><a href="ViewAuthor.jsp">View Author</a></li>
+		<li><a href="ViewAllBookServlet">All Books</a></li>
 		
-		<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
+		<li><a href="addAuthor.jsp">Add Author</a></li>
+		<li><a href="authorUpdate.jsp">Update Author</a></li>
+		<li><a href="ViewAuthorServlet">View Author</a></li>
+		
+		<li><a href="ViewAllOrderServlet">View ALL Orders</a></li>
+		<li><a href="CancelledOrdersServlet">Cancelled Orders</a></li>
 </ul>
 
 <form action="updatebook" method="post">

@@ -60,39 +60,73 @@ a{
     color: white;
 }
 .table{
-margin-top: 40px;
-margin-left: 450px;
+    margin-top: 40px;
+    margin-left: 320px;
 }
 th{
-padding: 10px;
+    padding: 10px;
+    font-size: 20px;
 }
 td{
-padding: 10px;
+    padding: 18px;
+    padding-right: 19px;
+    padding-left: 10px;
 }
 h3{
-text-align: center;
-margin-top: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+.search{
+    padding: 3px 3px;
+}
+.btn{
+    padding: 5px 4px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 6px;
+	background: linear-gradient(to bottom, #33ccff 45%, #006666 100%);
+	color: white;
+	font-weight: bold;
+	border-color: transparent;
+}
+.btn:hover{
+	opacity: 0.6;
+	font-weight: bold;
+  }
+input{
+    border-radius: 4px;
+}
+table{
+	border-style: solid;
+    border-color: silver;
+    background-color: rgba(0,0,0, 0.4);
 }
 </style>
 </head>
 <body>
 <form action="FilterOrderServlet">
 <ul>
-        <li><input type="date" name="search" class="text"></li>
-        <li><a href=><button>Search</button></a></li>
-        <li><a href="ViewUser.jsp">View User</a></li>
-        <li><a href="AddBooks.jsp">Add Books</a></li>
-		<li><a href="UpdateBook.jsp">Update Book</a></li>
-		<li><a href="ViewAllBook.jsp">All Books</a></li>
+        
+        <li><a href="admin.jsp">Home</a></li>
 		
-		<li><a href="AddAuthor.jsp">Add Author</a></li>
-		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
-		<li><a href="ViewAuthor.jsp">View Author</a></li>		
+        <li><a href="addBooks.jsp">Add Books</a></li>
+        
+		<li><a href="updateBook.jsp">Update Book</a></li>
+		
+		<li><a href="ViewAllBookServlet">All Books</a></li>
+		
+		<li><a href="addAuthor.jsp">Add Author</a></li>
+		
+		<li><a href="ViewAuthorServlet">View Author</a></li>
+		
+		<li><a href="ViewAllOrderServlet">View ALL Orders</a></li>
+		<li><a href="CancelledOrdersServlet">Cancelled Orders</a></li>	
 </ul>
-</form>
+
 
 <h3>All Orders</h3>
-
+<input type="date" name="search" class="search">
+<button type="submit" class="btn">Search</button>
+</form>
 <div class="table">
 <table id="allusers">
 <caption></caption>

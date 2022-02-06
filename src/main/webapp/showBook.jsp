@@ -107,15 +107,15 @@ ul
 <form action="filtername" method="post">
 <div class="nav">
     <ul>
-        <li><input type="text" name="search" class="text" placeholder="Enter Title"></li>
+        <li><input type="text" name="search" class="text" placeholder="Enter Title/Price"></li>
         <li><a href=><button>Search</button></a></li>
-        
+        <li><a href="FilterByConditionServlet">Old Books</a></li>
         <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
         <li><a href="MyProfileServlet">User profile</a></li>
         <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
         
         <li><a href="ViewMyOrderServlet">View My Order</a></li>
-        <li><a href="FilterByConditionServlet">Old Books</a></li>
+        
         <li><a href="login.jsp">Log Out</a></li>
     </ul>
 </div>

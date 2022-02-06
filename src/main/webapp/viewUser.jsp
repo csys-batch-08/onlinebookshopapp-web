@@ -4,126 +4,138 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html lang = "eng">
+<html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
 <title>USERS LIST PAGE</title>
 <style>
-body{
-    background-image: url(image/new8.jpg);
-    background-repeat: no-repeat;
-    background-size:1400px 625px;
-    color: white;
-    background-attachment: fixed;
+body {
+	background-image: url(image/new8.jpg);
+	background-repeat: no-repeat;
+	background-size: 1400px 625px;
+	color: white;
+	background-attachment: fixed;
 }
-*{
-			margin:0;
-			padding:0;
-		}
-.nav
-    {
-        list-style: none;
-          background: linear-gradient(to bottom, #33cccc 7%, #006666 74%);
-        color: black;
-        margin-top: 10px;
-    }
-  li{
-      display:inline-block;
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: center;
-      font-size: 13px;
-  }
-  li a:hover{
-  	opacity: 0.6;
-  	color: black;
-  	font-weight: bold;
-  }
-  li a{
-      text-decoration: none;
-      color:white;
-      display:block;
-      padding-right: 55px;
-      padding-left: 56px;
-  }
- 
-  
-  a:hover{
-  	opacity: 0.6;
-  	color: gold;
-  	font-weight: bold;
-  }
 
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.nav {
+	list-style: none;
+	background: linear-gradient(to bottom, #33cccc 7%, #006666 74%);
+	color: black;
+	margin-top: 10px;
+}
+
+li {
+	display: inline-block;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: center;
+	font-size: 13px;
+}
+
+li a:hover {
+	opacity: 0.6;
+	color: black;
+	font-weight: bold;
+}
+
+li a {
+	text-decoration: none;
+	color: white;
+	display: block;
+	padding-right: 55px;
+	padding-left: 56px;
+}
+
+a:hover {
+	opacity: 0.6;
+	font-weight: bold;
+}
 
 table {
 	border: solid silver;
 	margin: 30px 50px;
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
-th, td {
+td {
 	padding: 10px;
 	font-weight: bold;
 	font-size: 17px;
 }
 
-button{
-
-    padding: 5px;
-  	border-radius: 4px;
-  	background: linear-gradient(to bottom, #33ccff 45%, #006666 100%);
-  	color: white;
-  	font-weight: bold;
-  	border-color: transparent;
-}
-h1{
-text-align: center;
+th {
+	font-weight: bold;
+	font-size: 18px;
 }
 
+button {
+	padding: 5px;
+	border-radius: 4px;
+	background: linear-gradient(to bottom, #33ccff 45%, #006666 100%);
+	color: white;
+	font-weight: bold;
+	border-color: transparent;
+}
+
+h1 {
+	text-align: center;
+}
+
+input {
+	padding: 5px;
+	border-radius: 4px;
+}
 </style>
 </head>
 <body>
-<div class="nav">	
+	<div class="nav">
 		<ul>
-			
-			<li><a href="AddBooks.jsp">Add Books</a></li>
-			<li><a href="UpdateBook.jsp">Update Book</a></li>
-			<li><a href="ViewAllBook.jsp">All Books</a></li>
+			<li><a href="admin.jsp">Home</a></li>
+			<li><a href="addBooks.jsp">Add Books</a></li>
+			<li><a href="updateBook.jsp">Update Book</a></li>
+			<li><a href="ViewAllBookServlets">All Books</a></li>
 
-			<li><a href="AddAuthor.jsp">Add Author</a></li>
-			<li><a href="AuthorUpdate.jsp">Update Author</a></li>
-			<li><a href="ViewAuthor.jsp">View Author</a></li>
-			<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
-		</ul>	
-</div>
-<div class="head">
-<h1>All Users</h1>
-<form action="ViewParticularUserServlet">
-<input type="text" name="search" class="text" placeholder="Enter Title">
-<a href=><button>Search</button></a>
-</form>
-</div>
+			<li><a href="addAuthor.jsp">Add Author</a></li>
+			<li><a href="authorUpdate.jsp">Update Author</a></li>
+			<li><a href="ViewAuthorServlet">View Author</a></li>
+			<li><a href="ViewAllOrderServlet">View ALL Orders</a></li>
+			<li><a href="CancelledOrdersServlet">Cancelled Orders</a></li>
+		</ul>
+	</div>
+	<div class="head">
+		<h1>All Users</h1>
+		<form action="ViewParticularUserServlet">
+			<input type="text" name="search" class="text"
+				placeholder="Enter email Id"> <a href=><button>Search</button></a>
+		</form>
+	</div>
 	<div class="table">
 
 		<table id="allusers">
-		<caption></caption>
+			<caption></caption>
 			<thead>
-			
+
 				<tr>
-				
-					<th id = "sno">S.no</th>
-					<th id = "cusid">Customer ID</th>
-					<th id = "name">Name</th>
-					<th id = "phoneno">Phone No</th>
-					<th id = "address">Address</th>
-					<th id = "emailid">Email_id</th>
-					<th id = "password">Password</th>
-					<th id = "wallet">Wallet</th>
-					<th id = "role">Role</th>
-					<th id = "inactive">Inactive</th>
-					<th id = "inactive">Active</th>
+
+					<th id="sno">S.no</th>
+					<th id="cusid">Customer ID</th>
+					<th id="name">Name</th>
+					<th id="phoneno">Phone No</th>
+					<th id="address">Address</th>
+					<th id="emailid">Email_id</th>
+					<th id="password">Password</th>
+					<th id="wallet">Wallet</th>
+					<th id="role">Role</th>
+					<th id="inactive">Inactive</th>
+					<th id="active">Active</th>
 				</tr>
 			</thead>
-			
+
 			<tbody>
 				<c:set var="count" value="0" />
 				<c:forEach items="${userlist}" var="userList">

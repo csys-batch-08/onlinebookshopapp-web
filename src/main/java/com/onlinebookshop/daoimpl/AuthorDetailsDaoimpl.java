@@ -97,7 +97,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 			statement = con.createStatement();
 			resultset = statement.executeQuery(show);
 			while (resultset.next()) {
-				AuthorDetails author = new AuthorDetails(resultset.getString(1), resultset.getString(2), resultset.getInt(3));
+				AuthorDetails author = new AuthorDetails(resultset.getString("name"), resultset.getString("email_id"), resultset.getInt("book_id"));
 				authorList.add(author);
 			}
 		} catch (SQLException e) {
@@ -122,9 +122,8 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 			if(resultset != null) {
 				try {
 					con.close();
-				} catch (SQLException e) {
-				
-				}
+				} catch (SQLException e){
+				   e.printStackTrace();				}
 			}
 		}
 		return authorList;

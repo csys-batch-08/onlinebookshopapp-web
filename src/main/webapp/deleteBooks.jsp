@@ -51,7 +51,7 @@ body{
         	padding-top: 20px 10px;
         	
         }
-        fieldset{
+        .delete{
             position: absolute;
             top: 120px;
             
@@ -87,11 +87,11 @@ body{
  <h2>Books Wagon</h2>
 
 <form action="#" method="post">
-<fieldset>
+<div class="delete">
 <label for="booktitle">Book Title :</label><br>
 <input type="text" name="booktitle" class="booktitle"  required><br><br>
 <button type ="submit">Delete books</button>
-</fieldset>
+</div>
 </form>
 </body>
 </html>

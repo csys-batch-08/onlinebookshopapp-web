@@ -72,7 +72,7 @@ ul
         <li><a href="ShowBookServlet" class="set1">My Cart</a></li>
         <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
         <li><a href="MyProfileServlet">User profile</a></li>
-        <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
+        <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
         
         <li><a href="ViewMyOrderServlet">View My Order</a></li>
         <li><a href="FilterByConditionServlet">Old Books</a></li>
