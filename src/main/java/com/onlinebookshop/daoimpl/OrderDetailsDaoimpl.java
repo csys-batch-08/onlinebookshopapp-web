@@ -1,12 +1,12 @@
 package com.onlinebookshop.daoimpl;
 
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +19,12 @@ import com.onlinebookshop.util.Connectionutil;
 public class OrderDetailsDaoimpl implements OrderDetailsDao {
 
 	public void insertOrder(OrderDetails cart) {
-		String insertQuery = "insert into orderdetails(cus_id,book_id,quantity,total_cost) values(?,?,?,?)";
+		String query = "insert into orderdetails(cus_id,book_id,quantity,total_cost) values(?,?,?,?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.prepareStatement(insertQuery);
+			statement = con.prepareStatement(query);
 			statement.setInt(1, cart.getCusid());
 			statement.setInt(2, cart.getBookid());
 			statement.setInt(3, cart.getQuantity());
@@ -55,14 +55,14 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 	public List<OrderDetails> viewOrder() {
 		List<OrderDetails> orderList = new ArrayList<>();
 
-		String view = "select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails order by order_id desc";
+		String query = "select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails order by order_id desc";
 		Connection con = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
 			con = Connectionutil.getDbConnection();
 			statement = con.createStatement();
-			resultSet = statement.executeQuery(view);
+			resultSet = statement.executeQuery(query);
 			while (resultSet.next()) {
 				OrderDetails order = new OrderDetails(resultSet.getInt("cus_id"), resultSet.getInt("book_id"),
 						resultSet.getInt("quantity"), resultSet.getDouble("total_cost"),
