@@ -110,9 +110,9 @@ button:hover{
 <form action="updateauthor" method="post">
 <h1>Author Update!...</h1>
 <label for="emailid">Email Id :</label><br>
-<input type="text" name="emailid" class="emailid" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}"  required><br><br>
+<input type="text" name="emailid" id="emailid" class="emailid" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}"  required><br><br>
 <label for="authorname">Author Name :</label><br>
-<input type="text" name="authorname" class="authorname" pattern="[A-Za-z\s]{5,}" required><br><br>
+<input type="text" name="authorname" id="authorname" class="authorname" pattern="[A-Za-z\s]{5,}" required><br><br>
 <button type="submit">Update Author</button>
 </form>
 </body>

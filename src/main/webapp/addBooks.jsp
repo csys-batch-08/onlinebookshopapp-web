@@ -148,21 +148,21 @@ button:hover{
 
 <h3>Add Books !...</h3><br>
 <label for="category">Category :</label>
-<input type="text" name="category" class="category" pattern="[A-Z a-z]+" required><br><br>
+<input type="text" name="category" id="category" class="category" pattern="[A-Z a-z]+" required><br><br>
 <label for="description">Description : </label>
-<input type="text" name="description" class="description" pattern="[A-Z a-z ,]{6,}" required><br><br>
+<input type="text" name="description" id="description" class="description" pattern="[A-Z a-z ,]{6,}" required><br><br>
 <label for="booktitle">Book title :</label>
-<input type="text" name="booktitle" class="booktitle" pattern="[A-z a-z,]{5,}" required><br><br>
+<input type="text" name="booktitle" id="booktitle" class="booktitle" pattern="[A-z a-z,]{5,}" required><br><br>
 <label for="bookcode">Book Code :</label>
-<input type="text" name="bookcode" class="bookcode" pattern="[A-Z]+[0-9]{2,5}" required><br><br>
+<input type="text" name="bookcode" id="bookcode" class="bookcode" pattern="[A-Z]+[0-9]{2,5}" required><br><br>
 <label for="price">Price :</label>
-<input type="text" name="price" class="price" Pattern="[1-9][0-9]+" maxlength="5" required><br><br>
+<input type="text" name="price" id="price" class="price" Pattern="[1-9][0-9]+" maxlength="5" required><br><br>
 <label for="publishdate">Publish Date :</label>
-<input type="date" name="publishdate" class="publishdate" required><br><br>
+<input type="date" name="publishdate" id="publishdate" class="publishdate" required><br><br>
 <label for="condition">Condition :</label>
-<input type="text" name="condition" class="condition" pattern="[A-Za-z]{3,10}" required><br><br>
+<input type="text" name="condition" id="condition" class="condition" pattern="[A-Za-z]{3,10}" required><br><br>
 <label for="image">Image :</label>
-<input type="file" name="image" class="image" required><br><br>
+<input type="file" name="image" id="image" class="image" required><br><br>
 <button type ="submit">Add</button>
 
 </form>

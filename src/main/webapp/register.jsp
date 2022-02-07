@@ -54,17 +54,17 @@ opacity: 0.7;
 <div class="register">
         <h2>Sign In!...</h2>
         <label for="username">User Name :</label><br>
-        <input type="text" name="username" class="username" pattern="[A-Za-z]{5,}" required><br><br>
+        <input type="text" name="username" id="username" class="username" pattern="[A-Za-z]{5,}" required><br><br>
         <label for="phonenumber">Phone number :</label><br>
-        <input type="phone" name="phonenumber" class="phonenumber" pattern="[6-9][0-9]{9}" required><br><br>
+        <input type="phone" name="phonenumber" id="phonenumber" class="phonenumber" pattern="[6-9][0-9]{9}" required><br><br>
         <label for="email">Email Id :</label><br>
-        <input type="text" name="email" class="email" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
+        <input type="text" name="email" id="email" class="email" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
         <label for="address">Address :</label><br>
-        <input type="text" name="address" class="address" pattern="[A-Za-z0-9]{4,}+[,][A-Za-z]{4,}+[,][0-9]{6}+{20,}" required><br><br>
+        <input type="text" name="address" id="address" class="address" pattern="[A-Za-z0-9]{4,}+[,][A-Za-z]{4,}+[,][0-9]{6}+{20,}" required><br><br>
         <label for="password">Password :</label><br>
-        <input type="text" name="password" class="password" pattern="[A-Za-z0-9]{8,10}"  required><br><br>
+        <input type="text" name="password" id="password" class="password" pattern="[A-Za-z0-9]{8,10}"  required><br><br>
         <label for="password">Repeat Password :</label><br>
-        <input type="password" name="repeat" class="repeat"  pattern="[A-Za-z0-9]{8,10}" required><br><br>
+        <input type="password" name="repeat" id="repeat" class="repeat"  pattern="[A-Za-z0-9]{8,10}" required><br><br>
         <button type="submit" class ="sign">Sign in </button>
  </div>
 </form>

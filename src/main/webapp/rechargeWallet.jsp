@@ -157,7 +157,7 @@ ul
        <h3>Recharge Your Wallet..</h3>
 
          <label for="Amount">Amount:</label><br>
-         <input type="text" name="Amount" id="amount" placeholder="Enter Amount" Pattern="[1-9][0-9]+{1,5}"  ><br><br>
+         <input type="text" name="Amount" id="Amount" placeholder="Enter Amount" Pattern="[1-9][0-9]+{1,5}"  ><br><br>
          
           
          <button type="submit">Recharge Wallet</button>

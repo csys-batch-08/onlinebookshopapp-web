@@ -93,15 +93,15 @@ ul
 </div>
 <div class = "profile">
 <label for="name">Name :</label><br>
-<input type="text" name="username" class="username" pattern="[A-Za-z]{5,}" required><br><br>
+<input type="text" name="username" id="username" class="username" pattern="[A-Za-z]{5,}" required><br><br>
 <label for="phoneno">Phone number :</label><br>
-<input type="text" name="phoneno" class="phoneno" pattern="[6-9][0-9]{9}" required><br><br>
+<input type="text" name="phoneno" id="phoneno" class="phoneno" pattern="[6-9][0-9]{9}" required><br><br>
 <label for="address">Address :</label><br>
-<input type="text" name="address" class="address" pattern="[A-Za-z0-9]{4,}+[,][A-Za-z]{4,}+[,][0-9]{6}+{20,}" required><br><br>
+<input type="text" name="address" id="address" class="address" pattern="[A-Za-z0-9]{4,}+[,][A-Za-z]{4,}+[,][0-9]{6}+{20,}" required><br><br>
 <label for="email">Email ID :</label><br>
-<input type="text" name="email" class="email" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
+<input type="text" name="email" id="email" class="email" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
 <label for="password">Password :</label><br>
-<input type="text" name="password" class="password" pattern="[A-Za-z0-9]{8,10}" required><br><br>
+<input type="text" name="password" id="password" class="password" pattern="[A-Za-z0-9]{8,10}" required><br><br>
 <button type="submit">Update</button>
 </div>
 </form>

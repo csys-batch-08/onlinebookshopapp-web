@@ -120,7 +120,7 @@ input {
 
  <h4>Delete User  :</h4><br>
 <label for="emailid">User Email Id :</label><br><br>
-<input type="text" name="emailid" class="emailid"  pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
+<input type="text" name="emailid" id="emailid" class="emailid"  pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
 <button type="submit">Delete</button>
 </div>
 

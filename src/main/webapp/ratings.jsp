@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang = "eng">
@@ -150,7 +150,7 @@ ul
 		<div class="Rate">
 			<h2>Add Your Ratings..</h2>
 			<br> <label for="ratings">Ratings :</label><br> 
-			<input	type="text" name="ratings" class="ratings" Pattern="[1-9]" title="Positive number between 1-5" required><br>
+			<input	type="text" name="ratings" id="ratings" class="ratings" Pattern="[1-9]" title="Positive number between 1-5" required><br>
 			<br>
 			<button type="submit">Add</button>
 			

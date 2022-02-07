@@ -51,11 +51,11 @@ font-size: 20px;
 <div class="forgot">
 <h3>Reset your password here!...</h3>
 <label for="userid">Email Id :</label><br>
-<input type="text" class="textfield" name="userId" pattern="[a-z]+[0-9.]+[@][a-z]+[.][a-z]+{8,15}"><br><br>
+<input type="text" class="textfield" name="userId" id="userId" pattern="[a-z]+[0-9.]+[@][a-z]+[.][a-z]+{8,15}"><br><br>
 <label for="pass" >Phone number :</label><br>
-<input type="text"  name="mobNo"  class="textfield"pattern="[6-9][0-9]{9}"><br><br>
+<input type="text"  name="mobNo"  class="textfield" id="mobNo" pattern="[6-9][0-9]{9}"><br><br>
 <label for="pass" >Password :</label><br>
-<input type="password"  name="password" class="textfield" pattern="[A-Za-z0-9]{8,10}">
+<input type="password"  name="password" id="password" class="textfield" pattern="[A-Za-z0-9]{8,10}">
 
 <br>
 <br>                
