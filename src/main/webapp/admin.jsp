@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html lang = "eng">
 <head>
@@ -55,6 +55,7 @@ ul
         
         h1{
         margin-top: 250px;
+        text-align: center;
         }
         
 </style>
@@ -75,6 +76,6 @@ ul
 		<li><a href="CancelledOrdersServlet">Cancelled Orders</a></li>
 </ul>
 	
-	<marquee><h1>Welcome Admin!...</h1></marquee>
+	<h1>Welcome Admin!...</h1>
 </body>
 </html>
