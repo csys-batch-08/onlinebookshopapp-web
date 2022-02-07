@@ -6,21 +6,13 @@
 <meta charset="ISO-8859-1">
 <title>Order Cancel</title>
 <style>
-body{
-    background-image: url(image/new4.jpg);
-    background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
+body {
+	background-image: url(image/book.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
 }
-fieldset{
-    position: absolute;
-    top: 140px;
-    right: 40%;
-    padding-right: 30px;
-    padding-left: 30px;
-    
-}
+
 a{
     text-decoration: none;
     color: white;
@@ -28,13 +20,15 @@ a{
 ul
     {
         list-style: none;
-        background-color: #1c1c1c;
+        background-color:SaddleBrown;
         margin:0;
+        color: black;
+        width: 136.3%;
     }
   li{
       display:inline-block;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 12px;
+      padding-bottom: 12px;
       text-align: center;
       font-size: 17px;
   }
@@ -42,16 +36,25 @@ ul
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 7px;
-      padding-left: 7px;
+      padding-right: 40px;
+      padding-left: 55px;
   }
- li  button{
-      margin-right: 700px;
+   li a:hover{
+  	opacity: 0.7;
+  	color: black;
+  	font-weight: bold;
+  }
+      a:hover{
+  	opacity: 0.7;
+  	color: gold;
+  	font-weight: bold;
   }
   
+ 
   .set1{
       margin-right: 10px;
   }
+
  h1{
       text-align: center;
       padding-top: 150px;

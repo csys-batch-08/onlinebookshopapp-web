@@ -17,7 +17,7 @@ public class CartDaoimpl {
 	public int insertcart(Cart cart) throws SQLException {
 		int res = 0;
 		
-		if(cartexist(cart.getCusid(), cart.getBookid()) == false) {
+		if(!cartexist(cart.getCusid(), cart.getBookid())) {
 		
 			String insertQuery="insert into cart(book_id,cus_id)values(?,?)";
 		    Connection con = null;

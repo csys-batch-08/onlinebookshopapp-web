@@ -277,8 +277,8 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		return 1;
 	}
 
-	// rating exist:
-	public boolean orderCancelled(String status,int orderid) {
+	
+	public boolean orderCancelled(int orderid) {
 		Connection con = null;
 		String query = "select order_id,cus_id,book_id,quantity,total_cost,order_date,status from rating where status='order canceled' and order_id in ?";
 		PreparedStatement statement = null;
@@ -286,8 +286,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		try {
 			con = Connectionutil.getDbConnection();
 			statement = con.prepareStatement(query);
-			statement.setString(1, status);
-			statement.setInt(2,orderid);
+			statement.setInt(1, orderid);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				return true;
@@ -296,28 +295,10 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 
 			e.printStackTrace();
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-			if (resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(resultSet, statement, con);
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 

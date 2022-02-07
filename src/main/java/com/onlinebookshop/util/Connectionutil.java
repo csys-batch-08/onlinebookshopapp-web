@@ -15,17 +15,14 @@ public class Connectionutil {
 			Class.forName("oracle.jdbc.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(url, "system", "oracle");
-		} catch (ClassNotFoundException e) {
-			e.getMessage();
-			
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException  | SQLException e) {
 			e.getMessage();
 			
 		}
 		return con;
 	}
 
-	public void closeConnection(ResultSet rs, PreparedStatement pstmt, Connection con) throws SQLException {
+	public static void closeConnection(ResultSet rs, PreparedStatement pstmt, Connection con) throws SQLException {
 		if (rs != null) {
 			rs.close();
 		}

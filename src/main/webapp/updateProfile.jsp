@@ -92,7 +92,7 @@ ul
     </ul>
 </div>
 <div class = "profile">
-<label for="name">Name :</label><br>
+<label for="username">Name :</label><br>
 <input type="text" name="username" id="username" class="username" pattern="[A-Za-z]{5,}" required><br><br>
 <label for="phoneno">Phone number :</label><br>
 <input type="text" name="phoneno" id="phoneno" class="phoneno" pattern="[6-9][0-9]{9}" required><br><br>

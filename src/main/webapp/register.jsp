@@ -64,7 +64,7 @@ opacity: 0.7;
         <label for="password">Password :</label><br>
         <input type="text" name="password" id="password" class="password" pattern="[A-Za-z0-9]{8,10}"  required><br><br>
         <label for="password">Repeat Password :</label><br>
-        <input type="password" name="repeat" id="repeat" class="repeat"  pattern="[A-Za-z0-9]{8,10}" required><br><br>
+        <input type="password" name="password" id="password" class="repeat"  pattern="[A-Za-z0-9]{8,10}" required><br><br>
         <button type="submit" class ="sign">Sign in </button>
  </div>
 </form>
