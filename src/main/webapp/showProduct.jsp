@@ -143,17 +143,19 @@ ul
       
  
 <table>
-
+<caption></caption>
             <tbody>
                 <tr>
                 
                 <c:set var="count" value="1"/>
                 <c:forEach items="${booklist}" var="book">
-               
+                <th id = "head"></th>
                     <td>
                         <table id="producttable">
+                        <caption></caption>
                             <tbody>
                                 <tr>
+                                <th id = "bookslists"></th>
                                     <td><img src="image/${book.bookimages}" width=50 height=350 alt="book"></td>    
                                     <td class="book">
                                         <p><strong class="cat">CATEGORY   :   </strong>${book.category}<br></p>

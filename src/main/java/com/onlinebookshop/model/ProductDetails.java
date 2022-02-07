@@ -176,8 +176,8 @@ public class ProductDetails implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bookcode, booktitle, bookimages, category, condition, description, emailid, name, price,
-				publishdate, rating);
+		return Objects.hash(bookcode, bookid, bookimages, booktitle, category, condition, description, emailid, name,
+				price, publishdate, rating, status);
 	}
 
 	@Override
@@ -189,12 +189,15 @@ public class ProductDetails implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ProductDetails other = (ProductDetails) obj;
-		return Objects.equals(bookcode, other.bookcode) && Objects.equals(booktitle, other.booktitle)
+		return Objects.equals(bookcode, other.bookcode) && bookid == other.bookid
+				&& Objects.equals(bookimages, other.bookimages) && Objects.equals(booktitle, other.booktitle)
 				&& Objects.equals(category, other.category) && Objects.equals(condition, other.condition)
 				&& Objects.equals(description, other.description) && Objects.equals(emailid, other.emailid)
 				&& Objects.equals(name, other.name) && price == other.price
-				&& Objects.equals(publishdate, other.publishdate) && rating == other.rating
-				&& Objects.equals(bookimages, other.bookimages);
+				&& Objects.equals(publishdate, other.publishdate)
+				&& Double.doubleToLongBits(rating) == Double.doubleToLongBits(other.rating)
+				&& Objects.equals(status, other.status);
 	}
 
+	
 }

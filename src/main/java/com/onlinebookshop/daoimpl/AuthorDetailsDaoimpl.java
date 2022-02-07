@@ -36,22 +36,12 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
-
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 	}

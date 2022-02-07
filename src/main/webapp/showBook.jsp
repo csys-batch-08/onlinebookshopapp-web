@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -128,7 +127,7 @@ ul
                 <c:set var="count" value="1"/>
                 
                 <c:forEach items="${bookList}" var="booklist">
-                	
+                	<th id = "head"></th>
                     <td>
                         <table id="producttable">
                         <caption></caption>

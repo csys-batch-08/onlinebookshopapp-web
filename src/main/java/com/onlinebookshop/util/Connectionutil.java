@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.onlinebookshop.logger.Logger;
+
 public class Connectionutil {
 
 	public static Connection getDbConnection() {
@@ -16,7 +18,8 @@ public class Connectionutil {
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(url, "system", "oracle");
 		} catch (ClassNotFoundException  | SQLException e) {
-			e.getMessage();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 			
 		}
 		return con;
