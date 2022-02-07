@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.onlinebookshop.dao.AuthorDetailsDao;
+import com.onlinebookshop.logger.Logger;
 import com.onlinebookshop.model.AuthorDetails;
 
 import com.onlinebookshop.util.Connectionutil;
@@ -33,7 +34,8 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 
 		} finally {
 			if (statement != null) {
@@ -69,23 +71,14 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 	}
@@ -98,40 +91,26 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 
 		String show = "select name,email_id,book_id from author_details";
 		Connection con = null;
-	    Statement statement = null;
+	    PreparedStatement statement = null;
 	    ResultSet resultset = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset = statement.executeQuery(show);
+			statement = con.prepareStatement(show);
+			resultset = statement.executeQuery();
 			while (resultset.next()) {
 				AuthorDetails author = new AuthorDetails(resultset.getString("name"), resultset.getString("email_id"), resultset.getInt("book_id"));
 				authorList.add(author);
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					con.close();
-				} catch (SQLException e){
-				   e.printStackTrace();				}
+			try {
+				Connectionutil.closeConnection(resultset, statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return authorList;

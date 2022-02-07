@@ -4,12 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import com.onlinebookshop.dao.BookdetailsDao;
+import com.onlinebookshop.logger.Logger;
 import com.onlinebookshop.model.Bookdetails;
 import com.onlinebookshop.model.ProductDetails;
 import com.onlinebookshop.model.Rating;
@@ -38,24 +37,15 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 						
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
 		}
 		return 1;
 	}
@@ -72,24 +62,15 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			statement.execute("commit");
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
 		}
 		
 	}
@@ -122,32 +103,15 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultSet,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
 		}
 		
 		return productsList;
@@ -182,79 +146,46 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 						
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
 		}
 		
 		return productsList;
 	}
 	
 	public int findProductid(String booktitle) {
-		String find="select book_id from bookdetails where book_title='"+booktitle+"'";
+		String find="select book_id from bookdetails where book_title= ?";
 		Connection con = null ;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		ResultSet resultset = null;
 		int productId =0;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset =statement.executeQuery(find);
+			statement = con.prepareStatement(find);
+			statement.setString(1, booktitle);
+			resultset =statement.executeQuery();
 			if(resultset.next())
 			{
 				productId=resultset.getInt(1);
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
 		}
 		return productId;
 		
@@ -276,32 +207,15 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
 		}
 		return product;
 		
@@ -324,32 +238,15 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
 		}
 		return price;
 	}
@@ -367,25 +264,15 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-			
-		}finally {
-			if(statement != null) {
-				try {
-					statement.close();
-				}catch (Exception e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
 		}
 	}
 	
@@ -412,33 +299,16 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
-		}	
+		}
 		return filterPrice;
 	}
 	
@@ -469,33 +339,16 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
-		}	
+		}
 		return filterName;
 	}
 	
@@ -503,14 +356,14 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		List<ProductDetails> conditionList=new ArrayList<>();
 		String condition="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.condition='old'";
 		Connection con = null ;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		ResultSet resultset = null;
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset =statement.executeQuery(condition);
+			statement = con.prepareStatement(condition);
+			resultset =statement.executeQuery();
 			while(resultset.next())
 			{
 				rating.setBookid(resultset.getInt(1));
@@ -520,34 +373,16 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 	
-			e.printStackTrace();
-			
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
-		}	
+		}
 		return conditionList;
 	}
 	
@@ -555,12 +390,12 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		List<Bookdetails> categoryList=new ArrayList<>();
 		String category ="select category from bookdetails";
 		Connection con = null ;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		ResultSet resultset = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset =statement.executeQuery(category);
+			statement = con.prepareStatement(category);
+			resultset =statement.executeQuery();
 			while(resultset.next())
 			{
 			Bookdetails categorylist = new Bookdetails(resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5),resultset.getInt(6),resultset.getDate(7).toLocalDate(),resultset.getString(8),resultset.getString(9));
@@ -568,32 +403,15 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
 		}
 		return categoryList;
 	}
@@ -618,32 +436,15 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			
 		}
 		
 		return productsList;
@@ -673,32 +474,16 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-		}		
+		}
 		return bookdetails;
 	}
 	

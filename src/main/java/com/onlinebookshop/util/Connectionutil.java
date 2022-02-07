@@ -33,5 +33,15 @@ public class Connectionutil {
 			con.close();
 		}
 	}
+	
+	public static void closeConnection(PreparedStatement pstmt, Connection con) throws SQLException {
+		
+		if (pstmt != null) {
+			pstmt.close();
+		}
+		if (con != null) {
+			con.close();
+		}
+	}
 
 }

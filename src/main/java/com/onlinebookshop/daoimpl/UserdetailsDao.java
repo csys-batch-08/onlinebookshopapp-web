@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.onlinebookshop.dao.UserDetailsDao;
+import com.onlinebookshop.logger.Logger;
 import com.onlinebookshop.model.Userdetails;
 import com.onlinebookshop.util.Connectionutil;
 
@@ -41,24 +42,15 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-
 		}
 	}
 
@@ -83,30 +75,14 @@ public class UserdetailsDao implements UserDetailsDao {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(resultset,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return user;
@@ -134,32 +110,14 @@ public class UserdetailsDao implements UserDetailsDao {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
-
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-			if (resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(resultSet,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return user;
@@ -181,26 +139,15 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
-
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-
 		}
 
 	}
@@ -218,25 +165,15 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement.execute("commit");
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-
 		}
 	}
 
@@ -252,38 +189,28 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement.execute("commit");
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-
 		}
-
 	}
 
 	public List<Userdetails> viewUser() {
 		List<Userdetails> userList = new ArrayList<>();
 		String show = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role!='admin'";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultSet = statement.executeQuery(show);
+			statement = con.prepareStatement(show);
+			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				Userdetails user = new Userdetails(resultSet.getInt(CUS_ID), resultSet.getString(NAME),
 						resultSet.getLong(PHONE_NO), resultSet.getString("role"), resultSet.getString(ADDRESS),
@@ -292,30 +219,14 @@ public class UserdetailsDao implements UserDetailsDao {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-			if (resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(resultSet,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return userList;
@@ -340,31 +251,14 @@ public class UserdetailsDao implements UserDetailsDao {
 
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-			if (resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(resultSet,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return userList;
@@ -385,31 +279,14 @@ public class UserdetailsDao implements UserDetailsDao {
 				cusId = resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-			if (resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(resultSet,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return cusId;
@@ -430,31 +307,14 @@ public class UserdetailsDao implements UserDetailsDao {
 				return resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-			if (resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(resultSet,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return -1;
@@ -465,8 +325,9 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		String query = "update user_details set wallet = ? where email_id = ?";
 
-		PreparedStatement statement = null;
 		Connection con = null;
+		PreparedStatement statement = null;
+		
 		try {
 			con = Connectionutil.getDbConnection();
 			statement = con.prepareStatement(query);
@@ -475,25 +336,15 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-
 		}
 		return true;
 	}
@@ -517,31 +368,14 @@ public class UserdetailsDao implements UserDetailsDao {
 				userList.add(user);
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-			if (resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(resultSet,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return userList;
@@ -562,25 +396,15 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-
 		}
 		return true;
 	}
@@ -598,25 +422,15 @@ public class UserdetailsDao implements UserDetailsDao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-
 		}
 
 	}

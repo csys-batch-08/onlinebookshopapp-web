@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import com.onlinebookshop.logger.Logger;
 import com.onlinebookshop.model.*;
 import com.onlinebookshop.util.Connectionutil;
 
@@ -32,22 +30,14 @@ public class CartDaoimpl {
 			
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		}
@@ -71,30 +61,14 @@ public class CartDaoimpl {
 					return true;
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
-			}finally {
-				if (statement != null) {
-					try {
-						statement.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				if(con != null) {
-					try {
-						con.close();
-					} catch (SQLException e) {
-					
-						e.printStackTrace();
-					}
-				}
-				if(resultset != null) {
-					try {
-						resultset.close();
-					} catch (SQLException e) {
-					
-						e.printStackTrace();
-					}
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
+			} finally {
+				try {
+					Connectionutil.closeConnection(resultset, statement, con);
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
 				}
 			}
 			
@@ -115,8 +89,8 @@ public class CartDaoimpl {
 			con = Connectionutil.getDbConnection();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, cusid);
-			
 			resultset = statement.executeQuery();
+			
 			while(resultset.next()) {
 				 
                 rating.setBookid(resultset.getInt(1));
@@ -127,30 +101,14 @@ public class CartDaoimpl {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset, statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return booklist;	
@@ -160,42 +118,26 @@ public class CartDaoimpl {
 		List<Cart> cartList = new ArrayList<>();
 		String cart ="select cart_id,cus_id,book_id from cart";
 		Connection con = null ;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		ResultSet resultset = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement =con.createStatement();
-			resultset = statement.executeQuery(cart);
+			statement =con.prepareStatement(cart);
+			resultset = statement.executeQuery();
 			while(resultset.next()) {
 				Cart cartmodel = new Cart(resultset.getInt("cart_id"),resultset.getInt("cus_id"),resultset.getInt("book_id"));
 				cartList.add(cartmodel);
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultset, statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return cartList;
@@ -217,22 +159,14 @@ public class CartDaoimpl {
 			
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return 0;

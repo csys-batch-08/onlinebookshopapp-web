@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.onlinebookshop.dao.RatingDao;
+import com.onlinebookshop.logger.Logger;
 import com.onlinebookshop.model.Rating;
 import com.onlinebookshop.util.Connectionutil;
 
@@ -29,23 +30,14 @@ public class Ratingdaoimpl implements RatingDao{
 				
 			} catch (SQLException e) {
 
-				e.printStackTrace();
-				
-			}finally {
-				if (statement != null) {
-					try {
-						statement.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				if(con != null) {
-					try {
-						con.close();
-					} catch (SQLException e) {
-					
-						e.printStackTrace();
-					}
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
+			} finally {
+				try {
+					Connectionutil.closeConnection(statement, con);
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
 				}
 			}
 			
@@ -70,30 +62,14 @@ public class Ratingdaoimpl implements RatingDao{
 				
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultSet,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		return -1;
@@ -116,30 +92,14 @@ public class Ratingdaoimpl implements RatingDao{
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
-		}finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
-			}
-			if(resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} finally {
+			try {
+				Connectionutil.closeConnection(resultSet,statement, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 		}
 		
