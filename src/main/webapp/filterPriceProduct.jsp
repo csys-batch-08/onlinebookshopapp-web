@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html lang ="eng">
 <head>
@@ -127,18 +127,22 @@ ul
 </form>
  
 <table>
+<caption></caption>
             <tbody>
                 <tr>
                 
+                <th id = "filters">
                 <c:set var="count" value="1"/>
                 
                 <c:forEach items="${filterpricelist}" var="filterPrice">
                 	
-                	%>
+                
                     <td>
                         <table id="producttable">
+                        <caption></caption>
                             <tbody>
                                 <tr>
+                                <th id = "price">
                                     <td><a href = "ShowProductServlet?BookId=${filterPrice.bookid}"><img src="image/${filterPrice.bookimages}" width=50 height=350 alt="book"></a></td>    
                                     <td class="book">
                                         <p><strong>CATEGORY   :   </strong>${filterPrice.category}<br></p>
@@ -160,8 +164,7 @@ ul
                         <c:choose>
                           <c:when test="${count==2}">
                               <c:set var="count" value="1"/>
-                    	   </tr>
-                    	   <tr> 
+                    	    
                     	   </c:when> 
                     	   <c:otherwise>
                     	   <c:set var="count" value="${count+1}"/>

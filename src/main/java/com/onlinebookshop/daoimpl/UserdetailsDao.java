@@ -14,6 +14,14 @@ import com.onlinebookshop.util.Connectionutil;
 
 public class UserdetailsDao implements UserDetailsDao {
 
+	private static final String EMAIL_ID = "email_id";
+	private static final String PASSWORD = "password";
+	private static final String ADDRESS = "address";
+	private static final String WALLET = "wallet";
+	private static final String NAME = "name";
+	private static final String CUS_ID = "cus_id";
+	private static final String PHONE_NO = "phoneNo";
+
 	public void insertUser(Userdetails user) {
 		String insertQuery = "insert into user_details(name,phoneNo,address,email_id,password) values(?,?,?,?,?)";
 
@@ -69,9 +77,9 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement.setString(2, password);
 			resultset = statement.executeQuery();
 			if (resultset.next()) {
-				user = new Userdetails(resultset.getInt("cus_id"), resultset.getString("name"),
-						resultset.getLong("phoneNo"), resultset.getString("role"), resultset.getString("address"),
-						emailid, password, resultset.getInt("wallet"));
+				user = new Userdetails(resultset.getInt(CUS_ID), resultset.getString(NAME), resultset.getLong(PHONE_NO),
+						resultset.getString("role"), resultset.getString(ADDRESS), emailid, password,
+						resultset.getInt(WALLET));
 			}
 		} catch (SQLException e) {
 
@@ -120,9 +128,9 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement.setString(2, password);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"),
-						resultSet.getLong("phoneNo"), resultSet.getString("role"), resultSet.getString("address"),
-						emailid, password, resultSet.getInt("wallet"));
+				user = new Userdetails(resultSet.getInt(CUS_ID), resultSet.getString(NAME), resultSet.getLong(PHONE_NO),
+						resultSet.getString("role"), resultSet.getString(ADDRESS), emailid, password,
+						resultSet.getInt(WALLET));
 			}
 
 		} catch (SQLException e) {
@@ -277,9 +285,9 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement = con.createStatement();
 			resultSet = statement.executeQuery(show);
 			while (resultSet.next()) {
-				Userdetails user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"),
-						resultSet.getLong("phoneNo"), resultSet.getString("role"), resultSet.getString("address"),
-						resultSet.getString("email_id"), resultSet.getString("password"), resultSet.getInt("wallet"));
+				Userdetails user = new Userdetails(resultSet.getInt(CUS_ID), resultSet.getString(NAME),
+						resultSet.getLong(PHONE_NO), resultSet.getString("role"), resultSet.getString(ADDRESS),
+						resultSet.getString(EMAIL_ID), resultSet.getString(PASSWORD), resultSet.getInt(WALLET));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -325,9 +333,9 @@ public class UserdetailsDao implements UserDetailsDao {
 			statement.setString(1, emailid);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				Userdetails user = new Userdetails(resultSet.getInt("cus_id"), resultSet.getString("name"),
-						resultSet.getLong("phoneNo"), resultSet.getString("role"), resultSet.getString("address"),
-						resultSet.getString("email_id"), resultSet.getString("password"), resultSet.getInt("wallet"));
+				Userdetails user = new Userdetails(resultSet.getInt(CUS_ID), resultSet.getString(NAME),
+						resultSet.getLong(PHONE_NO), resultSet.getString("role"), resultSet.getString(ADDRESS),
+						resultSet.getString(EMAIL_ID), resultSet.getString(PASSWORD), resultSet.getInt(WALLET));
 				userList.add(user);
 
 			}
@@ -503,9 +511,9 @@ public class UserdetailsDao implements UserDetailsDao {
 
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				Userdetails user = new Userdetails(resultSet.getString("name"), resultSet.getLong("phoneno"),
-						resultSet.getString("address"), resultSet.getString("email_id"),
-						resultSet.getString("password"), resultSet.getInt("wallet"));
+				Userdetails user = new Userdetails(resultSet.getString(NAME), resultSet.getLong("phoneno"),
+						resultSet.getString(ADDRESS), resultSet.getString(EMAIL_ID), resultSet.getString(PASSWORD),
+						resultSet.getInt(WALLET));
 				userList.add(user);
 			}
 		} catch (SQLException e) {

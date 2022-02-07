@@ -18,6 +18,13 @@ import com.onlinebookshop.util.Connectionutil;
 
 public class OrderDetailsDaoimpl implements OrderDetailsDao {
 
+	private static final String STATUS = "status";
+	private static final String BOOK_ID = "book_id";
+	private static final String TOTAL_COST = "total_cost";
+	private static final String CUS_ID = "cus_id";
+	private static final String QUANTITY = "quantity";
+	private static final String ORDER_DATE = "order_date";
+
 	public void insertOrder(OrderDetails cart) {
 		String query = "insert into orderdetails(cus_id,book_id,quantity,total_cost) values(?,?,?,?)";
 		Connection con = null;
@@ -64,9 +71,9 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 			statement = con.createStatement();
 			resultSet = statement.executeQuery(query);
 			while (resultSet.next()) {
-				OrderDetails order = new OrderDetails(resultSet.getInt("cus_id"), resultSet.getInt("book_id"),
-						resultSet.getInt("quantity"), resultSet.getDouble("total_cost"),
-						resultSet.getDate("order_date").toLocalDate(), resultSet.getString("status"));
+				OrderDetails order = new OrderDetails(resultSet.getInt(CUS_ID), resultSet.getInt(BOOK_ID),
+						resultSet.getInt(QUANTITY), resultSet.getDouble(TOTAL_COST),
+						resultSet.getDate(ORDER_DATE).toLocalDate(), resultSet.getString(STATUS));
 				orderList.add(order);
 			}
 		} catch (SQLException e) {
@@ -163,9 +170,9 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 
 			resultSet = statement.executeQuery(cancelorder);
 			while (resultSet.next()) {
-				OrderDetails order = new OrderDetails(resultSet.getInt("cus_id"), resultSet.getInt("book_id"),
-						resultSet.getInt("quantity"), resultSet.getDouble("total_cost"),
-						resultSet.getDate("order_date").toLocalDate(), resultSet.getString("status"));
+				OrderDetails order = new OrderDetails(resultSet.getInt(CUS_ID), resultSet.getInt(BOOK_ID),
+						resultSet.getInt(QUANTITY), resultSet.getDouble(TOTAL_COST),
+						resultSet.getDate(ORDER_DATE).toLocalDate(), resultSet.getString(STATUS));
 				orderList.add(order);
 			}
 		} catch (SQLException e) {
@@ -271,7 +278,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 	}
 
 	// rating exist:
-	public boolean orderCancelled(String status, int orderid) {
+	public boolean orderCancelled(String status,int orderid) {
 		Connection con = null;
 		String query = "select order_id,cus_id,book_id,quantity,total_cost,order_date,status from rating where status='order canceled' and order_id in ?";
 		PreparedStatement statement = null;
@@ -280,7 +287,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 			con = Connectionutil.getDbConnection();
 			statement = con.prepareStatement(query);
 			statement.setString(1, status);
-			statement.setInt(2, orderid);
+			statement.setInt(2,orderid);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				return true;
@@ -332,9 +339,9 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 
-				OrderDetails order = new OrderDetails(resultSet.getInt("order_id"), resultSet.getInt("cus_id"),
-						resultSet.getInt("book_id"), resultSet.getInt("quantity"), resultSet.getDouble("total_cost"),
-						resultSet.getDate("order_date").toLocalDate(), resultSet.getString("status"));
+				OrderDetails order = new OrderDetails(resultSet.getInt("order_id"), resultSet.getInt(CUS_ID),
+						resultSet.getInt(BOOK_ID), resultSet.getInt(QUANTITY), resultSet.getDouble(TOTAL_COST),
+						resultSet.getDate(ORDER_DATE).toLocalDate(), resultSet.getString(STATUS));
 				orderList.add(order);
 
 			}

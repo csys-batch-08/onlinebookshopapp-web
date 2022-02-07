@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html lang = "eng">
 <head>
@@ -118,16 +118,19 @@ a:hover {
 
 
 <table>
+<caption></caption>
             <tbody>
                 <tr>
-                
+                <th id="filter">
                 <c:set var="count" value="1"/>
                 <c:forEach items="${filternamelist}" var="filterName">
                 	
                     <td>
                         <table id="producttable">
+                        <caption></caption>
                             <tbody>
                                 <tr>
+                                <th id="filters">
                                     <td><a href = "ShowProductServlet?BookId=${filterName.bookid}"><img src="image/${filterName.bookimages}" width=50 height=350 alt="book"></a></td>    
                                     <td class="book">
                                         <p><strong>CATEGORY   :   </strong>${filterName.category}<br></p>
@@ -149,8 +152,7 @@ a:hover {
                        <c:choose>
                           <c:when test="${count==2}">
                               <c:set var="count" value="1"/>
-                    	   </tr>
-                    	   <tr> 
+                    	   
                     	   </c:when> 
                     	   <c:otherwise>
                     	   <c:set var="count" value="${count+1}"/>

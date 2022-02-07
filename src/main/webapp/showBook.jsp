@@ -1,8 +1,7 @@
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html lang = "eng">
 <head>
@@ -122,6 +121,7 @@ ul
 </form>
  
 <table>
+<caption></caption>
             <tbody>
                 <tr>
                 
@@ -131,8 +131,10 @@ ul
                 	
                     <td>
                         <table id="producttable">
+                        <caption></caption>
                             <tbody>
                                 <tr>
+                                <th id="books"></th>
                                     <td><a href = "ShowProductServlet?BookId=${booklist.bookid}"><img src="image/${booklist.bookimages}" width=50 height=350 alt="book"></a></td>    
                                     <td class="book">
                                         <p><strong>CATEGORY   :   </strong>${booklist.category}<br></p>

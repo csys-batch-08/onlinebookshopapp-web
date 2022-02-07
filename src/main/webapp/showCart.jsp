@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <!DOCTYPE html>
@@ -134,20 +134,21 @@ margin-left: 30px;
 
 <table>
                        
-
+<caption></caption>
             <tbody>
                 <tr>
                  <h3>MY CART</h3>
-                       
+                  <th id="cart">     
                 <c:set var="count" value="1"/>
                 <c:forEach items="${cartList}" var="cart">
                 
                     <td>
                         <table id="producttable">
                         
-                     
+                     <caption></caption>
                             <tbody>
                                 <tr>
+                                <th id="mycart">
                                     <td><img src="image/${cart.bookimages}" width=150 height=350 alt="book"></td>    
                                     <td class="book">
                                          <p><strong>CATEGORY  :    </strong>${cart.category}<br></p>

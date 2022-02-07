@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang = "eng">
@@ -161,17 +161,20 @@ ul
             <c:remove var="rating" scope="session"/>
 		</div>
 <table>
+<caption></caption>
             <tbody>
                 <tr>
-                
+                <th id="book">
                 <c:set var="count" value="1"/>
                <c:forEach items="${books}" var="booklist">
                 	
         
                     <td>
                         <table id="producttable">
+                        <caption></caption>
                             <tbody>
                                 <tr>
+                                <th id="books">
                                     <td><img src="image/${booklist.bookimages}" width=180 height=350 alt="book"></td>    
                                     <td class="book">
                                         <p><strong class="cat">CATEGORY   :   </strong>${booklist.category}<br></p>
@@ -197,8 +200,7 @@ ul
                        <c:choose>
                           <c:when test="${count==2}">
                               <c:set var="count" value="1"/>
-                    	   </tr>
-                    	   <tr> 
+                    	    
                     	   </c:when> 
                     	   <c:otherwise>
                     	   <c:set var="count" value="${count+1}"/>
