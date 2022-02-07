@@ -1,10 +1,16 @@
 package com.onlinebookshop.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class OrderDetails {
+public class OrderDetails implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int orderid;
 	private int bookid;
 	private int cusid;

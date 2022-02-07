@@ -108,11 +108,11 @@ button:hover{
 <form action="AddAuthor" method="post">
 <div class = "addauthor">
 <h2>Add Author!...</h2>
-<label for="name">Name :</label><br>
+<label for="authorname">Name :</label><br>
 <input type="text" name="authorname" id="authorname" class="author" required><br><br>
 <label for="email">Email_Id :</label><br>
 <input type="text" name="email" id="email" class="author" required><br><br>
-<label for="booktitle">Book Name :</label><br>
+<label for="bookname">Book Name :</label><br>
 <input type="text" name="bookname" id="bookname" class="author" required><br><br>
 <button type ="submit">Add</button>
 </div>

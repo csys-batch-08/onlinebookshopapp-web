@@ -1,10 +1,15 @@
 package com.onlinebookshop.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class ProductDetails {
+public class ProductDetails implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int bookid;
 	private String category;
 	private String description;
