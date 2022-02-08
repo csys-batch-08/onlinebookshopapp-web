@@ -1,19 +1,13 @@
 package com.onlinebookshop.daoimpl;
-
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import com.onlinebookshop.dao.OrderDetailsDao;
 import com.onlinebookshop.logger.Logger;
 import com.onlinebookshop.model.OrderDetails;
-
 import com.onlinebookshop.util.Connectionutil;
 
 public class OrderDetailsDaoimpl implements OrderDetailsDao {
