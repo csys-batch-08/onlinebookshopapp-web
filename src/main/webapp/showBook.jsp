@@ -105,6 +105,7 @@ ul
 <form action="filtername" method="post">
 <div class="nav">
     <ul>
+        <li><label for="search"></label></li>
         <li><input type="text" name="search" id="search" class="text" placeholder="Enter Title/Price"></li>
         <li><a href=><button>Search</button></a></li>
         <li><a href="FilterByConditionServlet">Old Books</a></li>

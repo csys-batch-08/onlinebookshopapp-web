@@ -137,6 +137,7 @@ table {
 
 
 		<h3>All Orders</h3>
+		<label for="search"></label>
 		<input type="date" name="search" id="search" class="search">
 		<button type="submit" class="btn">Search</button>
 	</form>

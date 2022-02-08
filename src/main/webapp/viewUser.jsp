@@ -110,6 +110,7 @@ input {
 	<div class="head">
 		<h1>All Users</h1>
 		<form action="ViewParticularUserServlet">
+		<label for="search"></label>
 			<input type="text" name="search" id="search" class="text"
 				placeholder="Enter email Id"> <a href=><button>Search</button></a>
 		</form>
