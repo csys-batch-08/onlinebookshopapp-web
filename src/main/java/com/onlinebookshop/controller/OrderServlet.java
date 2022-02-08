@@ -30,7 +30,7 @@ public class OrderServlet extends HttpServlet {
 		int userid = Integer.parseInt(session.getAttribute("userId").toString());
 
 		String userName = (String) session.getAttribute("emailid");
-		
+
 		int itemid = (int) session.getAttribute("Book");
 
 		BookdetailsDaoimpl bookdetails = new BookdetailsDaoimpl();
@@ -38,29 +38,27 @@ public class OrderServlet extends HttpServlet {
 		int price = bookdetails.findPrice(itemid);
 
 		int totalprice = quantity * price;
-        
+
 		session.setAttribute("Totalprice", totalprice);
-		
+
 		OrderDetailsDaoimpl orderDao = new OrderDetailsDaoimpl();
 
 		OrderDetails orderBook = new OrderDetails(itemid, userid, quantity, totalprice);
 
-		
-		
 		UserdetailsDao userdao = new UserdetailsDao();
 
 		int wallet = userdao.walletballance(userid);
 
 		session.setAttribute("availwallet", wallet);
-		
+
 		if (wallet > totalprice) {
-            
+
 			orderDao.insertOrder(orderBook);
-			
+
 			int newWallet = wallet - totalprice;
 
 			session.setAttribute("newwallet", newWallet);
-			
+
 			Userdetails user = new Userdetails(null, 0, null, userName, null, newWallet);
 
 			userdao.updatewallet(user);

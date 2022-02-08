@@ -1,9 +1,6 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -19,20 +16,21 @@ import com.onlinebookshop.model.OrderDetails;
 @WebServlet("/FilterOrderServlet")
 public class FilterOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String date = request.getParameter("search");
-		
+
 		OrderDetailsDaoimpl orderDetailsDaoimpl = new OrderDetailsDaoimpl();
-		
-        List<OrderDetails> orderList = orderDetailsDaoimpl.filterOrderDate(date);
-        
+
+		List<OrderDetails> orderList = orderDetailsDaoimpl.filterOrderDate(date);
+
 		request.setAttribute("orderlist", orderList);
-		
+
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("viewAllOrders.jsp");
+
 		requestDispatcher.forward(request, response);
 	}
 

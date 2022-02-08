@@ -12,21 +12,25 @@ import com.onlinebookshop.model.Userdetails;
 
 @WebServlet("/forgotpassword")
 public class ForgotPasswordServlet extends HttpServlet {
-	
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String email=request.getParameter("userId");
-		Long mobile =Long.parseLong(request.getParameter("mobNo"));
-		String password=request.getParameter("password");
-		
-		Userdetails userdetails = new Userdetails(null,mobile,null,email,password,0);
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String email = request.getParameter("userId");
+
+		Long mobile = Long.parseLong(request.getParameter("mobNo"));
+
+		String password = request.getParameter("password");
+
+		Userdetails userdetails = new Userdetails(null, mobile, null, email, password, 0);
+
 		UserdetailsDao userdao = new UserdetailsDao();
-		
+
 		userdao.forgotPassword(userdetails);
+
 		response.sendRedirect("login.jsp");
 	}
 

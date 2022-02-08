@@ -199,5 +199,4 @@ public class ProductDetails implements Serializable {
 				&& Objects.equals(status, other.status);
 	}
 
-	
 }

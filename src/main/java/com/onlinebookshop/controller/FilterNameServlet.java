@@ -16,38 +16,45 @@ import com.onlinebookshop.model.ProductDetails;
 
 @WebServlet("/filtername")
 public class FilterNameServlet extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		HttpSession session=request.getSession();
-		
+		HttpSession session = request.getSession();
+
 		String bookname = (String) session.getAttribute("Bookname");
+
 		BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-		List<ProductDetails> showProduct= bookdetaildao.filterName(bookname);
-		
+
+		List<ProductDetails> showProduct = bookdetaildao.filterName(bookname);
+
 		request.setAttribute("filternamelist", showProduct);
-				
+
 		String name = (request.getParameter("search"));
-		if(name.matches("[a-zA-Z\s]+")) {
-		BookdetailsDaoimpl bookdao = new BookdetailsDaoimpl();
-		
-		
-		bookdao.filterName(name);
-		
-		session.setAttribute("Bookname", name);
-		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("filterName.jsp");
-		requestDispatcher.forward(request, response);
-		
-		}else {
+
+		if (name.matches("[a-zA-Z\s]+")) {
+
+			BookdetailsDaoimpl bookdao = new BookdetailsDaoimpl();
+
+			bookdao.filterName(name);
+
+			session.setAttribute("Bookname", name);
+
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("filterName.jsp");
+
+			requestDispatcher.forward(request, response);
+
+		} else {
 			request.setAttribute("filterPrice", name);
+
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("filterprice");
+
 			requestDispatcher.forward(request, response);
 		}
-	    
+
 	}
 
 }

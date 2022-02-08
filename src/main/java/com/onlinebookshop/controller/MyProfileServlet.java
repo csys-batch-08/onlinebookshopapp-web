@@ -14,28 +14,28 @@ import javax.servlet.http.HttpSession;
 import com.onlinebookshop.daoimpl.UserdetailsDao;
 import com.onlinebookshop.model.Userdetails;
 
-
 @WebServlet("/MyProfileServlet")
 public class MyProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+
 		UserdetailsDao userdetailsdao = new UserdetailsDao();
-		 
-		int user=(int)session.getAttribute("userId");
-		
-		List<Userdetails> userList = userdetailsdao.myProfile(user); 
-		 
-		
+
+		int user = (int) session.getAttribute("userId");
+
+		List<Userdetails> userList = userdetailsdao.myProfile(user);
+
 		request.setAttribute("userlist", userList);
-		
+
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("myProfile.jsp");
+
 		requestDispatcher.forward(request, response);
-				
+
 	}
 
 }

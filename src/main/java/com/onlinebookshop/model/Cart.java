@@ -3,13 +3,13 @@ package com.onlinebookshop.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Cart implements Serializable{
+public class Cart implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private int cartid;
 	private int bookid;
 	private int cusid;

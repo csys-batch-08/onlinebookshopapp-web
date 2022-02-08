@@ -45,16 +45,17 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 			}
 		}
 	}
-/**
- * This method is used to update author details.
- */
+
+	/**
+	 * This method is used to update author details.
+	 */
 	public void updateAuthor(String emailid, String name) {
 		String updateQuery = "update author_details set name=? where email_id=?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
 			con = Connectionutil.getDbConnection();
-		    statement = con.prepareStatement(updateQuery);
+			statement = con.prepareStatement(updateQuery);
 			statement.setString(1, name);
 			statement.setString(2, emailid);
 			statement.executeUpdate();
@@ -81,14 +82,15 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 
 		String show = "select name,email_id,book_id from author_details";
 		Connection con = null;
-	    PreparedStatement statement = null;
-	    ResultSet resultset = null;
+		PreparedStatement statement = null;
+		ResultSet resultset = null;
 		try {
 			con = Connectionutil.getDbConnection();
 			statement = con.prepareStatement(show);
 			resultset = statement.executeQuery();
 			while (resultset.next()) {
-				AuthorDetails author = new AuthorDetails(resultset.getString("name"), resultset.getString("email_id"), resultset.getInt("book_id"));
+				AuthorDetails author = new AuthorDetails(resultset.getString("name"), resultset.getString("email_id"),
+						resultset.getInt("book_id"));
 				authorList.add(author);
 			}
 		} catch (SQLException e) {

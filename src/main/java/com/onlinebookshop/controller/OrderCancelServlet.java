@@ -14,57 +14,51 @@ import com.onlinebookshop.model.Userdetails;
 
 @WebServlet("/cancelorder")
 public class OrderCancelServlet extends HttpServlet {
-	
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
-		
-		int orderId =Integer.parseInt(request.getParameter("orderid"));
-				
+
+		int orderId = Integer.parseInt(request.getParameter("orderid"));
+
 		OrderDetailsDaoimpl orderdetails = new OrderDetailsDaoimpl();
-		
-		String status=orderdetails.findStatus(orderId);
-		
-		if(status.equals("order canceled")) {
-			
+
+		String status = orderdetails.findStatus(orderId);
+
+		if (status.equals("order canceled")) {
+
 			response.sendRedirect("alreadyCancel.jsp");
-			
-		}else {
-			
-            orderdetails.cancelOrder(orderId);
-			
-			int totalAmount =orderdetails.findOrderPrice(orderId);
-			
+
+		} else {
+
+			orderdetails.cancelOrder(orderId);
+
+			int totalAmount = orderdetails.findOrderPrice(orderId);
+
 			UserdetailsDao userdao = new UserdetailsDao();
 
-			int userid = (int)session.getAttribute("userId");
-			
+			int userid = (int) session.getAttribute("userId");
+
 			int wallet = userdao.walletballance(userid);
-		
-				int refund = wallet + totalAmount;
-				
-				session.setAttribute("availbalance", refund);
-				
-				String email=(String) session.getAttribute("emailid");
-				
-				Userdetails updatewallet = new Userdetails(null,0,null,email,null,refund);
-				
-				userdao.updatewallet(updatewallet);
-				
-				
-				
-				response.sendRedirect("orderCancel.jsp");
-			
+
+			int refund = wallet + totalAmount;
+
+			session.setAttribute("availbalance", refund);
+
+			String email = (String) session.getAttribute("emailid");
+
+			Userdetails updatewallet = new Userdetails(null, 0, null, email, null, refund);
+
+			userdao.updatewallet(updatewallet);
+
+			response.sendRedirect("orderCancel.jsp");
+
 		}
-		
-		
-		
-		
-		    
+
 	}
 
 }

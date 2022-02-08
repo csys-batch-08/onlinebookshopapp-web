@@ -14,26 +14,28 @@ import javax.servlet.http.HttpSession;
 import com.onlinebookshop.daoimpl.BookdetailsDaoimpl;
 import com.onlinebookshop.model.ProductDetails;
 
-
 @WebServlet("/FilterByConditionServlet")
 public class FilterByConditionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		int userid = (int)session.getAttribute("userId");
+		
+		int userid = (int) session.getAttribute("userId");
+		
 		BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-		List<ProductDetails> showProduct= bookdetaildao.filterCondition(userid);
 		
+		List<ProductDetails> showProduct = bookdetaildao.filterCondition(userid);
+
 		request.setAttribute("oldBookList", showProduct);
-		
+
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("filterByCondition.jsp");
-		
+
 		requestDispatcher.forward(request, response);
-		
+
 	}
 
 }

@@ -260,7 +260,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
-			
+
 		} finally {
 			try {
 				Connectionutil.closeConnection(resultSet, statement, con);

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.onlinebookshop.daoimpl.Ratingdaoimpl;
+import com.onlinebookshop.logger.Logger;
 import com.onlinebookshop.model.Rating;
 
 @WebServlet("/rating")
@@ -19,39 +20,42 @@ public class RatingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		
-		int userid= (int)session.getAttribute("userId");
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		int id = (int) session.getAttribute("BookID");		
-		
+		HttpSession session = request.getSession();
+
+		int userid = (int) session.getAttribute("userId");
+
+		int id = (int) session.getAttribute("BookID");
+
 		int rating = Integer.parseInt(request.getParameter("ratings"));
-		
-		Rating rate=new Rating(userid,id,rating);
-		
+
+		Rating rate = new Rating(userid, id, rating);
+
 		Ratingdaoimpl ratingdao = new Ratingdaoimpl();
-		
-		int res=0;
-		
+
+		int res = 0;
+
 		try {
-			 res = ratingdao.rating(rate);
-			
-			if(res > 0) {
-				
+			res = ratingdao.rating(rate);
+
+			if (res > 0) {
+
 				session.setAttribute("rating", "Inserted successfully");
 
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowBookServlet");
-				
+
 				requestDispatcher.forward(request, response);
-			}else {
-				
+			} else {
+
 				response.sendRedirect("alreadyRating.jsp");
 			}
 		} catch (SQLException e) {
 
-			e.getMessage();
+			Logger.printStackTrace(e);
+			
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

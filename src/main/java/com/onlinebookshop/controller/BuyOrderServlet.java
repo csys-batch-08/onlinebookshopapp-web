@@ -16,23 +16,27 @@ import com.onlinebookshop.model.ProductDetails;
 @WebServlet("/BuyOrderServlet")
 public class BuyOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		
-		int bookid=Integer.parseInt(request.getParameter("bookid"));
-		session.setAttribute("Book",bookid);
+
+		int bookid = Integer.parseInt(request.getParameter("bookid"));
+
+		session.setAttribute("Book", bookid);
+
 		BookdetailsDaoimpl bookdetailsDaoimpl = new BookdetailsDaoimpl();
+
 		List<ProductDetails> bookdetail = bookdetailsDaoimpl.ratingproducts(bookid);
-		
+
 		request.setAttribute("orderlist", bookdetail);
-		
+
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("buyOrder.jsp");
+
 		requestDispatcher.forward(request, response);
-			
+
 	}
 
 }

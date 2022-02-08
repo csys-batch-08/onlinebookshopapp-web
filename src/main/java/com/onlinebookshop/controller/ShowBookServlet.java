@@ -13,23 +13,24 @@ import javax.servlet.http.HttpServletResponse;
 import com.onlinebookshop.daoimpl.BookdetailsDaoimpl;
 import com.onlinebookshop.model.ProductDetails;
 
-
 @WebServlet("/ShowBookServlet")
 public class ShowBookServlet extends HttpServlet {
-		
+
 	private static final long serialVersionUID = 1L;
 
-@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	
-	BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-	List<ProductDetails> showProduct= bookdetaildao.showProduct();
-	
-	request.setAttribute("bookList", showProduct);
-	
-	RequestDispatcher requestDispatcher = request.getRequestDispatcher("showBook.jsp");
-	requestDispatcher.forward(request, response);
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
+		
+		List<ProductDetails> showProduct = bookdetaildao.showProduct();
+
+		request.setAttribute("bookList", showProduct);
+
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("showBook.jsp");
+		
+		requestDispatcher.forward(request, response);
 
 	}
 

@@ -2,13 +2,13 @@ package com.onlinebookshop.model;
 
 import java.io.Serializable;
 
-public class Rating implements Serializable{
+public class Rating implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private int id;
 	private int cusid;
 	private int bookid;
