@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" %>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -25,7 +25,6 @@ img {
 	margin-top: 50px;
 	margin-left: 60px;
 }
-
 
 table td {
 	padding-bottom: 60px;
@@ -114,76 +113,59 @@ li button {
 	<form action="filterprice" method="post">
 		<div class="nav">
 			<ul>
-		       <li><a href="ShowBookServlet">Home</a></li>
-			
-		       <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
-               <li><a href="MyProfileServlet">User profile</a></li>
-               <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
-        
-               <li><a href="ViewMyOrderServlet">View My Order</a></li>
-               <li><a href="login.jsp">Log Out</a></li>
+				<li><a href="ShowBookServlet">Home</a></li>
+				<li><a href="ShowCartServlet" class="set1">My Cart</a></li>
+				<li><a href="MyProfileServlet">User profile</a></li>
+				<li><a href="rechargeWallet.jsp">Recharge Wallet</a>
+				<li>
+				<li><a href="ViewMyOrderServlet">View My Order</a></li>
+				<li><a href="login.jsp">Log Out</a></li>
 			</ul>
 		</div>
 	</form>
-
-
 	<table>
-	<caption></caption>
-	
+		<caption></caption>
 		<tbody>
 			<tr>
-			<th id="old">
-
-				<c:set var="count" value="1" />
-				<c:forEach items="${oldBookList}" var="oldBook">
-
-
-					<td>
-						<table id="producttable">
-						<caption></caption>
-						
-							<tbody>
-							
-								<tr>
-								<th id="filter">
-									<td><a href="ShowProductServlet?BookId=${oldBook.bookid}"><img
-											src="image/${oldBook.bookimages}" width=50 height=350
-											alt="book"></a></td>
-									<td class="book">
-									
-										<p><strong>CATEGORY : </strong>${oldBook.category}<br></p>
-
-										<p><strong>BOOK TITLE : </strong>${oldBook.booktitle}<br></p>
-
-										<p><strong>PRICE : </strong>${oldBook.price}<br></p>
-
-										<p><strong>Ratings :</strong>${oldBook.rating}<br></p>
-
-									</td>
-									
-								</tr>
-								
-							</tbody>
-							
-						</table>
-
-					</td>
-					<c:choose>
-						<c:when test="${count==2}">
-							<c:set var="count" value="1" />
-			
-			
-				</c:when>
-				<c:otherwise>
-					<c:set var="count" value="${count+1}" />
-				</c:otherwise>
-
-				</c:choose>
-				</c:forEach>
-
+				<th id="old"><c:set var="count" value="1" /> <c:forEach
+						items="${oldBookList}" var="oldBook">
+						<td>
+							<table id="producttable">
+								<caption></caption>
+								<tbody>
+									<tr>
+										<th id="filter">
+										<td><a href="ShowProductServlet?BookId=${oldBook.bookid}"><img
+												src="image/${oldBook.bookimages}" width=50 height=350
+												alt="book"></a></td>
+										<td class="book">
+											<p>
+												<strong>CATEGORY : </strong>${oldBook.category}<br>
+											</p>
+											<p>
+												<strong>BOOK TITLE : </strong>${oldBook.booktitle}<br>
+											</p>
+											<p>
+												<strong>PRICE : </strong>${oldBook.price}<br>
+											</p>
+											<p>
+												<strong>Ratings :</strong>${oldBook.rating}<br>
+											</p>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<c:choose>
+							<c:when test="${count==2}">
+								<c:set var="count" value="1" />
+							</c:when>
+							<c:otherwise>
+								<c:set var="count" value="${count+1}" />
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 			</tr>
 		</tbody>
-		
 	</table>
-
 </body>

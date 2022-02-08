@@ -79,7 +79,6 @@ h2>Books Wagon </h2>#allusers table, th, tr, td {
 </style>
 </head>
 <body>
-	<aside>
 		<ul>
 			<li><a href="AddBooks.jsp">Add Books</a></li>
 			<li><a href="ViewUser.jsp">View User</a></li>
@@ -91,14 +90,12 @@ h2>Books Wagon </h2>#allusers table, th, tr, td {
 			<li><a href="ShowProduct.jsp">Show Products</a></li>
 			<li><a href="ViewCart.jsp">View ALL Cart</a></li>
 		</ul>
-	</aside>
 	<h2>Books Wagon</h2>
-
 	<form action="#" method="post">
 		<div class="delete">
 			<label for="booktitle">Book Title :</label><br> <input
-				type="text" name="booktitle" id="booktitle" class="booktitle" required><br>
-			<br>
+				type="text" name="booktitle" id="booktitle" class="booktitle"
+				required><br> <br>
 			<button type="submit">Delete books</button>
 		</div>
 	</form>

@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -125,18 +124,13 @@ ul
     </ul>
 </div>
 </form>
- 
 <table>
 <caption></caption>
             <tbody>
                 <tr>
-                
                 <th id = "filters">
                 <c:set var="count" value="1"/>
-                
                 <c:forEach items="${filterpricelist}" var="filterPrice">
-                	
-                
                     <td>
                         <table id="producttable">
                         <caption></caption>
@@ -146,37 +140,25 @@ ul
                                     <td><a href = "ShowProductServlet?BookId=${filterPrice.bookid}"><img src="image/${filterPrice.bookimages}" width=50 height=350 alt="book"></a></td>    
                                     <td class="book">
                                         <p><strong>CATEGORY   :   </strong>${filterPrice.category}<br></p>
-                                        
                                         <p><strong>BOOK TITLE  :   </strong>${filterPrice.booktitle}<br></p>
-                                        
                                         <p><strong>PRICE :  </strong>${filterPrice.price}<br></p>
-
                                          <p><strong>RATINGS    :</strong>${filterPrice.rating}<br><br></p>
-                                        
-                                         
-                                         
                                     </td>
                                 </tr>
                             </tbody>
                         </table>  
-                            
                     </td>
                         <c:choose>
                           <c:when test="${count==2}">
                               <c:set var="count" value="1"/>
-                    	    
                     	   </c:when> 
                     	   <c:otherwise>
                     	   <c:set var="count" value="${count+1}"/>
-                    	   </c:otherwise>            
-                          
+                    	   </c:otherwise>
                        </c:choose>
                        </c:forEach> 
-                       
                 </tr>
             </tbody>
         </table>
-
-
-
 </body>
+</html>

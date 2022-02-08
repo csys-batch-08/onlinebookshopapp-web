@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -146,29 +145,22 @@ form {
 			<li><a href="FilterByConditionServlet">Old Books</a></li>
 			<li><a href="ShowCartServlet">My Cart</a></li>
 			<li><a href="MyProfileServlet">User profile</a></li>
-			<li><a href="rechargeWallet.jsp">Recharge Wallet</a>
-			<li>
+			<li><a href="rechargeWallet.jsp">Recharge Wallet</a></li>
 			<li><a href="ViewMyOrderServlet">View My Order</a></li>
-
 			<li><a href="login.jsp">Log Out</a></li>
-
 		</ul>
 	</div>
-
-
 	<form action="OrderServlet">
 		<h3>Add Quantity!...</h3>
 		<label for="quantity">Quantity:</label><br> <input type="text"
-			name="quantity" id="quantity" class="quantity" pattern="[1-9]+" required><br>
-		<br>
+			name="quantity" id="quantity" class="quantity" pattern="[1-9]+"
+			required><br> <br>
 		<button type="submit">Order</button>
 	</form>
-
 	<table>
 		<caption></caption>
 		<tbody>
 			<tr>
-
 				<c:set var="count" value="1" />
 				<c:forEach items="${orderlist}" var="orderbook">
 					<th id="head">
@@ -211,28 +203,22 @@ form {
 										<p>
 											<strong class="aemail">AUTHOR EMAIL : </strong>${orderbook.emailid}<br>
 										</p>
-
-
 										<p>
 											<strong class="rating">RATINGS :</strong>${orderbook.rating}<br>
 											<br>
 										</p>
-
 									</td>
 								</tr>
 							</tbody>
 						</table>
-
 					</td>
 					<c:choose>
 						<c:when test="${count==2}">
 							<c:set var="count" value="1" />
-
 						</c:when>
 						<c:otherwise>
 							<c:set var="count" value="${count+1}" />
 						</c:otherwise>
-
 					</c:choose>
 				</c:forEach>
 			</tr>

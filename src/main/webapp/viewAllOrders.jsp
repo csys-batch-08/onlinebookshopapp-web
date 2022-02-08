@@ -2,8 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -118,27 +116,18 @@ table {
 <body>
 	<form action="FilterOrderServlet">
 		<ul>
-
 			<li><a href="admin.jsp">Home</a></li>
-
 			<li><a href="addBooks.jsp">Add Books</a></li>
-
 			<li><a href="updateBook.jsp">Update Book</a></li>
-
 			<li><a href="ViewAllBookServlet">All Books</a></li>
-
 			<li><a href="addAuthor.jsp">Add Author</a></li>
-
 			<li><a href="ViewAuthorServlet">View Author</a></li>
-
 			<li><a href="ViewAllOrderServlet">View ALL Orders</a></li>
 			<li><a href="CancelledOrdersServlet">Cancelled Orders</a></li>
 		</ul>
-
-
 		<h3>All Orders</h3>
-		<label for="search"></label>
-		<input type="date" name="search" id="search" class="search">
+		<label for="search"></label> <input type="date" name="search"
+			id="search" class="search">
 		<button type="submit" class="btn">Search</button>
 	</form>
 	<div class="table">
@@ -155,16 +144,12 @@ table {
 					<th id="status">Status</th>
 				</tr>
 			</thead>
-
 			<tbody>
 				<c:set var="count" value="0" />
 				<c:forEach items="${orderlist}" var="viewallorder">
 					<c:set var="count" value="${count+1}" />
 					<tr>
-
-
 						<td>${count}</td>
-
 						<td>${viewallorder.cusid}</td>
 						<td>${viewallorder.bookid}</td>
 						<td>${viewallorder.quantity}</td>
@@ -174,13 +159,9 @@ table {
 								pattern="dd-MM-yyyy" value="${publishDate}" /></td>
 						<td>${viewallorder.status}</td>
 					</tr>
-
 				</c:forEach>
 			</tbody>
 		</table>
-
-
 	</div>
-
 </body>
 </html>

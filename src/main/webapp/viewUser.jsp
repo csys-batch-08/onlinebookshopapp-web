@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" %>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="eng">
@@ -99,7 +98,6 @@ input {
 			<li><a href="addBooks.jsp">Add Books</a></li>
 			<li><a href="updateBook.jsp">Update Book</a></li>
 			<li><a href="ViewAllBookServlets">All Books</a></li>
-
 			<li><a href="addAuthor.jsp">Add Author</a></li>
 			<li><a href="authorUpdate.jsp">Update Author</a></li>
 			<li><a href="ViewAuthorServlet">View Author</a></li>
@@ -110,9 +108,9 @@ input {
 	<div class="head">
 		<h1>All Users</h1>
 		<form action="ViewParticularUserServlet">
-		<label for="search"></label>
-			<input type="text" name="search" id="search" class="text"
-				placeholder="Enter email Id"> <a href=><button>Search</button></a>
+			<label for="search"></label> <input type="text" name="search"
+				id="search" class="text" placeholder="Enter email Id"> <a
+				href=><button>Search</button></a>
 		</form>
 	</div>
 	<div class="table">
@@ -134,19 +132,18 @@ input {
 					<th id="role">Role</th>
 					<th id="inactive">Inactive</th>
 					<th id="active">Active</th>
+
 				</tr>
 			</thead>
 
 			<tbody>
+
 				<c:set var="count" value="0" />
 				<c:forEach items="${userlist}" var="userList">
 					<c:set var="count" value="${count+1}" />
 
 					<tr>
-
-
 						<td>${count}</td>
-
 						<td>${userList.cusid}</td>
 						<td>${userList.name}</td>
 						<td>${userList.phoneNo}</td>
@@ -163,7 +160,6 @@ input {
 
 			</tbody>
 		</table>
-
 
 	</div>
 
