@@ -131,13 +131,10 @@ ul
 </style>
 </head>
 <body>
-
 	<form action="rating">
 		<div class="nav">
 			<ul>
-
-
-		 <li><a href="ShowBookServlet" class="set1">Home</a></li>     
+		<li><a href="ShowBookServlet" class="set1">Home</a></li>     
         <li><a href="ShowCartServlet">My Cart</a></li>
         <li><a href="MyProfileServlet">User profile</a></li>
         <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
@@ -146,18 +143,15 @@ ul
         <li><a href="login.jsp">Log Out</a></li>
 			</ul>
 		</div>
-
 		<div class="Rate">
 			<h2>Add Your Ratings..</h2>
 			<br> <label for="ratings">Ratings :</label><br> 
 			<input	type="text" name="ratings" id="ratings" class="ratings" Pattern="[1-9]" title="Positive number between 1-5" required><br>
 			<br>
 			<button type="submit">Add</button>
-			
 			<c:if test="${sessionScope.rating!=null}">
               <h4>${sessionScope.rating}</h4>
-            </c:if>
-        
+            </c:if>        
             <c:remove var="rating" scope="session"/>
 		</div>
 <table>
@@ -167,52 +161,42 @@ ul
                 <th id="book">
                 <c:set var="count" value="1"/>
                <c:forEach items="${books}" var="booklist">
-                	
-        
                     <td>
                         <table id="producttable">
                         <caption></caption>
                             <tbody>
                                 <tr>
                                 <th id="books">
-                                    <td><img src="image/${booklist.bookimages}" width=180 height=350 alt="book"></td>    
+                                    <td><img src="image/${booklist.bookImages}" width=180 height=350 alt="book"></td>    
                                     <td class="book">
                                         <p><strong class="cat">CATEGORY   :   </strong>${booklist.category}<br></p>
                                         <p><strong class="desc">DESCRIPTION :</strong>${booklist.description}<br></p>
-                                        <p><strong class="title">BOOK TITLE  :   </strong>${booklist.booktitle}<br></p>
-                                        <p><strong class="title">BOOK CODE  :   </strong>${booklist.bookcode}<br></p>
+                                        <p><strong class="title">BOOK TITLE  :   </strong>${booklist.bookTitle}<br></p>
+                                        <p><strong class="title">BOOK CODE  :   </strong>${booklist.bookCode}<br></p>
                                         <p><strong class="price">PRICE :  </strong>${booklist.price}<br></p>
-                                        <p><strong class="date">PUBLISH DATE   :   </strong><fmt:parseDate value="${book.publishdate}" pattern="yyyy-MM-dd" var="publishDate" type="date"/>
-                                        <fmt:formatDate pattern="dd-MM-yyyy" value="${publishDate}"/><br></p>
+                                        <p><strong class="date">PUBLISH DATE   :   </strong><fmt:parseDate value="${book.publishDate}" pattern="yyyy-MM-dd" var="publishDates" type="date"/>
+                                        <fmt:formatDate pattern="dd-MM-yyyy" value="${publishDates}"/><br></p>
                                         <p><strong class="condition">CONDITION   :   </strong>${booklist.condition}<br></p>
                                         <p><strong class="aname">AUTHOR NAME   :  </strong>${booklist.name}<br></p>
-                                        <p><strong class="aemail">AUTHOR EMAIL   :  </strong>${booklist.emailid}<br></p>
-                                         
-                                         
-                                         <p><strong class="rating">RATINGS    :</strong>${booklist.rating}<br><br></p>
-                                         
+                                        <p><strong class="aemail">AUTHOR EMAIL   :  </strong>${booklist.emailId}<br></p>
+                                         <p><strong class="rating">RATINGS    :</strong>${booklist.rating}<br><br></p>                       
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>  
-                            
+                        </table>                   
                     </td>
                        <c:choose>
                           <c:when test="${count==2}">
                               <c:set var="count" value="1"/>
-                    	    
                     	   </c:when> 
                     	   <c:otherwise>
                     	   <c:set var="count" value="${count+1}"/>
-                    	   </c:otherwise>            
-                          
+                    	   </c:otherwise>  
                        </c:choose>
                        </c:forEach>
-                       
                 </tr>
             </tbody>
         </table>
-
 	</form>
 </body>
 </html>

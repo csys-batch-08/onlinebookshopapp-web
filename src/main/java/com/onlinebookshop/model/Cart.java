@@ -10,50 +10,50 @@ public class Cart implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int cartid;
-	private int bookid;
-	private int cusid;
+	private int cartId;
+	private int bookId;
+	private int cusId;
 
-	public Cart(int cartid, int bookid, int cusid) {
+	public Cart(int cartId, int bookId, int cusId) {
 		super();
-		this.cartid = cartid;
-		this.bookid = bookid;
-		this.cusid = cusid;
+		this.cartId = cartId;
+		this.bookId = bookId;
+		this.cusId = cusId;
 	}
 
-	public int getCusid() {
-		return cusid;
+	public int getCusId() {
+		return cusId;
 	}
 
-	public void setCusid(int cusid) {
-		this.cusid = cusid;
+	public void setCusId(int cusId) {
+		this.cusId = cusId;
 	}
 
-	public int getCartid() {
-		return cartid;
+	public int getCartId() {
+		return cartId;
 	}
 
-	public void setCartid(int cartid) {
-		this.cartid = cartid;
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
 	}
 
-	public int getBookid() {
-		return bookid;
+	public int getBookId() {
+		return bookId;
 	}
 
-	public void setBookid(int bookid) {
-		this.bookid = bookid;
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
 	}
 
-	public Cart(int cartid, int bookid) {
+	public Cart(int cartId, int bookId) {
 		super();
-		this.cartid = cartid;
-		this.bookid = bookid;
+		this.cartId = cartId;
+		this.bookId = bookId;
 	}
 
-	public Cart(int bookid) {
+	public Cart(int bookId) {
 
-		this.bookid = bookid;
+		this.bookId = bookId;
 	}
 
 	public Cart() {
@@ -62,12 +62,12 @@ public class Cart implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cart [cartid=" + cartid + ", bookid=" + bookid + "]";
+		return "Cart [cartId=" + cartId + ", bookId=" + bookId + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bookid, cartid);
+		return Objects.hash(bookId, cartId);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class Cart implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Cart other = (Cart) obj;
-		return bookid == other.bookid && cartid == other.cartid;
+		return bookId == other.bookId && cartId == other.cartId;
 	}
 
 }

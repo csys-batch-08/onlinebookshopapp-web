@@ -135,15 +135,15 @@ li button {
 								<tbody>
 									<tr>
 										<th id="filter">
-										<td><a href="ShowProductServlet?BookId=${oldBook.bookid}"><img
-												src="image/${oldBook.bookimages}" width=50 height=350
+										<td><a href="ShowProductServlet?BookId=${oldBook.bookId}"><img
+												src="image/${oldBook.bookImages}" width=50 height=350
 												alt="book"></a></td>
 										<td class="book">
 											<p>
 												<strong>CATEGORY : </strong>${oldBook.category}<br>
 											</p>
 											<p>
-												<strong>BOOK TITLE : </strong>${oldBook.booktitle}<br>
+												<strong>BOOK TITLE : </strong>${oldBook.bookTitle}<br>
 											</p>
 											<p>
 												<strong>PRICE : </strong>${oldBook.price}<br>

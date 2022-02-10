@@ -8,7 +8,7 @@ import java.util.List;
 import com.onlinebookshop.dao.OrderDetailsDao;
 import com.onlinebookshop.logger.Logger;
 import com.onlinebookshop.model.OrderDetails;
-import com.onlinebookshop.util.Connectionutil;
+import com.onlinebookshop.util.ConnectionUtil;
 
 public class OrderDetailsDaoimpl implements OrderDetailsDao {
 
@@ -24,12 +24,12 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(query);
-			statement.setInt(1, cart.getCusid());
-			statement.setInt(2, cart.getBookid());
+			statement.setInt(1, cart.getCusId());
+			statement.setInt(2, cart.getBookId());
 			statement.setInt(3, cart.getQuantity());
-			statement.setDouble(4, cart.getTotalcost());
+			statement.setDouble(4, cart.getTotalCost());
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -37,7 +37,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -53,7 +53,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(query);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
@@ -68,7 +68,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -77,7 +77,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		return orderList;
 	}
 
-	public List<OrderDetails> filterOrderDate(String orderdate) {
+	public List<OrderDetails> filterOrderDate(String orderDate) {
 		List<OrderDetails> orderList = new ArrayList<>();
 
 		String view = "select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where to_char(trunc(order_date),'yyyy-MM-dd') = ?";
@@ -86,9 +86,9 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		ResultSet resultSet = null;
 
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(view);
-			statement.setString(1, orderdate);
+			statement.setString(1, orderDate);
 			resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
@@ -102,7 +102,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -119,7 +119,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(cancelorder);
 			resultSet = statement.executeQuery();
 
@@ -135,7 +135,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -144,14 +144,14 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		return orderList;
 	}
 
-	public int updateOrder(int quantity, int bookid) {
+	public int updateOrder(int quantity, int bookId) {
 		String updateQuery = "update orderdetails set quantity=? where book_id=?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(updateQuery);
-			statement.setInt(2, bookid);
+			statement.setInt(2, bookId);
 			statement.setInt(1, quantity);
 			statement.executeUpdate();
 
@@ -162,7 +162,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -172,15 +172,15 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 
 	}
 
-	public int cancelOrder(int orderid) {
+	public int cancelOrder(int orderId) {
 
 		String deleteOrder = "update orderdetails set status='order canceled'  where order_id=?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(deleteOrder);
-			statement.setInt(1, orderid);
+			statement.setInt(1, orderId);
 			statement.executeUpdate();
 			statement.executeUpdate("commit");
 
@@ -190,7 +190,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -199,15 +199,15 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		return 1;
 	}
 
-	public boolean orderCancelled(int orderid) {
+	public boolean orderCancelled(int orderId) {
 		Connection con = null;
 		String query = "select order_id,cus_id,book_id,quantity,total_cost,order_date,status from rating where status='order canceled' and order_id in ?";
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(query);
-			statement.setInt(1, orderid);
+			statement.setInt(1, orderId);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				return true;
@@ -218,7 +218,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -228,7 +228,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		return false;
 	}
 
-	public List<OrderDetails> viewUserOrder(int userid) {
+	public List<OrderDetails> viewUserOrder(int userId) {
 
 		List<OrderDetails> orderList = new ArrayList<>();
 		String myCart = "select order_id,cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where cus_id=? order by order_id desc";
@@ -237,9 +237,9 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(myCart);
-			statement.setInt(1, userid);
+			statement.setInt(1, userId);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 
@@ -257,7 +257,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -266,16 +266,16 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 		return orderList;
 	}
 
-	public int findOrderPrice(int orderid) {
+	public int findOrderPrice(int orderId) {
 		String find = "select total_cost from orderdetails where order_id = ? ";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		int productId = 0;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(find);
-			statement.setInt(1, orderid);
+			statement.setInt(1, orderId);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				productId = resultSet.getInt(1);
@@ -286,7 +286,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -296,16 +296,16 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 
 	}
 
-	public String findStatus(int orderid) {
+	public String findStatus(int orderId) {
 		String find = "select status from orderdetails where order_id= ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		String status = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(find);
-			statement.setInt(1, orderid);
+			statement.setInt(1, orderId);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				status = resultSet.getString(1);
@@ -316,7 +316,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());

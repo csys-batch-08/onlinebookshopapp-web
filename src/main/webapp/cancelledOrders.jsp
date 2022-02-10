@@ -113,13 +113,13 @@ h3 {
 					<c:set var="count" value="${count+1}" />
 					<tr>
 						<td>${count}</td>
-						<td>${viewallorder.cusid}</td>
-						<td>${viewallorder.bookid}</td>
+						<td>${viewallorder.cusId}</td>
+						<td>${viewallorder.bookId}</td>
 						<td>${viewallorder.quantity}</td>
-						<td>${viewallorder.totalcost}</td>
-						<td><fmt:parseDate value="${viewallorder.orderdate}"
-								pattern="yyyy-MM-dd" var="publishDate" type="date" /> <fmt:formatDate
-								pattern="dd-MM-yyyy" value="${publishDate}" /></td>
+						<td>${viewallorder.totalCost}</td>
+						<td><fmt:parseDate value="${viewallorder.orderDate}"
+								pattern="yyyy-MM-dd" var="publishDates" type="date" /> <fmt:formatDate
+								pattern="dd-MM-yyyy" value="${publishDates}" /></td>
 						<td>${viewallorder.status}</td>
 					</tr>
 				</c:forEach>

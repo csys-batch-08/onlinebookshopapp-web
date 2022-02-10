@@ -114,11 +114,9 @@ h2 {
 		<li><a href="addBooks.jsp">Add Books</a></li>
 		<li><a href="updateBook.jsp">Update Book</a></li>
 		<li><a href="addAuthor.jsp">Add Author</a></li>
-
 		<li><a href="ViewAuthorServlet">View Author</a></li>
 		<li><a href="ViewAllOrderServlet">View ALL Orders</a></li>
 		<li><a href="CancelledOrdersServlet">Cancelled Orders</a></li>
-
 	</ul>
 	<h2>ALL BOOKS</h2>
 	<div class="alluser">
@@ -140,35 +138,27 @@ h2 {
 					<th id="delete">Action</th>
 				</tr>
 			</thead>
-
 			<tbody>
 				<c:set var="count" value="0" />
 				<c:forEach items="${viewAllBook}" var="viewallBook">
 					<c:set var="count" value="${count+1}" />
 					<tr class="row">
-
 						<td>${count}</td>
-
-						<td>${viewallBook.bookid}</td>
+						<td>${viewallBook.bookId}</td>
 						<td>${viewallBook.category}</td>
 						<td class="des">${viewallBook.description}</td>
-						<td>${viewallBook.booktitle}</td>
-						<td>${viewallBook.bookcode}</td>
+						<td>${viewallBook.bookTitle}</td>
+						<td>${viewallBook.bookCode}</td>
 						<td>${viewallBook.price}</td>
-						<td>${viewallBook.publishdate}</td>
+						<td>${viewallBook.publishDate}</td>
 						<td>${viewallBook.condition}</td>
-						<td>${viewallBook.bookimages}</td>
+						<td>${viewallBook.bookImages}</td>
 						<td>${viewallBook.status}</td>
-						<td><a href="DeleteBooks?bookid=${viewallBook.bookid}"><button>Remove</button></a></td>
+						<td><a href="DeleteBooks?bookid=${viewallBook.bookId}"><button>Remove</button></a></td>
 					</tr>
-
 				</c:forEach>
-
 			</tbody>
 		</table>
-
-
 	</div>
-
 </body>
 </html>

@@ -8,19 +8,24 @@ import java.sql.SQLException;
 
 import com.onlinebookshop.logger.Logger;
 
-public class Connectionutil {
+public class ConnectionUtil {
+	private ConnectionUtil() {
+		super();
+	}
 
 	public static Connection getDbConnection() {
 		Connection con = null;
 
 		try {
+			EncryptAndDecrypt decryptpassword = new EncryptAndDecrypt();
 			Class.forName("oracle.jdbc.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			con = DriverManager.getConnection(url, "system", "oracle");
+			String  username = "system";
+			String password = decryptpassword.decryt();
+			con = DriverManager.getConnection(url, username, password);
 		} catch (ClassNotFoundException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
-
 		}
 		return con;
 	}

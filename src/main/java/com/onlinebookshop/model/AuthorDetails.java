@@ -11,8 +11,8 @@ public class AuthorDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String name;
-	private String emailid;
-	private int bookid;
+	private String emailId;
+	private int bookId;
 
 	public String getName() {
 		return name;
@@ -22,41 +22,42 @@ public class AuthorDetails implements Serializable {
 		this.name = name;
 	}
 
-	public String getEmailid() {
-		return emailid;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setEmailid(String emailid) {
-		this.emailid = emailid;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
-	public int getBookid() {
-		return bookid;
+	public int getBookId() {
+		return bookId;
 	}
 
-	public void setBookid(int bookid) {
-		this.bookid = bookid;
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
 	}
 
 	public AuthorDetails() {
 		super();
 	}
 
-	public AuthorDetails(String name, String emailid, int bookid) {
+	public AuthorDetails(String name, String emailId, int bookId) {
+		
 		super();
 		this.name = name;
-		this.emailid = emailid;
-		this.bookid = bookid;
+		this.emailId = emailId;
+		this.bookId = bookId;
 	}
 
 	@Override
 	public String toString() {
-		return "AuthorDetails [name=" + name + ", emailid=" + emailid + ", bookid=" + bookid + "]";
+		return "AuthorDetails [name=" + name + ", emailId=" + emailId + ", bookId=" + bookId + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bookid, emailid, name);
+		return Objects.hash(bookId, emailId, name);
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class AuthorDetails implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		AuthorDetails other = (AuthorDetails) obj;
-		return Objects.equals(bookid, other.bookid) && Objects.equals(emailid, other.emailid)
+		return Objects.equals(bookId, other.bookId) && Objects.equals(emailId, other.emailId)
 				&& Objects.equals(name, other.name);
 	}
 

@@ -114,26 +114,20 @@ padding-right: 20px;
 margin-right: 30px;
 margin-left: 30px;
 }
-
 </style>
 </head>
 <body>
 <div class="nav">
     <ul>        
         <li><a href="ShowBookServlet">Home</a></li> 
-        <li><a href="FilterByConditionServlet">Old Books</a></li>
-        
+        <li><a href="FilterByConditionServlet">Old Books</a></li>        
         <li><a href="MyProfileServlet">User profile</a></li>
         <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
-        
         <li><a href="ViewMyOrdersServlet">View My Order</a></li>
-        <li><a href="login.jsp">Log Out</a></li>
-        
+        <li><a href="login.jsp">Log Out</a></li> 
     </ul>
 </div>
-
-<table>
-                       
+<table>               
 <caption></caption>
             <tbody>
                 <tr>
@@ -141,35 +135,30 @@ margin-left: 30px;
                   <th id="cart">     
                 <c:set var="count" value="1"/>
                 <c:forEach items="${cartList}" var="cart">
-                
                     <td>
                         <table id="producttable">
-                        
                      <caption></caption>
                             <tbody>
                                 <tr>
                                 <th id="mycart">
-                                    <td><img src="image/${cart.bookimages}" width=150 height=350 alt="book"></td>    
+                                    <td><img src="image/${cart.bookImages}" width=150 height=350 alt="book"></td>    
                                     <td class="book">
                                          <p><strong>CATEGORY  :    </strong>${cart.category}<br></p>
                                          <p><strong>DESCRIPTION: </strong>${cart.description}<br></p>
-                                         <p><strong>BOOK TITLE: </strong>${cart.booktitle}<br></p>
-                                         <p><strong>BOOK CODE:</strong>${cart.bookcode}<br></p>
+                                         <p><strong>BOOK TITLE: </strong>${cart.bookTitle}<br></p>
+                                         <p><strong>BOOK CODE:</strong>${cart.bookCode}<br></p>
                                          <p><strong>PRICE:</strong>${cart.price}<br></p>
-                                         <p><strong>PUBLISH DATE:</strong>${cart.publishdate}<br></p>
+                                         <p><strong>PUBLISH DATE:</strong>${cart.publishDate}<br></p>
                                          <p><strong>CONDITION:</strong>${cart.condition}<br></p>
                                          <p><strong>AUTHOR NAME:</strong>${cart.name}<br></p>
-                                         <p><strong>AUTHOR EMAIL:</strong>${cart.emailid}<br></p>
-                                        
-                                        <strong>RATINGS:</strong>${cart.rating}<br><br>
-                                         <a href = "BuyOrderServlet?bookid=${cart.bookid}"><button class="btn">Buy</button></a>
-                                        <a href = "removecart?bookid=${cart.bookid}"><button>Remove</button></a>
-                                         
+                                         <p><strong>AUTHOR EMAIL:</strong>${cart.emailId}<br></p>                                        
+                                         <strong>RATINGS:</strong>${cart.rating}<br><br>
+                                         <a href = "BuyOrderServlet?bookid=${cart.bookId}"><button class="btn">Buy</button></a>
+                                        <a href = "removecart?bookid=${cart.bookId}"><button>Remove</button></a>
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>  
-                            
+                        </table>                             
                     </td>
                           <c:choose>
                           <c:when test="${count==2}">
@@ -180,11 +169,8 @@ margin-left: 30px;
                     	   <c:otherwise>
                     	   <c:set var="count" value="${count+1}"/>
                     	   </c:otherwise>            
-                          
                        </c:choose>
                        </c:forEach>
-
-                       
                 </tr>
             </tbody>
         </table>

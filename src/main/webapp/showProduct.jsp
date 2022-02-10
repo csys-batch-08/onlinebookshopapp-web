@@ -127,10 +127,8 @@ ul
 </style>
 </head>
 <body>
-
 <div class="nav">
     <ul>
-       
          <li><a href="ShowBookServlet" class="set1">Home</a></li>     
         <li><a href="ShowCartServlet">My Cart</a></li>
         <li><a href="MyProfileServlet">User profile</a></li>
@@ -140,13 +138,10 @@ ul
         <li><a href="login.jsp">Log Out</a></li>
     </ul>
 </div>
-      
- 
 <table>
 <caption></caption>
             <tbody>
                 <tr>
-                
                 <c:set var="count" value="1"/>
                 <c:forEach items="${booklist}" var="book">
                 <th id = "head"></th>
@@ -156,34 +151,26 @@ ul
                             <tbody>
                                 <tr>
                                 <th id = "bookslists"></th>
-                                    <td><img src="image/${book.bookimages}" width=50 height=350 alt="book"></td>    
+                                    <td><img src="image/${book.bookImages}" width=50 height=350 alt="book"></td>    
                                     <td class="book">
                                         <p><strong class="cat">CATEGORY   :   </strong>${book.category}<br></p>
                                         <p><strong class="desc">DESCRIPTION :</strong>${book.description}<br></p>
-                                        <p><strong class="title">BOOK TITLE  :   </strong>${book.booktitle}<br></p>
-                                        <p><strong class="title">BOOK CODE  :   </strong>${book.bookcode}<br></p>
+                                        <p><strong class="title">BOOK TITLE  :   </strong>${book.bookTitle}<br></p>
+                                        <p><strong class="title">BOOK CODE  :   </strong>${book.bookCode}<br></p>
                                         <p><strong class="price">PRICE :  </strong>${book.price}<br></p>
-                                        
-                                        <p><strong class="date">PUBLISH DATE   :   </strong><fmt:parseDate value="${book.publishdate}" pattern="yyyy-MM-dd" var="publishDate" type="date"/>
-                                        <fmt:formatDate pattern="dd-MM-yyyy" value="${publishDate}"/><br></p>
-
+                                        <p><strong class="date">PUBLISH DATE   :   </strong><fmt:parseDate value="${book.publishDate}" pattern="yyyy-MM-dd" var="publishDates" type="date"/>
+                                        <fmt:formatDate pattern="dd-MM-yyyy" value="${publishDates}"/><br></p>
                                         <p><strong class="condition">CONDITION   :   </strong>${book.condition}<br></p>
                                         <p><strong class="aname">AUTHOR NAME   :  </strong>${book.name}<br></p>
-                                        <p><strong class="aemail">AUTHOR EMAIL   :  </strong>${book.emailid}<br></p>
-                                         
-                                         
+                                        <p><strong class="aemail">AUTHOR EMAIL   :  </strong>${book.emailId}<br></p>
                                          <p><strong class="rating">RATINGS    :</strong>${book.rating}<br><br></p>
-                                         <a href = "addcartserv?bookid=${book.bookid}"><button class="btn">Add to Cart</button></a>
-                                         <a href = "RatingNewServlet?bookd=${book.bookid}"><button>Add Ratings</button></a>
-                                         
-                                         
+                                         <a href = "addcartserv?bookid=${book.bookId}"><button class="btn">Add to Cart</button></a>
+                                         <a href = "RatingNewServlet?bookd=${book.bookId}"><button>Add Ratings</button></a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>  
-                            
                     </td>
-                    
                       <c:choose>
                           <c:when test="${count==2}">
                               <c:set var="count" value="1"/>
@@ -193,14 +180,10 @@ ul
                     	   <c:otherwise>
                     	   <c:set var="count" value="${count+1}"/>
                     	   </c:otherwise>            
-                          
                        </c:choose>
                        </c:forEach>
-                       
                 </tr>
             </tbody>
         </table>
-
-
-
 </body>
+</html>

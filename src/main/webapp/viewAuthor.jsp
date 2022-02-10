@@ -98,20 +98,16 @@ h1 {
 </style>
 </head>
 <body>
-
 	<ul>
 		<li><a href="admin.jsp">Home</a></li>
 		<li><a href="ViewUserServlet">View User</a></li>
-
 		<li><a href="addBooks.jsp">Add Books</a></li>
 		<li><a href="updateBook.jsp">Update Book</a></li>
 		<li><a href="ViewAllBookServlet">All Books</a></li>
-
 		<li><a href="addAuthor.jsp">Add Author</a></li>
 		<li><a href="ViewAllOrderServlet">View ALL Orders</a></li>
 		<li><a href="CancelledOrdersServlet">Cancelled Orders</a></li>
 	</ul>
-
 	<h1>Author List</h1>
 	<table border="1" id="allusers">
 		<caption></caption>
@@ -124,28 +120,20 @@ h1 {
 				<th id="action">Actions</th>
 			</tr>
 		</thead>
-
 		<tbody>
 		<tbody>
 			<c:set var="count" value="0" />
 			<c:forEach items="${authorlist}" var="viewAuthor">
 				<c:set var="count" value="${count+1}" />
-
 				<tr>
-
-
 					<td>${count}</td>
 					<td>${viewAuthor.name}</td>
-					<td>${viewAuthor.emailid}</td>
-					<td>${viewAuthor.bookid}</td>
+					<td>${viewAuthor.emailId}</td>
+					<td>${viewAuthor.bookId}</td>
 					<td><a href="authorUpdate.jsp"><button>Update</button></a></td>
 				</tr>
-
 			</c:forEach>
 		</tbody>
 	</table>
-
-
 </body>
 </html>
-

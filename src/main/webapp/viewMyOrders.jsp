@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -104,14 +103,11 @@ table, td, th {
 			<li><a href="ShowBookServlet">Home</a></li>
 			<li><a href="ShowCartServlet" class="set1">My Cart</a></li>
 			<li><a href="MyProfileServlet">User profile</a></li>
-			<li><a href="rechargeWallet.jsp">Recharge Wallet</a>
-			<li>
+			<li><a href="rechargeWallet.jsp">Recharge Wallet</a></li>
 			<li><a href="FilterByConditionServlet">Old Books</a></li>
 			<li><a href="login.jsp">Log Out</a></li>
-
 		</ul>
 	</div>
-
 	<h3>My Orders</h3>
 	<div class="user">
 		<table id="allusers">
@@ -128,39 +124,27 @@ table, td, th {
 				</tr>
 			</thead>
 			<tbody>
-
-
 				<c:set var="count" value="0" />
 				<c:forEach items="${viewOrderList}" var="viewOrder">
 					<c:set var="count" value="${count+1}" />
-
 					<tr>
-
-
 						<td>${count}</td>
-
-						<td>${viewOrder.bookid}</td>
+						<td>${viewOrder.bookId}</td>
 						<td>${viewOrder.quantity}</td>
-						<td>${viewOrder.totalcost}</td>
-						<td><fmt:parseDate value="${viewOrder.orderdate}"
-								pattern="yyyy-MM-dd" var="orderDate" type="date" /> <fmt:formatDate
-								pattern="dd-MM-yyyy" value="${orderDate}" /></td>
+						<td>${viewOrder.totalCost}</td>
+						<td><fmt:parseDate value="${viewOrder.orderDate}"
+								pattern="yyyy-MM-dd" var="orderedDate" type="date" /> <fmt:formatDate
+								pattern="dd-MM-yyyy" value="${orderedDate}" /></td>
 						<td>${viewOrder.status}</td>
 						<td><span><a
-								href="cancelorder?orderid=${viewOrder.orderid}"><button>Cancel</button></a></span>
+								href="cancelorder?orderid=${viewOrder.orderId}"><button>Cancel</button></a></span>
 						<td>
 					</tr>
-
 				</c:forEach>
-
-
 			</tbody>
 		</table>
-
-
 	</div>
 	<br>
 	<br>
-
 </body>
 </html>

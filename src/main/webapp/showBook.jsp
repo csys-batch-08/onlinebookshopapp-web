@@ -111,22 +111,17 @@ ul
         <li><a href="FilterByConditionServlet">Old Books</a></li>
         <li><a href="ShowCartServlet" class="set1">My Cart</a></li>
         <li><a href="MyProfileServlet">User profile</a></li>
-        <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
-        
+        <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>        
         <li><a href="ViewMyOrderServlet">View My Order</a></li>
-        
         <li><a href="login.jsp">Log Out</a></li>
     </ul>
 </div>
-</form>
- 
+</form> 
 <table>
 <caption></caption>
             <tbody>
-                <tr>
-                
-                <c:set var="count" value="1"/>
-                
+                <tr>                
+                <c:set var="count" value="1"/>                
                 <c:forEach items="${bookList}" var="booklist">
                 	<th id = "head"></th>
                     <td>
@@ -135,22 +130,16 @@ ul
                             <tbody>
                                 <tr>
                                 <th id="books"></th>
-                                    <td><a href = "ShowProductServlet?BookId=${booklist.bookid}"><img src="image/${booklist.bookimages}" width=50 height=350 alt="book"></a></td>    
+                                    <td><a href = "ShowProductServlet?BookId=${booklist.bookId}"><img src="image/${booklist.bookImages}" width=50 height=350 alt="book"></a></td>    
                                     <td class="book">
-                                        <p><strong>CATEGORY   :   </strong>${booklist.category}<br></p>
-                                        
-                                        <p><strong>BOOK TITLE  :   </strong>${booklist.booktitle}<br></p>
-                                        
-                                        <p><strong>PRICE :  </strong>${booklist.price}<br></p>
-                                      
-                                        <p><strong>Ratings :</strong>${booklist.rating}<br></p>
-                                                                           
-                                         
+                                        <p><strong>CATEGORY   :   </strong>${booklist.category}<br></p>                                        
+                                        <p><strong>BOOK TITLE  :   </strong>${booklist.bookTitle}<br></p>                                        
+                                        <p><strong>PRICE :  </strong>${booklist.price}<br></p>                                      
+                                        <p><strong>Ratings :</strong>${booklist.rating}<br></p>  
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>  
-                            
+                        </table>   
                     </td>
                     <c:choose>
                           <c:when test="${count==2}">
@@ -167,8 +156,5 @@ ul
                 </tr>
             </tbody>
         </table>
-
-
-
 </body>
 </html>

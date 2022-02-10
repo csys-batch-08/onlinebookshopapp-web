@@ -10,8 +10,8 @@ public class Rating implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int id;
-	private int cusid;
-	private int bookid;
+	private int cusId;
+	private int bookId;
 	private double ratings;
 
 	public int getId() {
@@ -22,20 +22,20 @@ public class Rating implements Serializable {
 		this.id = id;
 	}
 
-	public int getCusid() {
-		return cusid;
+	public int getCusId() {
+		return cusId;
 	}
 
-	public void setCusid(int cusid) {
-		this.cusid = cusid;
+	public void setCusId(int cusId) {
+		this.cusId = cusId;
 	}
 
-	public int getBookid() {
-		return bookid;
+	public int getBookId() {
+		return bookId;
 	}
 
-	public void setBookid(int bookid) {
-		this.bookid = bookid;
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
 	}
 
 	public double getRating() {
@@ -46,25 +46,25 @@ public class Rating implements Serializable {
 		this.ratings = ratings;
 	}
 
-	public Rating(int id, int cusid, int bookid, double ratings) {
+	public Rating(int id, int cusId, int bookId, double ratings) {
 		super();
 		this.id = id;
-		this.cusid = cusid;
-		this.bookid = bookid;
+		this.cusId = cusId;
+		this.bookId = bookId;
 		this.ratings = ratings;
 	}
 
-	public Rating(int cusid, int bookid, double ratings) {
+	public Rating(int cusId, int bookID, double ratings) {
 		super();
-		this.cusid = cusid;
-		this.bookid = bookid;
+		this.cusId = cusId;
+		this.bookId = bookID;
 		this.ratings = ratings;
 	}
 
-	public Rating(int bookid) {
+	public Rating(int bookId) {
 		super();
 
-		this.bookid = bookid;
+		this.bookId = bookId;
 
 	}
 
@@ -75,7 +75,7 @@ public class Rating implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Rating [id=" + id + ", cusid=" + cusid + ", bookid=" + bookid + ", ratings=" + ratings + "]";
+		return "Rating [id=" + id + ", cusId=" + cusId + ", bookId=" + bookId + ", ratings=" + ratings + "]";
 	}
 
 }

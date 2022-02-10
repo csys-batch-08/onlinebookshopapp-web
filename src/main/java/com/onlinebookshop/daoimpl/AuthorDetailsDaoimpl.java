@@ -8,7 +8,7 @@ import java.util.List;
 import com.onlinebookshop.dao.AuthorDetailsDao;
 import com.onlinebookshop.logger.Logger;
 import com.onlinebookshop.model.AuthorDetails;
-import com.onlinebookshop.util.Connectionutil;
+import com.onlinebookshop.util.ConnectionUtil;
 public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 
 	/**
@@ -20,11 +20,11 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(insert);
 			statement.setString(1, author.getName());
-			statement.setString(2, author.getEmailid());
-			statement.setInt(3, author.getBookid());
+			statement.setString(2, author.getEmailId());
+			statement.setInt(3, author.getBookId());
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -33,7 +33,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -44,15 +44,15 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 	/**
 	 * This method is used to update author details.
 	 */
-	public void updateAuthor(String emailid, String name) {
+	public void updateAuthor(String emailId, String name) {
 		String updateQuery = "update author_details set name=? where email_id=?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(updateQuery);
 			statement.setString(1, name);
-			statement.setString(2, emailid);
+			statement.setString(2, emailId);
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -61,7 +61,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -80,7 +80,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 		PreparedStatement statement = null;
 		ResultSet resultset = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(show);
 			resultset = statement.executeQuery();
 			while (resultset.next()) {
@@ -94,7 +94,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultset, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());

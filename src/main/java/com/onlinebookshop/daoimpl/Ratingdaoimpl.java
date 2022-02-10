@@ -7,20 +7,20 @@ import java.sql.SQLException;
 import com.onlinebookshop.dao.RatingDao;
 import com.onlinebookshop.logger.Logger;
 import com.onlinebookshop.model.Rating;
-import com.onlinebookshop.util.Connectionutil;
+import com.onlinebookshop.util.ConnectionUtil;
 
 public class Ratingdaoimpl implements RatingDao {
 
 	public int rating(Rating rating) throws SQLException {
-		if (!ratingexist(rating.getCusid(), rating.getBookid())) {
+		if (!ratingexist(rating.getCusId(), rating.getBookId())) {
 			String insert = "insert into rating(cus_id,book_id,rating)values(?,?,?)";
 			Connection con = null;
 			PreparedStatement statement = null;
 			try {
-				con = Connectionutil.getDbConnection();
+				con = ConnectionUtil.getDbConnection();
 				statement = con.prepareStatement(insert);
-				statement.setInt(1, rating.getCusid());
-				statement.setInt(2, rating.getBookid());
+				statement.setInt(1, rating.getCusId());
+				statement.setInt(2, rating.getBookId());
 				statement.setDouble(3, rating.getRating());
 				int res = statement.executeUpdate();
 				statement.executeUpdate("commit");
@@ -33,7 +33,7 @@ public class Ratingdaoimpl implements RatingDao {
 				Logger.runTimeException(e.getMessage());
 			} finally {
 				try {
-					Connectionutil.closeConnection(statement, con);
+					ConnectionUtil.closeConnection(statement, con);
 				} catch (SQLException e) {
 					Logger.printStackTrace(e);
 					Logger.runTimeException(e.getMessage());
@@ -52,9 +52,9 @@ public class Ratingdaoimpl implements RatingDao {
 		ResultSet resultSet = null;
 		String query = "select trunc(avg(rating),2) from rating where book_id =?";
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(query);
-			statement.setInt(1, rating.getBookid());
+			statement.setInt(1, rating.getBookId());
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 
@@ -66,7 +66,7 @@ public class Ratingdaoimpl implements RatingDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -76,16 +76,16 @@ public class Ratingdaoimpl implements RatingDao {
 	}
 
 	// rating exist:
-	public boolean ratingexist(int userid, int bookid) {
+	public boolean ratingexist(int userId, int bookId) {
 		Connection con = null;
 		String query = "select id,cus_id,book_id,rating from rating where cus_id in ? and book_id in ?";
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(query);
-			statement.setInt(1, userid);
-			statement.setInt(2, bookid);
+			statement.setInt(1, userId);
+			statement.setInt(2, bookId);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				return true;
@@ -96,7 +96,7 @@ public class Ratingdaoimpl implements RatingDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());

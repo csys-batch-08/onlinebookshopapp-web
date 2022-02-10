@@ -89,11 +89,9 @@ ul
         <li><a href="rechargeWallet.jsp">Recharge Wallet</a><li>
         <li><a href="ViewMyOrderServlet">View My Order</a></li>
         <li><a href="login.jsp">Log Out</a></li>
-        
     </ul>
 </div>
 <h1>Your Order is successfully Placed !...</h1>
-
 <h2>Available Balance : ${newwallet}</h2>
 </body>
 </html>

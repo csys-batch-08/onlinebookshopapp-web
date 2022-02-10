@@ -10,15 +10,15 @@ public class Bookdetails implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int bookid;
+	private int bookId;
 	private String category;
 	private String description;
-	private String booktitle;
-	private String bookcode;
+	private String bookTitle;
+	private String bookCode;
 	private int price;
-	private LocalDate publishdate;
+	private LocalDate publishDate;
 	private String condition;
-	private String bookimages;
+	private String bookImages;
 	private String status;
 
 	public String getStatus() {
@@ -45,24 +45,24 @@ public class Bookdetails implements Serializable {
 		this.description = description;
 	}
 
-	public String getBooktitle() {
-		return booktitle;
+	public String getBookTitle() {
+		return bookTitle;
 	}
 
-	public void setBooktitle(String booktitle) {
-		this.booktitle = booktitle;
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
 	}
 
-	public String getBookcode() {
-		return bookcode;
+	public String getBookCode() {
+		return bookCode;
 	}
 
-	public int getBookid() {
-		return this.bookid;
+	public int getBookId() {
+		return this.bookId;
 	}
 
-	public void setBookcode(String bookcode) {
-		this.bookcode = bookcode;
+	public void setBookCode(String bookCode) {
+		this.bookCode = bookCode;
 	}
 
 	public int getPrice() {
@@ -73,16 +73,16 @@ public class Bookdetails implements Serializable {
 		this.price = price;
 	}
 
-	public void setBookid(int bookid) {
-		this.bookid = bookid;
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
 	}
 
-	public LocalDate getPublishdate() {
-		return publishdate;
+	public LocalDate getPublishDate() {
+		return publishDate;
 	}
 
-	public void setPublishdate(LocalDate publishdate) {
-		this.publishdate = publishdate;
+	public void setPublishDate(LocalDate publishDate) {
+		this.publishDate = publishDate;
 	}
 
 	public String getCondition() {
@@ -93,70 +93,70 @@ public class Bookdetails implements Serializable {
 		this.condition = condition;
 	}
 
-	public String getBookimages() {
-		return bookimages;
+	public String getBookImages() {
+		return bookImages;
 	}
 
-	public void setBookimages(String bookimages) {
-		this.bookimages = bookimages;
+	public void setBookImages(String bookImages) {
+		this.bookImages = bookImages;
 	}
 
 	public Bookdetails() {
 		super();
 	}
 
-	public Bookdetails(String category, String description, String booktitle, String bookcode, int price,
-			LocalDate publishdate, String condition, String bookimages) {
+	public Bookdetails(String category, String description, String bookTitle, String bookCode, int price,
+			LocalDate publishDate, String condition, String bookImages) {
 		super();
 		this.category = category;
 		this.description = description;
-		this.booktitle = booktitle;
-		this.bookcode = bookcode;
+		this.bookTitle = bookTitle;
+		this.bookCode = bookCode;
 		this.price = price;
-		this.publishdate = publishdate;
+		this.publishDate = publishDate;
 		this.condition = condition;
-		this.bookimages = bookimages;
+		this.bookImages = bookImages;
 	}
 
-	public Bookdetails(int bookid, String category, String description, String booktitle, String bookcode, int price,
-			LocalDate publishdate, String condition, String bookimages) {
+	public Bookdetails(int bookId, String category, String description, String bookTitle, String bookCode, int price,
+			LocalDate publishDate, String condition, String bookImages) {
 		super();
-		this.bookid = bookid;
+		this.bookId = bookId;
 		this.category = category;
 		this.description = description;
-		this.booktitle = booktitle;
-		this.bookcode = bookcode;
+		this.bookTitle = bookTitle;
+		this.bookCode = bookCode;
 		this.price = price;
-		this.publishdate = publishdate;
+		this.publishDate = publishDate;
 		this.condition = condition;
-		this.bookimages = bookimages;
+		this.bookImages = bookImages;
 	}
 
-	public Bookdetails(int bookid, String category, String description, String booktitle, String bookcode, int price,
-			LocalDate publishdate, String condition, String bookimages, String status) {
+	public Bookdetails(int bookId, String category, String description, String bookTitle, String bookCode, int price,
+			LocalDate publishDate, String condition, String bookImages, String status) {
 		super();
-		this.bookid = bookid;
+		this.bookId = bookId;
 		this.category = category;
 		this.description = description;
-		this.booktitle = booktitle;
-		this.bookcode = bookcode;
+		this.bookTitle = bookTitle;
+		this.bookCode = bookCode;
 		this.price = price;
-		this.publishdate = publishdate;
+		this.publishDate = publishDate;
 		this.condition = condition;
-		this.bookimages = bookimages;
+		this.bookImages = bookImages;
 		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "Bookdetails [category=" + category + ", description=" + description + ", booktitle=" + booktitle
-				+ ", bookcode=" + bookcode + ", price=" + price + ", publishdate=" + publishdate + ", condition="
-				+ condition + ", bookimages=" + bookimages + "]";
+		return "Bookdetails [bookId=" + bookId + ", category=" + category + ", description=" + description
+				+ ", bookTitle=" + bookTitle + ", bookCode=" + bookCode + ", price=" + price + ", publishDate="
+				+ publishDate + ", condition=" + condition + ", bookImages=" + bookImages + ", status=" + status + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bookcode, booktitle, bookimages, category, condition, description, price, publishdate);
+		return Objects.hash(bookCode, bookTitle, bookImages, category, condition, description, price, publishDate);
 	}
 
 	@Override
@@ -168,10 +168,10 @@ public class Bookdetails implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Bookdetails other = (Bookdetails) obj;
-		return Objects.equals(bookcode, other.bookcode) && Objects.equals(booktitle, other.booktitle)
-				&& Objects.equals(bookimages, other.bookimages) && Objects.equals(category, other.category)
+		return Objects.equals(bookCode, other.bookCode) && Objects.equals(bookTitle, other.bookTitle)
+				&& Objects.equals(bookImages, other.bookImages) && Objects.equals(category, other.category)
 				&& Objects.equals(condition, other.condition) && Objects.equals(description, other.description)
-				&& price == other.price && Objects.equals(publishdate, other.publishdate);
+				&& price == other.price && Objects.equals(publishDate, other.publishDate);
 	}
 
 }

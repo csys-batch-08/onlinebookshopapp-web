@@ -12,7 +12,7 @@ import com.onlinebookshop.model.Bookdetails;
 import com.onlinebookshop.model.ProductDetails;
 import com.onlinebookshop.model.Rating;
 
-import com.onlinebookshop.util.Connectionutil;
+import com.onlinebookshop.util.ConnectionUtil;
 
 public class BookdetailsDaoimpl implements BookdetailsDao {
 
@@ -21,16 +21,16 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(insert);
 			statement.setString(1, product.getCategory());
 			statement.setString(2, product.getDescription());
-			statement.setString(3, product.getBooktitle());
-			statement.setString(4, product.getBookcode());
+			statement.setString(3, product.getBookTitle());
+			statement.setString(4, product.getBookCode());
 			statement.setInt(5, product.getPrice());
-			statement.setDate(6, java.sql.Date.valueOf(product.getPublishdate()));
+			statement.setDate(6, java.sql.Date.valueOf(product.getPublishDate()));
 			statement.setString(7, product.getCondition());
-			statement.setString(8, product.getBookimages());
+			statement.setString(8, product.getBookImages());
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -39,7 +39,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -53,7 +53,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(delete);
 			statement.setInt(1, product);
 			statement.executeUpdate();
@@ -64,7 +64,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -86,12 +86,12 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 
 		try {
 
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(show);
 			resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-				rating.setBookid(resultSet.getInt(1));
+				rating.setBookId(resultSet.getInt(1));
 				double rate = ratingdaoimpl.fetchrating(rating);
 				ProductDetails product = new ProductDetails(resultSet.getInt(1), resultSet.getString(2),
 						resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getInt(6),
@@ -106,7 +106,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -116,7 +116,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		return productsList;
 	}
 
-	public List<ProductDetails> showBook(int bookid) {
+	public List<ProductDetails> showBook(int bookId) {
 		List<ProductDetails> productsList = new ArrayList<>();
 
 		String show = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_id=?";
@@ -127,14 +127,14 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(show);
 
-			statement.setInt(1, bookid);
+			statement.setInt(1, bookId);
 			resultset = statement.executeQuery();
 
 			while (resultset.next()) {
-				rating.setBookid(resultset.getInt(1));
+				rating.setBookId(resultset.getInt(1));
 				double rate = ratingdaoimpl.fetchrating(rating);
 
 				ProductDetails product = new ProductDetails(resultset.getInt(1), resultset.getString(2),
@@ -149,7 +149,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultset, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -159,19 +159,19 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		return productsList;
 	}
 
-	public int findProductid(String booktitle) {
+	public int findProductid(String bookTitle) {
 		String find = "select book_id from bookdetails where book_title= ?";
 		Connection con = null;
 		PreparedStatement statement = null;
-		ResultSet resultset = null;
+		ResultSet resultSet = null;
 		int productId = 0;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(find);
-			statement.setString(1, booktitle);
-			resultset = statement.executeQuery();
-			if (resultset.next()) {
-				productId = resultset.getInt(1);
+			statement.setString(1, bookTitle);
+			resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				productId = resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
 
@@ -179,7 +179,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -189,16 +189,16 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 
 	}
 
-	public String findBookname(int bookid) {
+	public String findBookname(int bookId) {
 		String find = "select book_title from bookdetails where book_id = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet resultset = null;
 		String product = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(find);
-			statement.setInt(1, bookid);
+			statement.setInt(1, bookId);
 			resultset = statement.executeQuery();
 			if (resultset.next()) {
 				product = resultset.getString(1);
@@ -209,7 +209,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultset, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -219,16 +219,16 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 
 	}
 
-	public int findPrice(int proid) {
+	public int findPrice(int productId) {
 		String query = "select price from bookdetails where book_id = ? ";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet resultset = null;
 		int price = 0;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(query);
-			statement.setInt(1, proid);
+			statement.setInt(1, productId);
 			resultset = statement.executeQuery();
 			if (resultset.next()) {
 				price = resultset.getInt(1);
@@ -239,7 +239,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultset, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -248,15 +248,15 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		return price;
 	}
 
-	public void updateBooks(Bookdetails bookdetails) {
+	public void updateBooks(Bookdetails bookDetails) {
 		String updateQuery = "update bookdetails set price=? where book_title=?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(updateQuery);
-			statement.setInt(1, bookdetails.getPrice());
-			statement.setString(2, bookdetails.getBooktitle());
+			statement.setInt(1, bookDetails.getPrice());
+			statement.setString(2, bookDetails.getBookTitle());
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -265,7 +265,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -283,12 +283,12 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(filter);
 			statement.setInt(1, price);
 			resultset = statement.executeQuery();
 			while (resultset.next()) {
-				rating.setBookid(resultset.getInt(1));
+				rating.setBookId(resultset.getInt(1));
 				double rate = ratingdaoimpl.fetchrating(rating);
 				ProductDetails product = new ProductDetails(resultset.getInt(1), resultset.getString(2),
 						resultset.getString(3), resultset.getString(4), resultset.getString(5), resultset.getInt(6),
@@ -302,7 +302,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultset, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -311,10 +311,10 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		return filterPrice;
 	}
 
-	public List<ProductDetails> filterName(String bookname) {
+	public List<ProductDetails> filterName(String bookTitle) {
 
 		List<ProductDetails> filterName = new ArrayList<>();
-		String bookName = "%" + bookname + "%";
+		String bookName = "%" + bookTitle + "%";
 
 		String filter = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_title like ?";
 		Connection con = null;
@@ -323,13 +323,13 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(filter);
 			statement.setString(1, bookName);
 			resultset = statement.executeQuery();
 
 			while (resultset.next()) {
-				rating.setBookid(resultset.getInt(1));
+				rating.setBookId(resultset.getInt(1));
 				double rate = ratingdaoimpl.fetchrating(rating);
 				ProductDetails product = new ProductDetails(resultset.getInt(1), resultset.getString(2),
 						resultset.getString(3), resultset.getString(4), resultset.getString(5), resultset.getInt(6),
@@ -344,7 +344,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultset, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -353,7 +353,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		return filterName;
 	}
 
-	public List<ProductDetails> filterCondition(int userid) {
+	public List<ProductDetails> filterCondition() {
 		List<ProductDetails> conditionList = new ArrayList<>();
 		String condition = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.condition='old'";
 		Connection con = null;
@@ -362,11 +362,11 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(condition);
 			resultset = statement.executeQuery();
 			while (resultset.next()) {
-				rating.setBookid(resultset.getInt(1));
+				rating.setBookId(resultset.getInt(1));
 				double rate = ratingdaoimpl.fetchrating(rating);
 				ProductDetails product = new ProductDetails(resultset.getInt(1), resultset.getString(2),
 						resultset.getString(3), resultset.getString(4), resultset.getString(5), resultset.getInt(6),
@@ -380,7 +380,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultset, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -396,7 +396,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		PreparedStatement statement = null;
 		ResultSet resultset = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(category);
 			resultset = statement.executeQuery();
 			while (resultset.next()) {
@@ -411,7 +411,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultset, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -428,7 +428,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		PreparedStatement statement = null;
 		ResultSet resultset = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(show);
 			resultset = statement.executeQuery();
 			while (resultset.next()) {
@@ -445,7 +445,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultset, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -455,7 +455,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		return productsList;
 	}
 
-	public List<ProductDetails> ratingproducts(int bookid) {
+	public List<ProductDetails> ratingproducts(int bookId) {
 
 		Rating rating = new Rating();
 		Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
@@ -468,12 +468,12 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 		ResultSet resultset = null;
 
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(query);
-			statement.setInt(1, bookid);
+			statement.setInt(1, bookId);
 			resultset = statement.executeQuery();
 			while (resultset.next()) {
-				rating.setBookid(resultset.getInt(1));
+				rating.setBookId(resultset.getInt(1));
 				double rate = ratingdaoimpl.fetchrating(rating);
 				bookdetails.add(new ProductDetails(resultset.getInt(1), resultset.getString(2), resultset.getString(3),
 						resultset.getString(4), resultset.getString(5), resultset.getInt(6),
@@ -486,7 +486,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultset, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());

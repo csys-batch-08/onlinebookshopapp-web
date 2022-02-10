@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -114,13 +113,10 @@ input {
 		</form>
 	</div>
 	<div class="table">
-
 		<table id="allusers">
 			<caption></caption>
 			<thead>
-
 				<tr>
-
 					<th id="sno">S.no</th>
 					<th id="cusid">Customer ID</th>
 					<th id="name">Name</th>
@@ -132,36 +128,28 @@ input {
 					<th id="role">Role</th>
 					<th id="inactive">Inactive</th>
 					<th id="active">Active</th>
-
 				</tr>
 			</thead>
-
 			<tbody>
-
 				<c:set var="count" value="0" />
 				<c:forEach items="${userlist}" var="userList">
 					<c:set var="count" value="${count+1}" />
-
 					<tr>
 						<td>${count}</td>
-						<td>${userList.cusid}</td>
+						<td>${userList.cusId}</td>
 						<td>${userList.name}</td>
 						<td>${userList.phoneNo}</td>
 						<td>${userList.address}</td>
-						<td>${userList.emailid}</td>
+						<td>${userList.emailId}</td>
 						<td>${userList.password}</td>
 						<td>${userList.wallet}</td>
 						<td>${userList.role}</td>
-						<td><a href="deleteuser?emailid=${userList.emailid}"><button>Inactive</button></a></td>
-						<td><a href="activeuser?emailid=${userList.emailid}"><button>Active</button></a></td>
+						<td><a href="deleteuser?emailid=${userList.emailId}"><button>Inactive</button></a></td>
+						<td><a href="activeuser?emailid=${userList.emailId}"><button>Active</button></a></td>
 					</tr>
-
 				</c:forEach>
-
 			</tbody>
 		</table>
-
 	</div>
-
 </body>
 </html>

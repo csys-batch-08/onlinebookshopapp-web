@@ -28,7 +28,7 @@ public class FilterByConditionServlet extends HttpServlet {
 		
 		BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
 		
-		List<ProductDetails> showProduct = bookdetaildao.filterCondition(userid);
+		List<ProductDetails> showProduct = bookdetaildao.filterCondition();
 
 		request.setAttribute("oldBookList", showProduct);
 

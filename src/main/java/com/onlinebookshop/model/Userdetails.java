@@ -7,11 +7,11 @@ public class Userdetails implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int cusid;
+	private int cusId;
 	private String name;
 	private long phoneNo;
 	private String address;
-	private String emailid;
+	private String emailId;
 	private String password;
 	private int wallet;
 	private String role;
@@ -24,12 +24,12 @@ public class Userdetails implements Serializable {
 		this.role = role;
 	}
 
-	public int getCusid() {
-		return cusid;
+	public int getCusId() {
+		return cusId;
 	}
 
-	public void setCusid(int cusid) {
-		this.cusid = cusid;
+	public void setCusId(int cusId) {
+		this.cusId = cusId;
 	}
 
 	public int getWallet() {
@@ -65,11 +65,11 @@ public class Userdetails implements Serializable {
 	}
 
 	public String getEmailid() {
-		return emailid;
+		return emailId;
 	}
 
 	public void setEmailid(String emailid) {
-		this.emailid = emailid;
+		this.emailId = emailid;
 	}
 
 	public String getPassword() {
@@ -90,26 +90,26 @@ public class Userdetails implements Serializable {
 		this.name = name;
 		this.phoneNo = phoneNo;
 		this.address = address;
-		this.emailid = emailid;
+		this.emailId = emailid;
 		this.password = password;
 		this.wallet = wallet;
 	}
 
 	public Userdetails(int cusid) {
 
-		this.cusid = cusid;
+		this.cusId = cusid;
 
 	}
 
 	public Userdetails(int cusid, String name, long phoneNo, String role, String address, String emailid,
 			String password, int wallet) {
 		super();
-		this.cusid = cusid;
+		this.cusId = cusid;
 		this.name = name;
 		this.phoneNo = phoneNo;
 		this.role = role;
 		this.address = address;
-		this.emailid = emailid;
+		this.emailId = emailid;
 		this.password = password;
 		this.wallet = wallet;
 
@@ -117,13 +117,13 @@ public class Userdetails implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Userdetails [name=" + name + ", phoneNo=" + phoneNo + ", address=" + address + ", emailid=" + emailid
-				+ ", password=" + password + ", cusid=" + cusid + ", wallet=" + wallet + "]";
+		return "Userdetails [name=" + name + ", phoneNo=" + phoneNo + ", address=" + address + ", emailid=" + emailId
+				+ ", password=" + password + ", cusid=" + cusId + ", wallet=" + wallet + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, cusid, emailid, name, password, phoneNo, wallet);
+		return Objects.hash(address, cusId, emailId, name, password, phoneNo, wallet);
 	}
 
 	@Override
@@ -135,7 +135,7 @@ public class Userdetails implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Userdetails other = (Userdetails) obj;
-		return Objects.equals(address, other.address) && cusid == other.cusid && Objects.equals(emailid, other.emailid)
+		return Objects.equals(address, other.address) && cusId == other.cusId && Objects.equals(emailId, other.emailId)
 				&& Objects.equals(name, other.name) && Objects.equals(password, other.password)
 				&& phoneNo == other.phoneNo && wallet == other.wallet;
 	}

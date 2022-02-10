@@ -169,7 +169,7 @@ form {
 							<caption></caption>
 							<tbody>
 								<tr>
-									<th id="image"><img src="image/${orderbook.bookimages}"
+									<th id="image"><img src="image/${orderbook.bookImages}"
 										width=50 height=350 alt="book"></th>
 									<td class="book">
 										<p>
@@ -179,19 +179,19 @@ form {
 											<strong class="desc">DESCRIPTION :</strong>${orderbook.description}<br>
 										</p>
 										<p>
-											<strong class="title">BOOK TITLE : </strong>${orderbook.booktitle}<br>
+											<strong class="title">BOOK TITLE : </strong>${orderbook.bookTitle}<br>
 										</p>
 										<p>
-											<strong class="title">BOOK CODE : </strong>${orderbook.bookcode}<br>
+											<strong class="title">BOOK CODE : </strong>${orderbook.bookCode}<br>
 										</p>
 										<p>
 											<strong class="price">PRICE : </strong>${orderbook.price}<br>
 										</p>
 										<p>
 											<strong class="date">PUBLISH DATE : </strong>
-											<fmt:parseDate value="${orderbook.publishdate}"
-												pattern="yyyy-MM-dd" var="publishDate" type="date" />
-											<fmt:formatDate pattern="dd-MM-yyyy" value="${publishDate}" />
+											<fmt:parseDate value="${orderbook.publishDate}"
+												pattern="yyyy-MM-dd" var="publishDates" type="date" />
+											<fmt:formatDate pattern="dd-MM-yyyy" value="${publishDates}" />
 											<br>
 										</p>
 										<p>
@@ -201,7 +201,7 @@ form {
 											<strong class="aname">AUTHOR NAME : </strong>${orderbook.name}<br>
 										</p>
 										<p>
-											<strong class="aemail">AUTHOR EMAIL : </strong>${orderbook.emailid}<br>
+											<strong class="aemail">AUTHOR EMAIL : </strong>${orderbook.emailId}<br>
 										</p>
 										<p>
 											<strong class="rating">RATINGS :</strong>${orderbook.rating}<br>

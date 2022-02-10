@@ -22,7 +22,7 @@ public class DeleteUserServlet extends HttpServlet {
 
 		UserdetailsDao userdetailsdao = new UserdetailsDao();
 
-		userdetailsdao.deleteuser(email);
+		userdetailsdao.deleteUser(email);
 
 		response.sendRedirect("ViewUserServlet");
 

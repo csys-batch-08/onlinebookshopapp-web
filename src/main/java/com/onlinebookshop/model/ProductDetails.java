@@ -10,34 +10,34 @@ public class ProductDetails implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int bookid;
+	private int bookId;
 	private String category;
 	private String description;
-	private String booktitle;
-	private String bookcode;
+	private String bookTitle;
+	private String bookCode;
 	private int price;
-	private LocalDate publishdate;
+	private LocalDate publishDate;
 	private String condition;
 	private String name;
-	private String emailid;
+	private String emailId;
 	private double rating;
-	private String bookimages;
+	private String bookImages;
 	private String status;
 
-	public int getBookid() {
-		return bookid;
+	public int getBookId() {
+		return bookId;
 	}
 
-	public void setBookid(int bookid) {
-		this.bookid = bookid;
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
 	}
 
-	public String getBookimages() {
-		return bookimages;
+	public String getBookImages() {
+		return bookImages;
 	}
 
-	public void setBookimages(String bookimages) {
-		this.bookimages = bookimages;
+	public void setBookImages(String bookImages) {
+		this.bookImages = bookImages;
 	}
 
 	public String getCategory() {
@@ -56,20 +56,20 @@ public class ProductDetails implements Serializable {
 		this.description = description;
 	}
 
-	public String getBooktitle() {
-		return booktitle;
+	public String getBookTitle() {
+		return bookTitle;
 	}
 
-	public void setBooktitle(String booktitle) {
-		this.booktitle = booktitle;
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
 	}
 
-	public String getBookcode() {
-		return bookcode;
+	public String getBookCode() {
+		return bookCode;
 	}
 
-	public void setBookcode(String bookcode) {
-		this.bookcode = bookcode;
+	public void setBookCode(String bookCode) {
+		this.bookCode = bookCode;
 	}
 
 	public int getPrice() {
@@ -80,12 +80,12 @@ public class ProductDetails implements Serializable {
 		this.price = price;
 	}
 
-	public LocalDate getPublishdate() {
-		return publishdate;
+	public LocalDate getPublishDate() {
+		return publishDate;
 	}
 
-	public void setPublishdate(LocalDate publishdate) {
-		this.publishdate = publishdate;
+	public void setPublishdate(LocalDate publishDate) {
+		this.publishDate = publishDate;
 	}
 
 	public String getCondition() {
@@ -104,12 +104,12 @@ public class ProductDetails implements Serializable {
 		this.name = name;
 	}
 
-	public String getEmailid() {
-		return emailid;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setEmailid(String emailid) {
-		this.emailid = emailid;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 	public double getRating() {
@@ -132,52 +132,52 @@ public class ProductDetails implements Serializable {
 		super();
 	}
 
-	public ProductDetails(int bookid, String category, String description, String booktitle, String bookcode, int price,
-			LocalDate publishdate, String condition, String name, String emailid, double rating, String bookimages) {
+	public ProductDetails(int bookId, String category, String description, String bookTitle, String bookCode, int price,
+			LocalDate publishDate, String condition, String name, String emailId, double rating, String bookImages) {
 		super();
-		this.bookid = bookid;
+		this.bookId = bookId;
 		this.category = category;
 		this.description = description;
-		this.booktitle = booktitle;
-		this.bookcode = bookcode;
+		this.bookTitle = bookTitle;
+		this.bookCode = bookCode;
 		this.price = price;
-		this.publishdate = publishdate;
+		this.publishDate = publishDate;
 		this.condition = condition;
 		this.name = name;
-		this.emailid = emailid;
+		this.emailId = emailId;
 		this.rating = rating;
-		this.bookimages = bookimages;
+		this.bookImages = bookImages;
 	}
 
-	public ProductDetails(String category, String description, String booktitle, String bookcode, int price,
-			LocalDate publishdate, String condition, String name, String emailid, double rating, String bookimages) {
+	public ProductDetails(String category, String description, String bookTitle, String bookCode, int price,
+			LocalDate publishDate, String condition, String name, String emailId, double rating, String bookImages) {
 		super();
 
 		this.category = category;
 		this.description = description;
-		this.booktitle = booktitle;
-		this.bookcode = bookcode;
+		this.bookTitle = bookTitle;
+		this.bookCode = bookCode;
 		this.price = price;
-		this.publishdate = publishdate;
+		this.publishDate = publishDate;
 		this.condition = condition;
 		this.name = name;
-		this.emailid = emailid;
+		this.emailId = emailId;
 		this.rating = rating;
-		this.bookimages = bookimages;
+		this.bookImages = bookImages;
 	}
 
 	@Override
 	public String toString() {
-		return "ShowProduct [category=" + category + ", description=" + description + ", booktitle=" + booktitle
-				+ ", bookcode=" + bookcode + ", price=" + price + ", publishdate=" + publishdate + ", condition="
-				+ condition + ", name=" + name + ", emailid=" + emailid + ", rating=" + rating + ", bookimages="
-				+ bookimages + "]";
+		return "ShowProduct [category=" + category + ", description=" + description + ", bookTitle=" + bookTitle
+				+ ", bookCode=" + bookCode + ", price=" + price + ", publishDate=" + publishDate + ", condition="
+				+ condition + ", name=" + name + ", emailId=" + emailId + ", rating=" + rating + ", bookImages="
+				+ bookImages + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bookcode, bookid, bookimages, booktitle, category, condition, description, emailid, name,
-				price, publishdate, rating, status);
+		return Objects.hash(bookCode, bookId, bookImages, bookTitle, category, condition, description, emailId, name,
+				price, publishDate, rating, status);
 	}
 
 	@Override
@@ -189,12 +189,12 @@ public class ProductDetails implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ProductDetails other = (ProductDetails) obj;
-		return Objects.equals(bookcode, other.bookcode) && bookid == other.bookid
-				&& Objects.equals(bookimages, other.bookimages) && Objects.equals(booktitle, other.booktitle)
+		return Objects.equals(bookCode, other.bookCode) && bookId == other.bookId
+				&& Objects.equals(bookImages, other.bookImages) && Objects.equals(bookTitle, other.bookTitle)
 				&& Objects.equals(category, other.category) && Objects.equals(condition, other.condition)
-				&& Objects.equals(description, other.description) && Objects.equals(emailid, other.emailid)
+				&& Objects.equals(description, other.description) && Objects.equals(emailId, other.emailId)
 				&& Objects.equals(name, other.name) && price == other.price
-				&& Objects.equals(publishdate, other.publishdate)
+				&& Objects.equals(publishDate, other.publishDate)
 				&& Double.doubleToLongBits(rating) == Double.doubleToLongBits(other.rating)
 				&& Objects.equals(status, other.status);
 	}

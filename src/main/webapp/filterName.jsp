@@ -129,15 +129,15 @@ a:hover {
 									<tr>
 										<th id="filters">
 										<td><a
-											href="ShowProductServlet?BookId=${filterName.bookid}"><img
-												src="image/${filterName.bookimages}" width=50 height=350
+											href="ShowProductServlet?BookId=${filterName.bookId}"><img
+												src="image/${filterName.bookImages}" width=50 height=350
 												alt="book"></a></td>
 										<td class="book">
 											<p>
 												<strong>CATEGORY : </strong>${filterName.category}<br>
 											</p>
 											<p>
-												<strong>BOOK TITLE : </strong>${filterName.booktitle}<br>
+												<strong>BOOK TITLE : </strong>${filterName.bookTitle}<br>
 											</p>
 											<p>
 												<strong>PRICE : </strong>${filterName.price}<br>

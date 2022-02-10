@@ -8,7 +8,7 @@ import java.util.List;
 import com.onlinebookshop.dao.UserDetailsDao;
 import com.onlinebookshop.logger.Logger;
 import com.onlinebookshop.model.Userdetails;
-import com.onlinebookshop.util.Connectionutil;
+import com.onlinebookshop.util.ConnectionUtil;
 
 public class UserdetailsDao implements UserDetailsDao {
 
@@ -27,7 +27,7 @@ public class UserdetailsDao implements UserDetailsDao {
 		PreparedStatement statement = null;
 
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(insertQuery);
 			statement.setString(1, user.getName());
 			statement.setLong(2, user.getPhoneNo());
@@ -43,7 +43,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -51,7 +51,7 @@ public class UserdetailsDao implements UserDetailsDao {
 		}
 	}
 
-	public Userdetails admin(String emailid, String password) {
+	public Userdetails admin(String emailId, String password) {
 		String adminQuery = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role='admin'and email_id = ? and password = ?";
 
 		Userdetails user = null;
@@ -60,14 +60,14 @@ public class UserdetailsDao implements UserDetailsDao {
 		ResultSet resultset = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(adminQuery);
-			statement.setString(1, emailid);
+			statement.setString(1, emailId);
 			statement.setString(2, password);
 			resultset = statement.executeQuery();
 			if (resultset.next()) {
 				user = new Userdetails(resultset.getInt(CUS_ID), resultset.getString(NAME), resultset.getLong(PHONE_NO),
-						resultset.getString("role"), resultset.getString(ADDRESS), emailid, password,
+						resultset.getString("role"), resultset.getString(ADDRESS), emailId, password,
 						resultset.getInt(WALLET));
 			}
 		} catch (SQLException e) {
@@ -76,7 +76,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultset, statement, con);
+				ConnectionUtil.closeConnection(resultset, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -86,7 +86,7 @@ public class UserdetailsDao implements UserDetailsDao {
 	}
 
 	// user
-	public Userdetails validateUser(String emailid, String password) {
+	public Userdetails validateUser(String emailId, String password) {
 		String validateQuery = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role='user'  and  email_id = ? and password = ? ";
 
 		Userdetails user = null;
@@ -95,14 +95,14 @@ public class UserdetailsDao implements UserDetailsDao {
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(validateQuery);
-			statement.setString(1, emailid);
+			statement.setString(1, emailId);
 			statement.setString(2, password);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				user = new Userdetails(resultSet.getInt(CUS_ID), resultSet.getString(NAME), resultSet.getLong(PHONE_NO),
-						resultSet.getString("role"), resultSet.getString(ADDRESS), emailid, password,
+						resultSet.getString("role"), resultSet.getString(ADDRESS), emailId, password,
 						resultSet.getInt(WALLET));
 			}
 
@@ -111,7 +111,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -126,7 +126,7 @@ public class UserdetailsDao implements UserDetailsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(updateQuery);
 			statement.setString(1, user.getName());
 			statement.setLong(2, user.getPhoneNo());
@@ -140,7 +140,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -150,12 +150,12 @@ public class UserdetailsDao implements UserDetailsDao {
 	}
 	// Delete user details
 
-	public void deleteuser(String delete) {
+	public void deleteUser(String delete) {
 		String deleteQuery = "update user_details set role='Inactive' where email_id=?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(deleteQuery);
 			statement.setString(1, delete);
 			statement.executeUpdate();
@@ -166,7 +166,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -179,7 +179,7 @@ public class UserdetailsDao implements UserDetailsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(deleteQuery);
 			statement.setString(1, delete);
 			statement.executeUpdate();
@@ -190,7 +190,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -205,7 +205,7 @@ public class UserdetailsDao implements UserDetailsDao {
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(show);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
@@ -220,7 +220,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -229,16 +229,16 @@ public class UserdetailsDao implements UserDetailsDao {
 		return userList;
 	}
 
-	public List<Userdetails> viewParticularUser(String emailid) {
+	public List<Userdetails> viewParticularUser(String emailId) {
 		List<Userdetails> userList = new ArrayList<>();
 		String show = "select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where email_id = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(show);
-			statement.setString(1, emailid);
+			statement.setString(1, emailId);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				Userdetails user = new Userdetails(resultSet.getInt(CUS_ID), resultSet.getString(NAME),
@@ -252,7 +252,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -268,7 +268,7 @@ public class UserdetailsDao implements UserDetailsDao {
 		ResultSet resultSet = null;
 		int cusId = 0;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(findUser);
 			statement.setString(1, emailId);
 			resultSet = statement.executeQuery();
@@ -280,7 +280,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -289,16 +289,16 @@ public class UserdetailsDao implements UserDetailsDao {
 		return cusId;
 	}
 
-	public int walletballance(int userid) {
+	public int walletballance(int userId) {
 
 		String query = "select wallet from user_details where cus_id = ?";
 		PreparedStatement statement = null;
 		Connection con = null;
 		ResultSet resultSet = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(query);
-			statement.setInt(1, userid);
+			statement.setInt(1, userId);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				return resultSet.getInt(1);
@@ -308,7 +308,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -326,7 +326,7 @@ public class UserdetailsDao implements UserDetailsDao {
 		PreparedStatement statement = null;
 
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, userdetails.getWallet());
 			statement.setString(2, userdetails.getEmailid());
@@ -337,7 +337,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -346,16 +346,16 @@ public class UserdetailsDao implements UserDetailsDao {
 		return true;
 	}
 
-	public List<Userdetails> myProfile(int userid) {
+	public List<Userdetails> myProfile(int userId) {
 		List<Userdetails> userList = new ArrayList<>();
 		String profile = "select name,phoneno,address,email_id,password,wallet from user_details where cus_id=?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(profile);
-			statement.setInt(1, userid);
+			statement.setInt(1, userId);
 
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
@@ -369,7 +369,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(resultSet, statement, con);
+				ConnectionUtil.closeConnection(resultSet, statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -378,7 +378,7 @@ public class UserdetailsDao implements UserDetailsDao {
 		return userList;
 	}
 
-	public boolean refundAmount(Userdetails userdetails) {
+	public boolean refundAmount(Userdetails userDetails) {
 
 		String query = "update user_details set wallet = ? where email_id = ?";
 
@@ -386,10 +386,10 @@ public class UserdetailsDao implements UserDetailsDao {
 		PreparedStatement statement = null;
 		try {
 
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(query);
-			statement.setInt(1, userdetails.getWallet());
-			statement.setString(2, userdetails.getEmailid());
+			statement.setInt(1, userDetails.getWallet());
+			statement.setString(2, userDetails.getEmailid());
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -397,7 +397,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
@@ -411,7 +411,7 @@ public class UserdetailsDao implements UserDetailsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try {
-			con = Connectionutil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(updateQuery);
 			statement.setString(1, user.getPassword());
 			statement.setString(2, user.getEmailid());
@@ -423,7 +423,7 @@ public class UserdetailsDao implements UserDetailsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			try {
-				Connectionutil.closeConnection(statement, con);
+				ConnectionUtil.closeConnection(statement, con);
 			} catch (SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());

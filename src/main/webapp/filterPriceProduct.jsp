@@ -137,10 +137,10 @@ ul
                             <tbody>
                                 <tr>
                                 <th id = "price">
-                                    <td><a href = "ShowProductServlet?BookId=${filterPrice.bookid}"><img src="image/${filterPrice.bookimages}" width=50 height=350 alt="book"></a></td>    
+                                    <td><a href = "ShowProductServlet?BookId=${filterPrice.bookId}"><img src="image/${filterPrice.bookImages}" width=50 height=350 alt="book"></a></td>    
                                     <td class="book">
                                         <p><strong>CATEGORY   :   </strong>${filterPrice.category}<br></p>
-                                        <p><strong>BOOK TITLE  :   </strong>${filterPrice.booktitle}<br></p>
+                                        <p><strong>BOOK TITLE  :   </strong>${filterPrice.bookTitle}<br></p>
                                         <p><strong>PRICE :  </strong>${filterPrice.price}<br></p>
                                          <p><strong>RATINGS    :</strong>${filterPrice.rating}<br><br></p>
                                     </td>

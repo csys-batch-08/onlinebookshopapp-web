@@ -11,20 +11,20 @@ public class OrderDetails implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int orderid;
-	private int bookid;
-	private int cusid;
+	private int orderId;
+	private int bookId;
+	private int cusId;
 	private int quantity;
-	private double totalcost;
-	private LocalDate orderdate;
+	private double totalCost;
+	private LocalDate orderDate;
 	private String status;
 
-	public int getOrderid() {
-		return orderid;
+	public int getOrderId() {
+		return orderId;
 	}
 
-	public void setOrderid(int orderid) {
-		this.orderid = orderid;
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
 
 	public String getStatus() {
@@ -35,20 +35,20 @@ public class OrderDetails implements Serializable {
 		this.status = status;
 	}
 
-	public int getBookid() {
-		return bookid;
+	public int getBookId() {
+		return bookId;
 	}
 
-	public void setBookid(int bookid) {
-		this.bookid = bookid;
+	public void setBookid(int bookId) {
+		this.bookId = bookId;
 	}
 
-	public int getCusid() {
-		return cusid;
+	public int getCusId() {
+		return cusId;
 	}
 
-	public void setCusid(int cusid) {
-		this.cusid = cusid;
+	public void setCusId(int cusId) {
+		this.cusId = cusId;
 	}
 
 	public int getQuantity() {
@@ -59,20 +59,20 @@ public class OrderDetails implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public double getTotalcost() {
-		return totalcost;
+	public double getTotalCost() {
+		return totalCost;
 	}
 
-	public void setTotalcost(double totalcost) {
-		this.totalcost = totalcost;
+	public void setTotalCost(double totalCost) {
+		this.totalCost = totalCost;
 	}
 
-	public LocalDate getOrderdate() {
-		return orderdate;
+	public LocalDate getOrderDate() {
+		return orderDate;
 	}
 
-	public void setOrderdate(LocalDate orderdate) {
-		this.orderdate = orderdate;
+	public void setOrderDate(LocalDate orderDate) {
+		this.orderDate = orderDate;
 	}
 
 	public OrderDetails() {
@@ -80,45 +80,45 @@ public class OrderDetails implements Serializable {
 
 	}
 
-	public OrderDetails(int bookid, int cusid, int quantity, double totalcost) {
+	public OrderDetails(int bookId, int cusId, int quantity, double totalCost) {
 		super();
-		this.bookid = bookid;
-		this.cusid = cusid;
+		this.bookId = bookId;
+		this.cusId = cusId;
 		this.quantity = quantity;
-		this.totalcost = totalcost;
+		this.totalCost = totalCost;
 	}
 
-	public OrderDetails(int bookid, int cusid, int quantity, double totalcost, LocalDate orderdate, String status) {
+	public OrderDetails(int bookId, int cusId, int quantity, double totalCost, LocalDate orderDate, String status) {
 		super();
-		this.bookid = bookid;
-		this.cusid = cusid;
+		this.bookId = bookId;
+		this.cusId = cusId;
 		this.quantity = quantity;
-		this.totalcost = totalcost;
-		this.orderdate = orderdate;
+		this.totalCost = totalCost;
+		this.orderDate = orderDate;
 		this.status = status;
 	}
 
-	public OrderDetails(int orderid, int bookid, int cusid, int quantity, double totalcost, LocalDate orderdate,
+	public OrderDetails(int orderId, int bookId, int cusId, int quantity, double totalCost, LocalDate orderDate,
 			String status) {
 		super();
-		this.orderid = orderid;
-		this.bookid = bookid;
-		this.cusid = cusid;
+		this.orderId = orderId;
+		this.bookId = bookId;
+		this.cusId = cusId;
 		this.quantity = quantity;
-		this.totalcost = totalcost;
-		this.orderdate = orderdate;
+		this.totalCost = totalCost;
+		this.orderDate = orderDate;
 		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "Cart [bookid=" + bookid + ", cusid=" + cusid + ", quantity=" + quantity + ", totalcost=" + totalcost
-				+ "]";
+		return "OrderDetails [orderId=" + orderId + ", bookId=" + bookId + ", cusId=" + cusId + ", quantity=" + quantity
+				+ ", totalCost=" + totalCost + ", orderDate=" + orderDate + ", status=" + status + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bookid, cusid, quantity, totalcost);
+		return Objects.hash(bookId, cusId, orderDate, orderId, quantity, status, totalCost);
 	}
 
 	@Override
@@ -130,8 +130,10 @@ public class OrderDetails implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		OrderDetails other = (OrderDetails) obj;
-		return bookid == other.bookid && cusid == other.cusid && quantity == other.quantity
-				&& Double.doubleToLongBits(totalcost) == Double.doubleToLongBits(other.totalcost);
+		return bookId == other.bookId && cusId == other.cusId && Objects.equals(orderDate, other.orderDate)
+				&& orderId == other.orderId && quantity == other.quantity && Objects.equals(status, other.status)
+				&& Double.doubleToLongBits(totalCost) == Double.doubleToLongBits(other.totalCost);
 	}
 
+	
 }

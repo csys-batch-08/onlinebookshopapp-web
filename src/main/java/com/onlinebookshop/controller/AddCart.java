@@ -31,7 +31,7 @@ public class AddCart extends HttpServlet {
 
 		CartDaoimpl cartdao = new CartDaoimpl();
 		Cart cart2 = new Cart(userId, bid);
-		cart2.setCusid(userId);
+		cart2.setCusId(userId);
 		session.setAttribute("itemidcart", bid);
 		int cart = 0;
 		try {
